@@ -1,5 +1,4 @@
-package sa.gov.sfd.committee.core.committee;
-
+package core.sa.gov.sfd.committee.core.committee;
 import java.util.List;
 
 public class CommitteeService {

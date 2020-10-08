@@ -1,4 +1,3 @@
-package sa.gov.sfd.committee.actions.member;
-
+package core.sa.gov.sfd.committee.actions.committee;
 public class DeleteMemberFromFormedCommittee_action {
 }

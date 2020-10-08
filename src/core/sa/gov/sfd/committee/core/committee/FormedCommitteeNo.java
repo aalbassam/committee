@@ -1,5 +1,4 @@
-package sa.gov.sfd.committee.core.formedCommittee;
-
+package core.sa.gov.sfd.committee.core.committee;
 public class FormedCommitteeNo {
 
     private final Long no;

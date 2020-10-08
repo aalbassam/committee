@@ -1,10 +1,9 @@
-package sa.gov.sfd.committee.actions.committee;
+package core.sa.gov.sfd.committee.actions.committee;
 
-import sa.gov.sfd.committee.core.committee.CommitteeEntity;
-import sa.gov.sfd.committee.core.committee.CommitteeService;
+import core.sa.gov.sfd.committee.core.committee.CommitteeEntity;
+import core.sa.gov.sfd.committee.core.committee.CommitteeService;
 
 public class AddNewCommittee_action {
-
 
     private final CommitteeService committeeService;
 
@@ -12,8 +11,7 @@ public class AddNewCommittee_action {
         this.committeeService = committeeService;
     }
 
-    public int addCommittee(CommitteeEntity committeeEntity)
-    {
+    public int addCommittee(CommitteeEntity committeeEntity) {
         return this.committeeService.addCommittee(committeeEntity);
     }
 }

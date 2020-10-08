@@ -1,11 +1,11 @@
-package sa.gov.sfd.committee.core.memberRole;
+package core.sa.gov.sfd.committee.core.committee;
 
-public class MemberRoleEntity {
+public class MemberRole {
 
-    private MemberRoleID memberRoleID;
-    private MemberRoleName memberRoleName;
+    private final MemberRoleID memberRoleID;
+    private final MemberRoleName memberRoleName;
 
-    public MemberRoleEntity(MemberRoleID memberRoleID, MemberRoleName memberRoleName) {
+    public MemberRole(MemberRoleID memberRoleID, MemberRoleName memberRoleName) {
         this.memberRoleID = memberRoleID;
         this.memberRoleName = memberRoleName;
     }
@@ -22,15 +22,9 @@ public class MemberRoleEntity {
         return memberRoleID;
     }
 
-    public void setMemberRoleID(MemberRoleID memberRoleID) {
-        this.memberRoleID = memberRoleID;
-    }
 
     public MemberRoleName getMemberRoleName() {
         return memberRoleName;
     }
 
-    public void setMemberRoleName(MemberRoleName memberRoleName) {
-        this.memberRoleName = memberRoleName;
-    }
 }

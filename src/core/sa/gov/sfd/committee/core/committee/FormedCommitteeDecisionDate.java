@@ -1,13 +1,12 @@
-package sa.gov.sfd.committee.core.member;
-
+package core.sa.gov.sfd.committee.core.committee;
 import java.time.LocalDate;
 
-public class MemberDecisionDate {
+public class FormedCommitteeDecisionDate {
 
     private final String decisionDateAH;
     private final LocalDate decisionDateAD;
 
-    public MemberDecisionDate(String decisionDateAH, LocalDate decisionDateAD) {
+    public FormedCommitteeDecisionDate(String decisionDateAH, LocalDate decisionDateAD) {
         this.decisionDateAH = decisionDateAH;
         this.decisionDateAD = decisionDateAD;
     }
