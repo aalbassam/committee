@@ -9,15 +9,39 @@ public class CommitteeService {
         this.committeeRepository = committeeRepository;
     }
 
-    public int addCommittee(CommitteeEntity committeeEntity){
-        return committeeRepository.addCommittee(committeeEntity);
-    }
 
-    public List<CommitteeEntity> getAllCommittees(){
+    //---- Service Methods ----
+
+    public List<CommitteeEntity> getAllCommittees() {
         return committeeRepository.findAllCommittees();
     }
 
-    public int updateCommittee(CommitteeEntity committeeEntity){
+    public int addMemberToFormedCommittee(Member member) {
+        return committeeRepository.addMemberToFormedCommittee(member);
+    }
+
+    public int addMemberListToFormedCommittee(List<Member> members) {
+        return committeeRepository.addMemberListToFormedCommittee(members);
+    }
+
+    public List<FormedCommittee> getAllFormedCommittees() {
+        return committeeRepository.findAllFormedCommittees();
+    }
+
+    public int addNewMemberRole(MemberRole memberRole) {
+        return committeeRepository.addNewMemberRole(memberRole);
+    }
+
+    public FormedCommittee getFormedCommitteeById(Long id) {
+        return committeeRepository.getFormedCommitteeById(id);
+    }
+
+    public int addFormedCommittee(CommitteeEntity committeeEntity, FormedCommittee formedCommittee) {
+        return committeeRepository.addFormedCommittee(committeeEntity, formedCommittee);
+    }
+
+    public int updateCommittee(CommitteeEntity committeeEntity) {
         return committeeRepository.updateCommittee(committeeEntity);
     }
+
 }

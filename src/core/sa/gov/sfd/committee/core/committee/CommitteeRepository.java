@@ -4,7 +4,20 @@ import java.util.List;
 public interface CommitteeRepository {
 
     List<CommitteeEntity> findAllCommittees();
-    int addCommittee(CommitteeEntity committeeEntity);
+
     int updateCommittee(CommitteeEntity committeeEntity);
+
+    int addMemberToFormedCommittee(Member member);
+
+    int addMemberListToFormedCommittee(List<Member> members);
+
+    List<FormedCommittee> findAllFormedCommittees();
+
+    FormedCommittee getFormedCommitteeById(Long id);
+
+    int addFormedCommittee(CommitteeEntity committeeEntity, FormedCommittee formedCommittee);
+
+    int addNewMemberRole(MemberRole memberRole);
+
 
 }
