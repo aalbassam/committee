@@ -7,17 +7,19 @@ public interface CommitteeRepository {
 
     int updateCommittee(CommitteeEntity committeeEntity);
 
-    int addMemberToFormedCommittee(Member member, int formationNo);
+    Member addMemberToFormedCommittee(Member member, FormedCommitteeNo formedCommitteeNo); //
 
-    int addMemberListToFormedCommittee(List<Member> members);
+    List<Member> addMemberListToFormedCommittee(List<Member> members);
 
     List<FormedCommittee> findAllFormedCommittees();
 
-    FormedCommittee getFormedCommitteeById(Long id);
+    FormedCommittee getFormedCommitteeById(FormedCommitteeNo formedCommitteeNo); //
 
-    int addFormedCommittee(CommitteeEntity committeeEntity, FormedCommittee formedCommittee);
+    FormedCommittee addFormedCommittee(CommitteeEntity committeeEntity, FormedCommittee formedCommittee);
 
-    int addNewMemberRole(MemberRole memberRole);
+    MemberRole addNewMemberRole(MemberRole memberRole);
+
+    List<MemberRole> getAllMemberRoles(); //
 
 
 }

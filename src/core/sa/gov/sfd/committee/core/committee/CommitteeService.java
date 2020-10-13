@@ -3,7 +3,8 @@ import java.util.List;
 
 public class CommitteeService {
 
-    CommitteeRepository committeeRepository;
+
+    private final CommitteeRepository committeeRepository;
 
     public CommitteeService(CommitteeRepository committeeRepository) {
         this.committeeRepository = committeeRepository;
@@ -16,11 +17,11 @@ public class CommitteeService {
         return committeeRepository.findAllCommittees();
     }
 
-    public int addMemberToFormedCommittee(Member member, int formationNo) {
-        return committeeRepository.addMemberToFormedCommittee(member, formationNo);
+    public Member addMemberToFormedCommittee(Member member, FormedCommitteeNo formedCommitteeNo) {
+        return committeeRepository.addMemberToFormedCommittee(member, formedCommitteeNo);
     }
 
-    public int addMemberListToFormedCommittee(List<Member> members) {
+    public List<Member> addMemberListToFormedCommittee(List<Member> members) {
         return committeeRepository.addMemberListToFormedCommittee(members);
     }
 
@@ -28,15 +29,15 @@ public class CommitteeService {
         return committeeRepository.findAllFormedCommittees();
     }
 
-    public int addNewMemberRole(MemberRole memberRole) {
+    public MemberRole addNewMemberRole(MemberRole memberRole) {
         return committeeRepository.addNewMemberRole(memberRole);
     }
 
-    public FormedCommittee getFormedCommitteeById(Long id) {
-        return committeeRepository.getFormedCommitteeById(id);
+    public FormedCommittee getFormedCommitteeById(FormedCommitteeNo formedCommitteeNo) {
+        return committeeRepository.getFormedCommitteeById(formedCommitteeNo);
     }
 
-    public int addFormedCommittee(CommitteeEntity committeeEntity, FormedCommittee formedCommittee) {
+    public FormedCommittee addFormedCommittee(CommitteeEntity committeeEntity, FormedCommittee formedCommittee) {
         return committeeRepository.addFormedCommittee(committeeEntity, formedCommittee);
     }
 

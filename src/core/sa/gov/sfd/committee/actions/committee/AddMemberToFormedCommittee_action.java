@@ -2,6 +2,7 @@ package core.sa.gov.sfd.committee.actions.committee;
 
 
 import core.sa.gov.sfd.committee.core.committee.CommitteeService;
+import core.sa.gov.sfd.committee.core.committee.FormedCommitteeNo;
 import core.sa.gov.sfd.committee.core.committee.Member;
 
 public class AddMemberToFormedCommittee_action {
@@ -12,7 +13,7 @@ public class AddMemberToFormedCommittee_action {
         this.committeeService = committeeService;
     }
 
-    public int addMemberToFormedCommittee(Member member, int formationNo) {
-        return this.committeeService.addMemberToFormedCommittee(member, formationNo);
+    public Member addMemberToFormedCommittee(Member member, FormedCommitteeNo formedCommitteeNo) {
+        return this.committeeService.addMemberToFormedCommittee(member, formedCommitteeNo);
     }
 }

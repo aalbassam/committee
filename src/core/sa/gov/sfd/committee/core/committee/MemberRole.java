@@ -12,7 +12,7 @@ public class MemberRole {
 
     @Override
     public String toString() {
-        return "MemberRoleEntity{" +
+        return "MemberRole{" +
                 "memberRoleID=" + memberRoleID +
                 ", memberRoleName=" + memberRoleName +
                 '}';

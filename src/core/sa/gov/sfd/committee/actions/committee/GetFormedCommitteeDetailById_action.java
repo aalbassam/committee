@@ -3,6 +3,7 @@ package core.sa.gov.sfd.committee.actions.committee;
 
 import core.sa.gov.sfd.committee.core.committee.CommitteeService;
 import core.sa.gov.sfd.committee.core.committee.FormedCommittee;
+import core.sa.gov.sfd.committee.core.committee.FormedCommitteeNo;
 
 
 public class GetFormedCommitteeDetailById_action {
@@ -16,8 +17,8 @@ public class GetFormedCommitteeDetailById_action {
     }
 
     //to get data from Repo(DB) by service
-    public FormedCommittee getFormedCommitteeDetailById(Long id) {
-        return committeeService.getFormedCommitteeById(id);
+    public FormedCommittee getFormedCommitteeDetailById(FormedCommitteeNo formedCommitteeNo) {
+        return committeeService.getFormedCommitteeById(formedCommitteeNo);
     }
     
 }

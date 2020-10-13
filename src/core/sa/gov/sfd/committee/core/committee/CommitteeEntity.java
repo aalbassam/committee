@@ -15,4 +15,44 @@ public class CommitteeEntity {
         this.committeeType = committeeType;
         this.formedCommittee = formedCommittee;
     }
+
+    public CommitteeID getCommitteeID() {
+        return committeeID;
+    }
+
+    public void setCommitteeID(CommitteeID committeeID) {
+        this.committeeID = committeeID;
+    }
+
+    public CommitteeName getCommitteeName() {
+        return committeeName;
+    }
+
+    public void setCommitteeName(CommitteeName committeeName) {
+        this.committeeName = committeeName;
+    }
+
+    public String getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(String tasks) {
+        this.tasks = tasks;
+    }
+
+    public char getCommitteeType() {
+        return committeeType;
+    }
+
+    public void setCommitteeType(char committeeType) {
+        this.committeeType = committeeType;
+    }
+
+    public FormedCommittee getFormedCommittee() {
+        return formedCommittee;
+    }
+
+    public void setFormedCommittee(FormedCommittee formedCommittee) {
+        this.formedCommittee = formedCommittee;
+    }
 }

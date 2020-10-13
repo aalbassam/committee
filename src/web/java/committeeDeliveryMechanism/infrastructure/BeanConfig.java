@@ -1,39 +1,56 @@
 package committeeDeliveryMechanism.infrastructure;
 
+import core.sa.gov.sfd.committee.actions.committee.GetAllFormedCommittees_action;
+import core.sa.gov.sfd.committee.core.committee.CommitteeService;
+import core.sa.gov.sfd.committee.infrastructure.CommitteeRepositoryImpl;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-import sa.gov.sfd.committee.actions.formedCommittee.GetDetailsOfFormedCommitteeByID_action;
-import sa.gov.sfd.committee.infrastructure.CommitteeRepositoryImpl;
-
+import javax.sql.DataSource;
 
 
 @Configuration
 public class BeanConfig {
-    
-  
-    //---------------REPOSITORIES---------------------
-    
+
+
+    //----------------DB--------------------------
     @Bean
-    public CommitteeRepository committeeRepository(){
-        return new CommitteeRepositoryImpl();
+    JdbcTemplate jdbcTemplate() {
+        return new JdbcTemplate(dataSource());
+    }
+
+    @Bean
+    DataSource dataSource() {
+        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder.driverClassName("org.h2.Driver");
+        dataSourceBuilder.url("jdbc:h2:mem:testdb");
+        dataSourceBuilder.username("sa");
+        dataSourceBuilder.password("password");
+        return dataSourceBuilder.build();
     }
 
 
-
-    //---------------SERVICES---------------------
+    //---------------REPOSITORIES--------------------
 
     @Bean
-    public CommitteeService committeeService(){
+    public CommitteeRepositoryImpl committeeRepository() {
+        return new CommitteeRepositoryImpl(jdbcTemplate());
+    }
+
+
+    //---------------SERVICES-------------------------
+    @Bean
+    public CommitteeService committeeService() {
         return new CommitteeService(committeeRepository());
     }
 
-    
 
     //---------------ACTIONS---------------------
     @Bean
-    public GetDetailsOfFormedCommitteeByID_action getCommitteeDetails(){
-        return new GetDetailsOfFormedCommitteeByID_action(committeeService());
+    public GetAllFormedCommittees_action getAllFormedCommittees_action() {
+        return new GetAllFormedCommittees_action(committeeService());
     }
-   
+
 }

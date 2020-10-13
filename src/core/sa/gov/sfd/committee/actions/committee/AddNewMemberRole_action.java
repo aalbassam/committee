@@ -12,7 +12,7 @@ public class AddNewMemberRole_action {
         this.committeeService = committeeService;
     }
 
-    public int addMemberRole(MemberRole memberRole) {
+    public MemberRole addMemberRole(MemberRole memberRole) {
         return this.committeeService.addNewMemberRole(memberRole);
     }
 }

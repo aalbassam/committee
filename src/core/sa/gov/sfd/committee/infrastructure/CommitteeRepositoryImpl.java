@@ -1,22 +1,65 @@
-package sa.gov.sfd.committee.infrastructure;
+package core.sa.gov.sfd.committee.infrastructure;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import core.sa.gov.sfd.committee.core.committee.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class CommitteeRepositoryImpl {
+public class CommitteeRepositoryImpl implements CommitteeRepository {
 
+    private final JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+    public CommitteeRepositoryImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
 
     @Override
-    public List<CommitteeEntity> getAllCommittees() {
+    public List<CommitteeEntity> findAllCommittees() {
+        return null;
+    }
 
-        return jdbcTemplate.query("SELECT * FROM CC_COMMITTEES", new CommitteeMapper());
+    @Override
+    public int updateCommittee(CommitteeEntity committeeEntity) {
+        return 0;
+    }
+
+    @Override
+    public Member addMemberToFormedCommittee(Member member, FormedCommitteeNo formedCommitteeNo) {
+        return null;
+    }
+
+    @Override
+    public List<Member> addMemberListToFormedCommittee(List<Member> members) {
+        return null;
+    }
+
+    @Override
+    public List<FormedCommittee> findAllFormedCommittees() {
+        return null;
+    }
+
+    @Override
+    public FormedCommittee getFormedCommitteeById(FormedCommitteeNo formedCommitteeNo) {
+        return null;
+    }
+
+    @Override
+    public FormedCommittee addFormedCommittee(CommitteeEntity committeeEntity, FormedCommittee formedCommittee) {
+        return null;
+    }
+
+    @Override
+    public MemberRole addNewMemberRole(MemberRole memberRole) {
+        return null;
+    }
+
+    @Override
+    public List<MemberRole> getAllMemberRoles() {
+        return null;
     }
 }
+
+

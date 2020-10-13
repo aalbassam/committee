@@ -1,4 +1,5 @@
-package sa.gov.sfd.committee.core.employee;
+package core.sa.gov.sfd.committee.core.employee;
+
 
 public class EmployeeEntity {
 

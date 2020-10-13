@@ -13,7 +13,7 @@ public class AddNewFormedCommittee_action {
         this.committeeService = committeeService;
     }
 
-    public int addFormedCommittee(CommitteeEntity committeeEntity, FormedCommittee formedCommittee) {
+    public FormedCommittee addFormedCommittee(CommitteeEntity committeeEntity, FormedCommittee formedCommittee) {
         return this.committeeService.addFormedCommittee(committeeEntity, formedCommittee);
     }
 }
