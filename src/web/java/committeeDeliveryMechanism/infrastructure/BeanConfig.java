@@ -1,6 +1,6 @@
 package committeeDeliveryMechanism.infrastructure;
 
-import core.sa.gov.sfd.committee.actions.committee.GetAllFormedCommittees_action;
+import core.sa.gov.sfd.committee.actions.committee.GetAllFormedCommittees;
 import core.sa.gov.sfd.committee.core.committee.CommitteeService;
 import core.sa.gov.sfd.committee.infrastructure.CommitteeRepositoryImpl;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -49,8 +49,8 @@ public class BeanConfig {
 
     //---------------ACTIONS---------------------
     @Bean
-    public GetAllFormedCommittees_action getAllFormedCommittees_action() {
-        return new GetAllFormedCommittees_action(committeeService());
+    public GetAllFormedCommittees getAllFormedCommittees_action() {
+        return new GetAllFormedCommittees(committeeService());
     }
 
 }

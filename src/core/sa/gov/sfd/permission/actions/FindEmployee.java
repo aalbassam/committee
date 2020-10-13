@@ -1,8 +1,6 @@
-package sa.gov.sfd.permission.actions;
+package core.sa.gov.sfd.permission.actions;
 
-import sa.gov.sfd.permission.core.EmployeeEntity;
-import sa.gov.sfd.permission.core.EmployeeNID;
-import sa.gov.sfd.permission.core.EmployeeService;
+import core.sa.gov.sfd.permission.core.EmployeeService;
 
 public class FindEmployee {
 
@@ -12,7 +10,7 @@ public class FindEmployee {
         this.employeeService = employeeService;
     }
 
-    public EmployeeEntity find(Long empNid){
-        return employeeService.getEmployee(new EmployeeNID(empNid));
+    public sa.gov.sfd.permission.core.EmployeeEntity find(Long empNid) {
+        return employeeService.getEmployee(new sa.gov.sfd.permission.core.EmployeeNID(empNid));
     }
 }

@@ -1,4 +1,4 @@
-package sa.gov.sfd.permission.actions;
+package core.sa.gov.sfd.permission.actions;
 
 import java.util.List;
 import sa.gov.sfd.permission.core.ModuleEntity;

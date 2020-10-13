@@ -1,5 +1,6 @@
 package committeeDeliveryMechanism.controller;
 
+import core.sa.gov.sfd.committee.actions.committee.GetAllCommittees;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,7 @@ public class CommitteeController {
 
     //Action (1): 
     @Autowired
-    private GetDetailsOfFormedCommitteeByID_action getCommittees;
+    private GetAllCommittees getCommittees;
 
 
 
@@ -29,7 +30,7 @@ public class CommitteeController {
     public List<CommitteeInfoDTO> getAllCommittees(){
         // return CommitteeConverter.convertCommitteeDTO(getCommittees.findAll());
         System.out.println("hi");
-         return getCommittees.findAll().stream().map(CommitteeConverter::convertCommitteeDTO).collect(Collectors.toList());
+        return getCommittees.getAllCommittees().stream().map(CommitteeConverter::convertCommitteeDTO).collect(Collectors.toList());
     }
 
 }

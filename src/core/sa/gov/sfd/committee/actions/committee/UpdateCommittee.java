@@ -3,11 +3,11 @@ package core.sa.gov.sfd.committee.actions.committee;
 import core.sa.gov.sfd.committee.core.committee.CommitteeEntity;
 import core.sa.gov.sfd.committee.core.committee.CommitteeService;
 
-public class UpdateCommittee_action {
+public class UpdateCommittee {
 
     private final CommitteeService committeeService;
 
-    public UpdateCommittee_action(CommitteeService committeeService) {
+    public UpdateCommittee(CommitteeService committeeService) {
         this.committeeService = committeeService;
     }
 

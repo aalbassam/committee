@@ -6,11 +6,11 @@ import core.sa.gov.sfd.committee.core.committee.FormedCommittee;
 
 import java.util.List;
 
-public class GetAllFormedCommittees_action {
+public class GetAllFormedCommittees {
 
     private final CommitteeService committeeService;
 
-    public GetAllFormedCommittees_action(CommitteeService committeeService) {
+    public GetAllFormedCommittees(CommitteeService committeeService) {
         this.committeeService = committeeService;
     }
 

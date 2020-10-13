@@ -1,14 +1,14 @@
-package sa.gov.sfd.permission.core;
+package core.sa.gov.sfd.permission.core;
 
 public class EmployeeService {
-    private EmployeeRepository employeeRepository;
+    private sa.gov.sfd.permission.core.EmployeeRepository employeeRepository;
 
-    public EmployeeService(EmployeeRepository employeeRepository) {
+    public EmployeeService(sa.gov.sfd.permission.core.EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
-    public EmployeeEntity getEmployee(EmployeeNID empNid){
-        return employeeRepository.findEmployeeByNationalId(empNid);
+    public sa.gov.sfd.permission.core.EmployeeEntity getEmployee(sa.gov.sfd.permission.core.EmployeeNID empNid) {
+        return null; //employeeRepository.findEmployeeByNationalId(empNid);
     }
-    
+
 }

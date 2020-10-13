@@ -5,11 +5,11 @@ import core.sa.gov.sfd.committee.core.committee.CommitteeService;
 import core.sa.gov.sfd.committee.core.committee.FormedCommitteeNo;
 import core.sa.gov.sfd.committee.core.committee.Member;
 
-public class AddMemberToFormedCommittee_action {
+public class AddMemberToFormedCommittee {
 
     private final CommitteeService committeeService;
 
-    public AddMemberToFormedCommittee_action(CommitteeService committeeService) {
+    public AddMemberToFormedCommittee(CommitteeService committeeService) {
         this.committeeService = committeeService;
     }
 

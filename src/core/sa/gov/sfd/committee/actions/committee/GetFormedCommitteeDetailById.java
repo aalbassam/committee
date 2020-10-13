@@ -6,13 +6,13 @@ import core.sa.gov.sfd.committee.core.committee.FormedCommittee;
 import core.sa.gov.sfd.committee.core.committee.FormedCommitteeNo;
 
 
-public class GetFormedCommitteeDetailById_action {
+public class GetFormedCommitteeDetailById {
 
     //service:
     private CommitteeService committeeService;
 
     //constructor:
-    public GetFormedCommitteeDetailById_action(CommitteeService committeeService) {
+    public GetFormedCommitteeDetailById(CommitteeService committeeService) {
         this.committeeService = committeeService;
     }
 
