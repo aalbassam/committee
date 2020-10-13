@@ -16,8 +16,8 @@ public class CommitteeService {
         return committeeRepository.findAllCommittees();
     }
 
-    public int addMemberToFormedCommittee(Member member) {
-        return committeeRepository.addMemberToFormedCommittee(member);
+    public int addMemberToFormedCommittee(Member member, int formationNo) {
+        return committeeRepository.addMemberToFormedCommittee(member, formationNo);
     }
 
     public int addMemberListToFormedCommittee(List<Member> members) {

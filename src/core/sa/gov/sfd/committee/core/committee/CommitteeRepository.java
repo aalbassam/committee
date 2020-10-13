@@ -7,7 +7,7 @@ public interface CommitteeRepository {
 
     int updateCommittee(CommitteeEntity committeeEntity);
 
-    int addMemberToFormedCommittee(Member member);
+    int addMemberToFormedCommittee(Member member, int formationNo);
 
     int addMemberListToFormedCommittee(List<Member> members);
 
