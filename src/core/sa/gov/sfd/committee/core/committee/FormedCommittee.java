@@ -24,6 +24,7 @@ public class FormedCommittee {
         this.createdDate = createdDate;
     }
 
+
     @Override
     public String toString() {
         return "FormedCommittee{" +

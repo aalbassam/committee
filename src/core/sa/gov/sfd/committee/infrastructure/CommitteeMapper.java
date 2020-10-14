@@ -1,5 +1,9 @@
-package sa.gov.sfd.committee.infrastructure;
+package core.sa.gov.sfd.committee.infrastructure;
 
+
+import core.sa.gov.sfd.committee.core.committee.CommitteeEntity;
+import core.sa.gov.sfd.committee.core.committee.CommitteeID;
+import core.sa.gov.sfd.committee.core.committee.CommitteeName;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -9,11 +13,13 @@ public class CommitteeMapper implements RowMapper<CommitteeEntity> {
 
 
     @Override
-    public CommitteeEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public CommitteeEntity mapRow(ResultSet resultSet, int i) throws SQLException {
 
-        CommitteeEntity  committee = new CommitteeEntity();
-        committee.setCommitteeId(new CommitteeId(rs.getLong("COMMITTEE_ID")));
-        committee.setCommitteeName(new CommitteeInfo(rs.getString("COMMITTEE_EN_NAME"), rs.getString("COMMITTEE_AR_NAME")));
+        CommitteeEntity committee = new CommitteeEntity();
+        committee.setCommitteeID(new CommitteeID(resultSet.getInt("CC_SID")));
+        committee.setCommitteeName(new CommitteeName(resultSet.getString("CC_AR_NAME"), resultSet.getString("CC_EN_NAME")));
+        committee.setCommitteeType(resultSet.getString("CC_TYPE").charAt(0));
+        committee.setTasks(resultSet.getString("CC_TASKS"));
 
         return committee;
     }

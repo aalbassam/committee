@@ -1,4 +1,5 @@
 package core.sa.gov.sfd.committee.core.committee;
+
 import java.time.LocalDate;
 
 public class FormedCommitteeDecisionDate {

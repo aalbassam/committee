@@ -4,6 +4,7 @@ import core.sa.gov.sfd.committee.core.committee.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 
 @Repository
@@ -18,11 +19,13 @@ public class CommitteeRepositoryImpl implements CommitteeRepository {
 
     @Override
     public List<CommitteeEntity> findAllCommittees() {
-        return null;
+        final String q1 = "SELECT CC_SID, CC_AR_NAME, CC_EN_NAME, CC_TYPE, CC_TASKS  FROM COMMITTEES";
+        return this.jdbcTemplate.query(q1, new CommitteeMapper());
     }
 
     @Override
     public int updateCommittee(CommitteeEntity committeeEntity) {
+
         return 0;
     }
 
@@ -38,7 +41,9 @@ public class CommitteeRepositoryImpl implements CommitteeRepository {
 
     @Override
     public List<FormedCommittee> findAllFormedCommittees() {
-        return null;
+        //SC_COMMITTEE_ID
+        final String q1 = "SELECT SC_FORMATION_NO, SC_REWARD, SC_DECISION_NO, SC_DECISION_DATE_AH, SC_DECISION_DATE_AD, SC_FORMATION_END_DATE_AH, SC_FORMATION_END_DATE_AD  FROM FORMED_COMMITTEES";
+        return this.jdbcTemplate.query(q1, new FormedCommitteeMapper());
     }
 
     @Override
@@ -53,7 +58,16 @@ public class CommitteeRepositoryImpl implements CommitteeRepository {
 
     @Override
     public MemberRole addNewMemberRole(MemberRole memberRole) {
-        return null;
+
+        final String InsertQuery = "INSERT INTO MEMBER_ROLES (CMR_ROLE_ID,CMR_ROLE_AR_NAME, CMR_ROLE_EN_NAME) VALUES (CMR_ROLE_ID_SEQ.NEXTVAL,?,?)";
+        jdbcTemplate.update(connection -> {
+            PreparedStatement preparedStatement = connection.prepareStatement(InsertQuery);
+            preparedStatement.setString(1, memberRole.getMemberRoleName().getArName());
+            preparedStatement.setString(1, memberRole.getMemberRoleName().getEnName());
+            return preparedStatement;
+        });
+
+        return memberRole;
     }
 
     @Override

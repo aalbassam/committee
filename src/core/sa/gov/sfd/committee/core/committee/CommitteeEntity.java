@@ -16,6 +16,9 @@ public class CommitteeEntity {
         this.formedCommittee = formedCommittee;
     }
 
+    public CommitteeEntity() {
+    }
+
     public CommitteeID getCommitteeID() {
         return committeeID;
     }
