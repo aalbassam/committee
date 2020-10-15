@@ -72,7 +72,8 @@ public class CommitteeRepositoryImpl implements CommitteeRepository {
 
     @Override
     public List<MemberRole> getAllMemberRoles() {
-        return null;
+        final String q1 = "SELECT CMR_ROLE_ID, CMR_ROLE_AR_NAME, CMR_ROLE_EN_NAME  FROM MEMBER_ROLES";
+        return this.jdbcTemplate.query(q1, new MemberRoleMapper());
     }
 }
 

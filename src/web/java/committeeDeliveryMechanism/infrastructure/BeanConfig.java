@@ -1,7 +1,6 @@
 package committeeDeliveryMechanism.infrastructure;
 
-import core.sa.gov.sfd.committee.actions.committee.GetAllCommittees;
-import core.sa.gov.sfd.committee.actions.committee.GetAllFormedCommittees;
+import core.sa.gov.sfd.committee.actions.committee.*;
 import core.sa.gov.sfd.committee.core.committee.CommitteeService;
 import core.sa.gov.sfd.committee.infrastructure.CommitteeRepositoryImpl;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -58,5 +57,31 @@ public class BeanConfig {
     public GetAllCommittees getAllCommittees() {
         return new GetAllCommittees(committeeService());
     }
+
+    @Bean
+    public UpdateCommittee updateCommittee() {
+        return new UpdateCommittee(committeeService());
+    }
+
+    @Bean
+    public GetFormedCommitteeDetailById getFormedCommitteeDetailById() {
+        return new GetFormedCommitteeDetailById(committeeService());
+    }
+
+    @Bean
+    public AddNewMemberRole addNewMemberRole() {
+        return new AddNewMemberRole(committeeService());
+    }
+
+    @Bean
+    public AddNewFormedCommittee addNewFormedCommittee() {
+        return new AddNewFormedCommittee(committeeService());
+    }
+
+    @Bean
+    public AddMemberToFormedCommittee addMemberToFormedCommittee() {
+        return new AddMemberToFormedCommittee(committeeService());
+    }
+
 
 }
