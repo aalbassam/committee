@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.util.List;
+import java.util.function.DoubleToIntFunction;
 
 @Repository
 public class CommitteeRepositoryImpl implements CommitteeRepository {
@@ -63,7 +64,7 @@ public class CommitteeRepositoryImpl implements CommitteeRepository {
         jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(InsertQuery);
             preparedStatement.setString(1, memberRole.getMemberRoleName().getArName());
-            preparedStatement.setString(1, memberRole.getMemberRoleName().getEnName());
+            preparedStatement.setString(2, memberRole.getMemberRoleName().getEnName());
             return preparedStatement;
         });
 

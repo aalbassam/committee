@@ -1,10 +1,9 @@
 package committeeDeliveryMechanism.infrastructure;
 
-import committeeDeliveryMechanism.view.CommitteeInfoDTO;
+import committeeDeliveryMechanism.view.CommitteeDTO;
+import committeeDeliveryMechanism.view.FormedCommitteeDTO;
 import committeeDeliveryMechanism.view.MemberRoleDTO;
-import sa.gov.sfd.committee.core.committee.MemberRole;
-import sa.gov.sfd.committee.core.committee.MemberRoleID;
-import sa.gov.sfd.committee.core.committee.MemberRoleName;
+import sa.gov.sfd.committee.core.committee.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,9 +12,9 @@ import java.util.stream.Collectors;
 public class CommitteeConverter {
 
 
-    public static List<MemberRoleDTO> convertMemberRolesList(List<MemberRole> memberRole) {
+    public static List<MemberRoleDTO> convertMemberRolesList(List<MemberRole> memberRoles) {
 
-        return memberRole.stream().map(x ->
+        return memberRoles.stream().map(x ->
                 new MemberRoleDTO(
                         x.getMemberRoleID().getId(),
                         x.getMemberRoleName().getArName(),
@@ -30,6 +29,34 @@ public class CommitteeConverter {
                 new MemberRoleName(memberRoleDTO.getArName(), memberRoleDTO.getEnName()));
 
     }
+
+    public static List<CommitteeDTO> convertCommitteesList(List<CommitteeEntity> committeeEntities) {
+
+        return committeeEntities.stream().map(x ->
+                new CommitteeDTO(
+                        x.getCommitteeID().getId(),
+                        x.getCommitteeName().getArName(),
+                        x.getCommitteeName().getEnName(),
+                        x.getTasks(),
+                        x.getCommitteeType()
+                )).collect(Collectors.toList());
+    }
+
+    public static List<FormedCommitteeDTO> convertFormedCommitteeList(List<FormedCommittee> formedCommittees) {
+
+        return formedCommittees.stream().map(x ->
+                new FormedCommitteeDTO(
+                        x.getFormedCommitteeNo().getNo(),
+                        x.isReward(),
+                        x.getDecisionNo(),
+                        x.getFormedCommitteeDecisionDate().getDecisionDateAH(),
+                        x.getFormedCommitteeDecisionDate().getDecisionDateAD(),
+                        x.getFormedCommitteeEndDate().getEndDateAH(),
+                        x.getFormedCommitteeEndDate().getEndDateAD()
+                )).collect(Collectors.toList());
+    }
+
+
 
     /*
     public static CommitteeInfoDTO convertCommitteeDTO(CommitteeEntity committeeEntity){

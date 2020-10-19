@@ -49,16 +49,6 @@ public class BeanConfig {
 
 
 
-        /*@Bean
-        DataSource dataSource() {
-            return new EmbeddedDatabaseBuilder()
-                    .setType(EmbeddedDatabaseType.H2)
-                    .addScript("schema.sql")
-                    .addScript("data.sql")
-                    .build();
-        }*/
-
-
     //---------------REPOSITORIES--------------------
 
     @Bean
