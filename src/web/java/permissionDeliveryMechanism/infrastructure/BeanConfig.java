@@ -3,23 +3,13 @@ package permissionDeliveryMechanism.infrastructure;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import core.sa.gov.sfd.permission.actions.AddModule;
-import core.sa.gov.sfd.permission.actions.FindAllModules;
-import core.sa.gov.sfd.permission.actions.FindEmployee;
-import core.sa.gov.sfd.permission.actions.FindModule;
-import core.sa.gov.sfd.permission.actions.FindModulePermissions;
-import core.sa.gov.sfd.permission.actions.GrantModulePermission;
-import core.sa.gov.sfd.permission.actions.RemoveModulePermission;
-import core.sa.gov.sfd.permission.actions.UpdateModule;
-import core.sa.gov.sfd.permission.core.EmployeeRepository;
-import core.sa.gov.sfd.permission.core.EmployeeService;
-import core.sa.gov.sfd.permission.core.ModuleRepository;
-import core.sa.gov.sfd.permission.core.ModuleService;
-import core.sa.gov.sfd.permission.core.PermissionRepository;
-import core.sa.gov.sfd.permission.core.PermissionService;
-import core.sa.gov.sfd.permission.infrastructure.EmployeeRepositoryImpl;
-import core.sa.gov.sfd.permission.infrastructure.ModuleRepositoryImpl;
-import core.sa.gov.sfd.permission.infrastructure.PermissionRepositoryImpl;
+/*import sa.gov.sfd.permission.core.ModuleRepository;
+import sa.gov.sfd.permission.core.ModuleService;
+import sa.gov.sfd.permission.core.PermissionRepository;
+import sa.gov.sfd.permission.core.PermissionService;
+import sa.gov.sfd.permission.infrastructure.EmployeeRepositoryImpl;
+import sa.gov.sfd.permission.infrastructure.ModuleRepositoryImpl;
+import sa.gov.sfd.permission.infrastructure.PermissionRepositoryImpl;*/
 
 @Configuration
 public class BeanConfig {
@@ -27,7 +17,7 @@ public class BeanConfig {
     
     //---------------REPOSITORIES---------------------
     
-    @Bean
+   /* @Bean
     public ModuleRepository moduleRepository(){
         return new ModuleRepositoryImpl();
     }
@@ -97,5 +87,5 @@ public class BeanConfig {
 
     @Bean FindEmployee findEmployee(){
         return new FindEmployee(employeeService());
-    }
+    }*/
 }

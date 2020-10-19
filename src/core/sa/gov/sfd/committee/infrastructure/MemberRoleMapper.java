@@ -1,6 +1,6 @@
-package core.sa.gov.sfd.committee.infrastructure;
+package sa.gov.sfd.committee.infrastructure;
 
-import core.sa.gov.sfd.committee.core.committee.*;
+import sa.gov.sfd.committee.core.committee.*;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -14,7 +14,7 @@ public class MemberRoleMapper implements RowMapper<MemberRole> {
     public MemberRole mapRow(ResultSet resultSet, int i) throws SQLException {
 
         return new MemberRole(new MemberRoleID(resultSet.getInt("CMR_ROLE_ID")),
-                new MemberRoleName(resultSet.getString("CMR_ROLE_AR_NAME"), resultSet.getString("CMR_ROLE_AR_NAME")));
+                new MemberRoleName(resultSet.getString("CMR_ROLE_AR_NAME"), resultSet.getString("CMR_ROLE_EN_NAME")));
 
 
     }

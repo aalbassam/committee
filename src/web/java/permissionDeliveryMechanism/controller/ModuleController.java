@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 import permissionDeliveryMechanism.infrastructure.ModuleConverter;
 import permissionDeliveryMechanism.view.ModuleDTO;
 import permissionDeliveryMechanism.view.ModuleInfoDTO;
-import sa.gov.sfd.permission.actions.AddModule;
-import sa.gov.sfd.permission.actions.FindAllModules;
-import sa.gov.sfd.permission.actions.FindModule;
-import sa.gov.sfd.permission.actions.UpdateModule;
+//import sa.gov.sfd.permission.actions.AddModule;
+//import sa.gov.sfd.permission.actions.FindAllModules;
+//import sa.gov.sfd.permission.actions.FindModule;
+//import sa.gov.sfd.permission.actions.UpdateModule;
 
 @RestController
 @RequestMapping("/api/modules")
 public class ModuleController {
 
-    @Autowired
+   /* @Autowired
     private FindAllModules findModules;
 
     @Autowired
@@ -56,5 +56,5 @@ public class ModuleController {
     @PutMapping("/{id}")
     public int updateModule(@PathVariable("id") Long moduleId,@RequestBody ModuleInfoDTO moduleInfoDTO){
         return updateModule.update(moduleId, ModuleConverter.convertModuleInfo(moduleInfoDTO));
-    }
+    }*/
 }

@@ -6,19 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import sa.gov.sfd.permission.core.EmployeeNID;
-import sa.gov.sfd.permission.core.ModuleId;
-import sa.gov.sfd.permission.core.PermissionEntity;
-import sa.gov.sfd.permission.core.PermissionRepository;
-
 @Repository
-public class PermissionRepositoryImpl implements PermissionRepository {
+public class PermissionRepositoryImpl /*implements PermissionRepository*/ {
 
-    @Autowired
+    /*@Autowired
     JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<PermissionEntity> findEmployeePermissions(EmployeeNID empNid) {
+    public List<PermissionEntity> findEmployeePermissions(sa.gov.sfd.permission.core.Employee2NID empNid) {
         return jdbcTemplate.query("SELECT * FROM PER_MODULES_PERMISSIONS WHERE EM_NATIONAL_ID = ? ", new Object[]{empNid.getId()},new PermissionMapper());
     }
 
@@ -29,8 +24,8 @@ public class PermissionRepositoryImpl implements PermissionRepository {
     }
 
     @Override
-    public int removePermission(EmployeeNID empNid, ModuleId moduleId) {
+    public int removePermission(sa.gov.sfd.permission.core.Employee2NID empNid, ModuleId moduleId) {
         return jdbcTemplate.update("DELETE FROM PER_MODULES_PERMISSIONS WHERE MODULE_ID = ? AND EM_NATIONAL_ID = ? ", new Object[] { moduleId.getId() , empNid.getId() });  
-    }
+    }*/
 
 }

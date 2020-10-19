@@ -1,4 +1,4 @@
-package core.sa.gov.sfd.committee.core.committee;
+package sa.gov.sfd.committee.core.committee;
 public class CommitteeName {
 
     private final String arName;

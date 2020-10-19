@@ -1,8 +1,8 @@
-package core.sa.gov.sfd.committee.actions.committee;
+package sa.gov.sfd.committee.actions.committee;
 
 
-import core.sa.gov.sfd.committee.core.committee.CommitteeService;
-import core.sa.gov.sfd.committee.core.committee.FormedCommittee;
+import sa.gov.sfd.committee.core.committee.CommitteeService;
+import sa.gov.sfd.committee.core.committee.FormedCommittee;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package core.sa.gov.sfd.committee.core.committee;
+package sa.gov.sfd.committee.core.committee;
 import java.util.List;
 
 public class CommitteeService {
@@ -43,6 +43,10 @@ public class CommitteeService {
 
     public int updateCommittee(CommitteeEntity committeeEntity) {
         return committeeRepository.updateCommittee(committeeEntity);
+    }
+
+    public List<MemberRole> getAllMemberRoles() {
+        return committeeRepository.getAllMemberRoles();
     }
 
 }

@@ -1,4 +1,4 @@
-package core.sa.gov.sfd.committee.core.committee;
+package sa.gov.sfd.committee.core.committee;
 
 import java.util.List;
 

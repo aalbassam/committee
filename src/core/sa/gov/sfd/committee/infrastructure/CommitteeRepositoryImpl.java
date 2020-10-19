@@ -1,6 +1,6 @@
-package core.sa.gov.sfd.committee.infrastructure;
+package sa.gov.sfd.committee.infrastructure;
 
-import core.sa.gov.sfd.committee.core.committee.*;
+import sa.gov.sfd.committee.core.committee.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +19,7 @@ public class CommitteeRepositoryImpl implements CommitteeRepository {
 
     @Override
     public List<CommitteeEntity> findAllCommittees() {
-        final String q1 = "SELECT CC_SID, CC_AR_NAME, CC_EN_NAME, CC_TYPE, CC_TASKS  FROM COMMITTEES";
+        final String q1 = "SELECT CC_SID, CC_AR_NAME, CC_EN_NAME, CC_TYPE, CC_TASKS  FROM BASSAM_COMMITTEES";
         return this.jdbcTemplate.query(q1, new CommitteeMapper());
     }
 
@@ -42,7 +42,7 @@ public class CommitteeRepositoryImpl implements CommitteeRepository {
     @Override
     public List<FormedCommittee> findAllFormedCommittees() {
         //SC_COMMITTEE_ID
-        final String q1 = "SELECT SC_FORMATION_NO, SC_REWARD, SC_DECISION_NO, SC_DECISION_DATE_AH, SC_DECISION_DATE_AD, SC_FORMATION_END_DATE_AH, SC_FORMATION_END_DATE_AD  FROM FORMED_COMMITTEES";
+        final String q1 = "SELECT SC_FORMATION_NO, SC_REWARD, SC_DECISION_NO, SC_DECISION_DATE_AH, SC_DECISION_DATE_AD, SC_FORMATION_END_DATE_AH, SC_FORMATION_END_DATE_AD  FROM BASSAM_FORMED_COMMITTEES";
         return this.jdbcTemplate.query(q1, new FormedCommitteeMapper());
     }
 
@@ -59,7 +59,7 @@ public class CommitteeRepositoryImpl implements CommitteeRepository {
     @Override
     public MemberRole addNewMemberRole(MemberRole memberRole) {
 
-        final String InsertQuery = "INSERT INTO MEMBER_ROLES (CMR_ROLE_ID,CMR_ROLE_AR_NAME, CMR_ROLE_EN_NAME) VALUES (CMR_ROLE_ID_SEQ.NEXTVAL,?,?)";
+        final String InsertQuery = "INSERT INTO BASSAM_MEMBER_ROLES (CMR_ROLE_ID,CMR_ROLE_AR_NAME, CMR_ROLE_EN_NAME) VALUES (CMR_ROLE_ID_SEQ.NEXTVAL,?,?)";
         jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(InsertQuery);
             preparedStatement.setString(1, memberRole.getMemberRoleName().getArName());
@@ -72,7 +72,7 @@ public class CommitteeRepositoryImpl implements CommitteeRepository {
 
     @Override
     public List<MemberRole> getAllMemberRoles() {
-        final String q1 = "SELECT CMR_ROLE_ID, CMR_ROLE_AR_NAME, CMR_ROLE_EN_NAME  FROM MEMBER_ROLES";
+        final String q1 = "SELECT CMR_ROLE_ID, CMR_ROLE_AR_NAME, CMR_ROLE_EN_NAME  FROM BASSAM_MEMBER_ROLES";
         return this.jdbcTemplate.query(q1, new MemberRoleMapper());
     }
 }

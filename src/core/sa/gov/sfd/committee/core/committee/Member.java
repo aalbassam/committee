@@ -1,11 +1,12 @@
-package core.sa.gov.sfd.committee.core.committee;
+package sa.gov.sfd.committee.core.committee;
+
 
 import sa.gov.sfd.committee.core.employee.EmployeeEntity;
 
 public class Member {
 
     private final MemberID memberID;
-    private final sa.gov.sfd.committee.core.employee.EmployeeEntity employeeEntity;
+    private final EmployeeEntity employeeEntity;
     private final MemberRole memberRole;
     private final MemberDecisionDate memberDecisionDate;
     private final MemberEndJoinDate memberEndJoinDate;

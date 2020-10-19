@@ -1,7 +1,7 @@
-package core.sa.gov.sfd.committee.infrastructure;
+package sa.gov.sfd.committee.infrastructure;
 
 
-import core.sa.gov.sfd.committee.core.committee.*;
+import sa.gov.sfd.committee.core.committee.*;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

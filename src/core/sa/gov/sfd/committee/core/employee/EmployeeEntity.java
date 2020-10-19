@@ -1,5 +1,4 @@
-package core.sa.gov.sfd.committee.core.employee;
-
+package sa.gov.sfd.committee.core.employee;
 
 public class EmployeeEntity {
 
@@ -11,15 +10,6 @@ public class EmployeeEntity {
         this.employeeNID = employeeNID;
         this.fullName = fullName;
         this.deptName = deptName;
-    }
-
-    @Override
-    public String toString() {
-        return "EmployeeEntity{" +
-                "employeeNID=" + employeeNID +
-                ", fullName='" + fullName + '\'' +
-                ", deptName='" + deptName + '\'' +
-                '}';
     }
 
     public EmployeeNID getEmployeeNID() {

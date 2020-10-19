@@ -1,9 +1,9 @@
-package core.sa.gov.sfd.committee.infrastructure;
+package sa.gov.sfd.committee.infrastructure;
 
 
-import core.sa.gov.sfd.committee.core.committee.CommitteeEntity;
-import core.sa.gov.sfd.committee.core.committee.CommitteeID;
-import core.sa.gov.sfd.committee.core.committee.CommitteeName;
+import sa.gov.sfd.committee.core.committee.CommitteeEntity;
+import sa.gov.sfd.committee.core.committee.CommitteeID;
+import sa.gov.sfd.committee.core.committee.CommitteeName;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

@@ -1,4 +1,4 @@
-package core.sa.gov.sfd.committee.core.employee;
+package sa.gov.sfd.committee.core.employee;
 
 public class EmployeeNID {
 

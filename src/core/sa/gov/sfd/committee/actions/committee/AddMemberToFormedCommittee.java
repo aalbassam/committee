@@ -1,9 +1,9 @@
-package core.sa.gov.sfd.committee.actions.committee;
+package sa.gov.sfd.committee.actions.committee;
 
 
-import core.sa.gov.sfd.committee.core.committee.CommitteeService;
-import core.sa.gov.sfd.committee.core.committee.FormedCommitteeNo;
-import core.sa.gov.sfd.committee.core.committee.Member;
+import sa.gov.sfd.committee.core.committee.CommitteeService;
+import sa.gov.sfd.committee.core.committee.FormedCommitteeNo;
+import sa.gov.sfd.committee.core.committee.Member;
 
 public class AddMemberToFormedCommittee {
 

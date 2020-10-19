@@ -1,18 +1,19 @@
 package sa.gov.sfd.committee.actions.committee;
 
-
 import sa.gov.sfd.committee.core.committee.CommitteeService;
 import sa.gov.sfd.committee.core.committee.MemberRole;
 
-public class AddNewMemberRole {
+import java.util.List;
+
+public class GetAllMemberRoles {
 
     private final CommitteeService committeeService;
 
-    public AddNewMemberRole(CommitteeService committeeService) {
+    public GetAllMemberRoles(CommitteeService committeeService) {
         this.committeeService = committeeService;
     }
 
-    public MemberRole addMemberRole(MemberRole memberRole) {
-        return this.committeeService.addNewMemberRole(memberRole);
+    public List<MemberRole> getAllMemberRoles() {
+        return committeeService.getAllMemberRoles();
     }
 }

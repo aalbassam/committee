@@ -2,16 +2,11 @@ package permissionDeliveryMechanism.infrastructure;
 
 import permissionDeliveryMechanism.view.ModuleDTO;
 import permissionDeliveryMechanism.view.ModuleInfoDTO;
-import sa.gov.sfd.permission.core.ModuleEntity;
-import sa.gov.sfd.permission.core.ModuleIcon;
-import sa.gov.sfd.permission.core.ModuleInfo;
-import sa.gov.sfd.permission.core.ModuleLink;
-import sa.gov.sfd.permission.core.ModuleName;
 
 
 public class ModuleConverter {
     
-    public static ModuleDTO convertModuleVO(ModuleEntity moduleEntity){
+    /*public static ModuleDTO convertModuleVO(ModuleEntity moduleEntity){
         ModuleDTO module = new ModuleDTO();
         module.setModuleId(moduleEntity.getModuleId().getId());
         module.setModuleInfo(new ModuleInfoDTO(
@@ -30,5 +25,5 @@ public class ModuleConverter {
             new ModuleLink(moduleInfoVO.getModuleLink())
         );
         return moduleInfo;
-    }
+    }*/
 }

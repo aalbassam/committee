@@ -1,12 +1,16 @@
 package committeeDeliveryMechanism.infrastructure;
 
-import core.sa.gov.sfd.committee.actions.committee.*;
-import core.sa.gov.sfd.committee.core.committee.CommitteeService;
-import core.sa.gov.sfd.committee.infrastructure.CommitteeRepositoryImpl;
+import sa.gov.sfd.committee.actions.committee.*;
+
+import sa.gov.sfd.committee.core.committee.CommitteeRepository;
+import sa.gov.sfd.committee.core.committee.CommitteeService;
+
+import sa.gov.sfd.committee.infrastructure.CommitteeRepositoryImpl;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
+
 
 import javax.sql.DataSource;
 
@@ -21,21 +25,44 @@ public class BeanConfig {
         return new JdbcTemplate(dataSource());
     }
 
-    @Bean
+    /*@Bean
     DataSource dataSource() {
+
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("org.h2.Driver");
         dataSourceBuilder.url("jdbc:h2:mem:testdb");
         dataSourceBuilder.username("sa");
         dataSourceBuilder.password("password");
         return dataSourceBuilder.build();
+    }*/
+
+    @Bean
+    DataSource dataSource() {
+
+        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder.driverClassName("oracle.jdbc.OracleDriver");
+        dataSourceBuilder.url("jdbc:oracle:thin:@//scantest.sfd.gov.sa:1521/testdb");
+        dataSourceBuilder.username("SFDGRP22");
+        dataSourceBuilder.password("SFDGRP22");
+        return dataSourceBuilder.build();
     }
+
+
+
+        /*@Bean
+        DataSource dataSource() {
+            return new EmbeddedDatabaseBuilder()
+                    .setType(EmbeddedDatabaseType.H2)
+                    .addScript("schema.sql")
+                    .addScript("data.sql")
+                    .build();
+        }*/
 
 
     //---------------REPOSITORIES--------------------
 
     @Bean
-    public CommitteeRepositoryImpl committeeRepository() {
+    public CommitteeRepository committeeRepository() {
         return new CommitteeRepositoryImpl(jdbcTemplate());
     }
 
@@ -81,6 +108,11 @@ public class BeanConfig {
     @Bean
     public AddMemberToFormedCommittee addMemberToFormedCommittee() {
         return new AddMemberToFormedCommittee(committeeService());
+    }
+
+    @Bean
+    public GetAllMemberRoles getAllMemberRoles() {
+        return new GetAllMemberRoles(committeeService());
     }
 
 

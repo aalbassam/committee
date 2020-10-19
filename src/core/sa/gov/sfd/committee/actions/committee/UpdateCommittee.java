@@ -1,7 +1,7 @@
-package core.sa.gov.sfd.committee.actions.committee;
+package sa.gov.sfd.committee.actions.committee;
 
-import core.sa.gov.sfd.committee.core.committee.CommitteeEntity;
-import core.sa.gov.sfd.committee.core.committee.CommitteeService;
+import sa.gov.sfd.committee.core.committee.CommitteeEntity;
+import sa.gov.sfd.committee.core.committee.CommitteeService;
 
 public class UpdateCommittee {
 

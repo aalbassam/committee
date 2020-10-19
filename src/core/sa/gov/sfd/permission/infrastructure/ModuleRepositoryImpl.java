@@ -6,15 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import sa.gov.sfd.permission.core.ModuleEntity;
-import sa.gov.sfd.permission.core.ModuleId;
-import sa.gov.sfd.permission.core.ModuleInfo;
-import sa.gov.sfd.permission.core.ModuleRepository;
-
 @Repository
-public class ModuleRepositoryImpl implements ModuleRepository {
+public class ModuleRepositoryImpl /*implements ModuleRepository*/ {
 
-    @Autowired
+   /* @Autowired
     JdbcTemplate jdbcTemplate;
     
     @Override
@@ -38,7 +33,7 @@ public class ModuleRepositoryImpl implements ModuleRepository {
         return jdbcTemplate.update("INSERT INTO PER_MODULES (MODULE_ARABIC_NAME,MODULE_ENGLISH_NAME,MODULE_ICON_AWESOME,MODULE_LINK) " + "values(?,?,?,?)",
 				new Object[] {moduleInfo.getModuleName().getModuleNameAr(),moduleInfo.getModuleName().getModuleNameEn(),moduleInfo.getModuleIcon().getIcon(), moduleInfo.getModuleLink().getLink()});
     }
-
+*/
 
 
 }

@@ -11,7 +11,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 @Configuration
 public class DbConfig {
 
-    @Bean
+    /*@Bean
     JdbcTemplate jdbcTemplate() {
         return new JdbcTemplate(dataSource());
     }
@@ -23,5 +23,5 @@ public class DbConfig {
             .addScript("schema.sql")
             .addScript("data.sql")
             .build();
-    }
+    }*/
 }

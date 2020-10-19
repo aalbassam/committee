@@ -1,7 +1,7 @@
-package core.sa.gov.sfd.committee.actions.employee;
+package sa.gov.sfd.committee.actions.employee;
 
-import core.sa.gov.sfd.committee.core.employee.EmployeeEntity;
-import core.sa.gov.sfd.committee.core.employee.EmployeeService;
+import sa.gov.sfd.committee.core.employee.EmployeeEntity;
+import sa.gov.sfd.committee.core.employee.EmployeeService;
 
 import java.util.List;
 

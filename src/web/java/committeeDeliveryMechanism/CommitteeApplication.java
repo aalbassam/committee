@@ -13,6 +13,4 @@ public class CommitteeApplication {
 		SpringApplication.run(CommitteeApplication.class, args);
 	}
 
-
-
 }

@@ -2,10 +2,9 @@ package committeeDeliveryMechanism.view;
 
 public class CommitteeInfoDTO {
 
-    private  long committeeId;
-    private  String committeeNameAr;
-    private  String committeeNameEn;
-
+    private long committeeId;
+    private String committeeNameAr;
+    private String committeeNameEn;
 
 
     public CommitteeInfoDTO(long committeeId, String committeeNameAr, String committeeNameEn) {

@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import permissionDeliveryMechanism.infrastructure.PermissionConverter;
 import permissionDeliveryMechanism.view.PermissionDTO;
-import sa.gov.sfd.permission.actions.FindModulePermissions;
-import sa.gov.sfd.permission.actions.GrantModulePermission;
-import sa.gov.sfd.permission.actions.RemoveModulePermission;
+//import sa.gov.sfd.permission.actions.FindModulePermissions;
+//import sa.gov.sfd.permission.actions.GrantModulePermission;
+//import sa.gov.sfd.permission.actions.RemoveModulePermission;
 
 @RestController
 @RequestMapping("/api/permissions")
 public class PermissionController {
 
-    @Autowired
+   /* @Autowired
     private GrantModulePermission grantPermissionAction;
     @Autowired
     private FindModulePermissions findEmployeePermissionAction;
@@ -44,5 +44,5 @@ public class PermissionController {
     @GetMapping("/{id}")
     public List<PermissionDTO> getEmployeePermissions(@PathVariable("id") Long empNid){
         return findEmployeePermissionAction.find(empNid).stream().map(PermissionConverter::convertPermissionDTO).collect(Collectors.toList());
-    }
+    }*/
 }

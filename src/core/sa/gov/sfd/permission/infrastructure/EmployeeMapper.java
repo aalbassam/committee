@@ -5,21 +5,17 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import sa.gov.sfd.permission.core.EmployeeEntity;
-import sa.gov.sfd.permission.core.EmployeeNID;
-import sa.gov.sfd.permission.core.EmployeeName;
+public class EmployeeMapper /*implements RowMapper<sa.gov.sfd.permission.core.Employee2Entity*/ {
 
-public class EmployeeMapper implements RowMapper<EmployeeEntity> {
-
-    @Override
-    public EmployeeEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
-        EmployeeEntity employee = new EmployeeEntity();
-        employee.setEmpNid(new EmployeeNID(rs.getLong("EM_NATIONAL_ID")));
-        employee.setEmpName(new EmployeeName(
+    /*@Override
+    public sa.gov.sfd.permission.core.Employee2Entity mapRow(ResultSet rs, int rowNum) throws SQLException {
+        sa.gov.sfd.permission.core.Employee2Entity employee = new sa.gov.sfd.permission.core.Employee2Entity();
+        employee.setEmpNid(new sa.gov.sfd.permission.core.Employee2NID(rs.getLong("EM_NATIONAL_ID")));
+        employee.setEmpName(new sa.gov.sfd.permission.core.Employee2Name(
             rs.getString("FULLNAME"),
             rs.getString("FULLNAMEEN"),
             rs.getString("EM_ACTIVEDIRECTORY_UNAME")
          ));
         return employee;
-    }
+    }*/
 }

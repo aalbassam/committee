@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import permissionDeliveryMechanism.infrastructure.EmployeeConverter;
 import permissionDeliveryMechanism.view.EmployeeDTO;
-import sa.gov.sfd.permission.actions.FindEmployee;
+//import sa.gov.sfd.permission.actions.FindEmployee;
 
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
     
-    @Autowired
+  /*  @Autowired
     private FindEmployee findEmployee;
 
     // get user by national Id
     @GetMapping("/{id}")
     public EmployeeDTO getEmployeeByNationalId(@PathVariable("id") Long empNid){
         return (EmployeeConverter.convertEmployeeVO(findEmployee.find(empNid)));
-    }
+    }*/
 }

@@ -1,4 +1,4 @@
-package core.sa.gov.sfd.committee.core.committee;
+package sa.gov.sfd.committee.core.committee;
 import java.util.List;
 
 public interface CommitteeRepository {
@@ -9,7 +9,7 @@ public interface CommitteeRepository {
 
     Member addMemberToFormedCommittee(Member member, FormedCommitteeNo formedCommitteeNo);
 
-    List<Member> addMemberListToFormedCommittee(List<Member> members);
+    List<Member> addMemberListToFormedCommittee(List<Member> members); //---
 
     List<FormedCommittee> findAllFormedCommittees();
 
