@@ -15,7 +15,7 @@ public interface CommitteeRepository {
 
     FormedCommittee getFormedCommitteeById(FormedCommitteeNo formedCommitteeNo);
 
-    FormedCommittee addFormedCommittee(CommitteeEntity committeeEntity, FormedCommittee formedCommittee);
+    FormedCommittee addFormedCommittee(CommitteeID committeeID, FormedCommittee formedCommittee);
 
     MemberRole addNewMemberRole(MemberRole memberRole);
 

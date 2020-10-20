@@ -4,9 +4,9 @@ import sa.gov.sfd.committee.core.committee.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.util.List;
-import java.util.function.DoubleToIntFunction;
 
 @Repository
 public class CommitteeRepositoryImpl implements CommitteeRepository {
@@ -49,12 +49,39 @@ public class CommitteeRepositoryImpl implements CommitteeRepository {
 
     @Override
     public FormedCommittee getFormedCommitteeById(FormedCommitteeNo formedCommitteeNo) {
-        return null;
+        final String q1 = "SELECT SC_FORMATION_NO, SC_REWARD, SC_DECISION_NO, SC_DECISION_DATE_AH, SC_DECISION_DATE_AD, SC_FORMATION_END_DATE_AH, SC_FORMATION_END_DATE_AD  FROM BASSAM_FORMED_COMMITTEES WHERE SC_FORMATION_NO=" + formedCommitteeNo.getNo().toString();
+
+        return jdbcTemplate.queryForObject(q1, new FormedCommitteeMapper());
+
     }
 
     @Override
-    public FormedCommittee addFormedCommittee(CommitteeEntity committeeEntity, FormedCommittee formedCommittee) {
-        return null;
+    public FormedCommittee addFormedCommittee(CommitteeID committeeID, FormedCommittee formedCommittee) {
+
+        final String InsertQuery = "INSERT INTO BASSAM_FORMED_COMMITTEES VALUES (SC_FORMATION_NO_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?)";
+
+        jdbcTemplate.update(connection -> {
+            PreparedStatement preparedStatement = connection.prepareStatement(InsertQuery);
+
+            preparedStatement.setInt(1, committeeID.getId());
+            preparedStatement.setBoolean(2, formedCommittee.isReward());
+            preparedStatement.setString(3, formedCommittee.getDecisionNo());
+            preparedStatement.setString(4, formedCommittee.getFormedCommitteeDecisionDate().getDecisionDateAH());
+
+            Date dateDecisionAH = Date.valueOf(formedCommittee.getFormedCommitteeDecisionDate().getDecisionDateAD());
+            preparedStatement.setDate(5, dateDecisionAH);
+
+            preparedStatement.setString(6, formedCommittee.getFormedCommitteeEndDate().getEndDateAH());
+
+            Date dateEndAH = Date.valueOf(formedCommittee.getFormedCommitteeDecisionDate().getDecisionDateAD());
+            preparedStatement.setDate(7, dateEndAH);
+            preparedStatement.setString(8, formedCommittee.getCreatedBy());
+            preparedStatement.setString(9, formedCommittee.getCreatedDate());
+
+            return preparedStatement;
+        });
+
+        return formedCommittee;
     }
 
     @Override

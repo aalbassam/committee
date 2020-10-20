@@ -37,9 +37,10 @@ public class CommitteeService {
         return committeeRepository.getFormedCommitteeById(formedCommitteeNo);
     }
 
-    public FormedCommittee addFormedCommittee(CommitteeEntity committeeEntity, FormedCommittee formedCommittee) {
-        return committeeRepository.addFormedCommittee(committeeEntity, formedCommittee);
+    public FormedCommittee addFormedCommittee(CommitteeID committeeID, FormedCommittee formedCommittee) {
+        return committeeRepository.addFormedCommittee(committeeID, formedCommittee);
     }
+
 
     public int updateCommittee(CommitteeEntity committeeEntity) {
         return committeeRepository.updateCommittee(committeeEntity);

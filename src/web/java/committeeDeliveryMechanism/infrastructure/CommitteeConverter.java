@@ -56,6 +56,34 @@ public class CommitteeConverter {
                 )).collect(Collectors.toList());
     }
 
+    public static FormedCommitteeDTO convertFormedCommittee(FormedCommittee formedCommittee) {
+
+        return new FormedCommitteeDTO(
+                formedCommittee.getFormedCommitteeNo().getNo(),
+                formedCommittee.isReward(),
+                formedCommittee.getDecisionNo(),
+                formedCommittee.getFormedCommitteeDecisionDate().getDecisionDateAH(),
+                formedCommittee.getFormedCommitteeDecisionDate().getDecisionDateAD(),
+                formedCommittee.getFormedCommitteeEndDate().getEndDateAH(),
+                formedCommittee.getFormedCommitteeEndDate().getEndDateAD()
+        );
+    }
+
+    public static FormedCommittee convertFormedCommitteeDTO(FormedCommitteeDTO formedCommitteeDTO) {
+
+        return new FormedCommittee(
+
+                new FormedCommitteeNo(formedCommitteeDTO.getFormedCommitteeNo()),
+                formedCommitteeDTO.isReward(),
+                formedCommitteeDTO.getDecisionNo(),
+                new FormedCommitteeDecisionDate(formedCommitteeDTO.getFormedCommitteeDecisionDateAH(), formedCommitteeDTO.getFormedCommitteeDecisionDateAD()),
+                new FormedCommitteeEndDate(formedCommitteeDTO.getFormedCommitteeEndDateAH(), formedCommitteeDTO.getFormedCommitteeEndDateAD()),
+                null,
+                null,
+                null);
+
+    }
+
 
 
     /*
