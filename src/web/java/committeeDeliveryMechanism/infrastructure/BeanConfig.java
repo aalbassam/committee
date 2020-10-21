@@ -2,14 +2,18 @@ package committeeDeliveryMechanism.infrastructure;
 
 import sa.gov.sfd.committee.actions.committee.*;
 
+import sa.gov.sfd.committee.actions.employee.GetEmployeesList;
 import sa.gov.sfd.committee.core.committee.CommitteeRepository;
 import sa.gov.sfd.committee.core.committee.CommitteeService;
 
+import sa.gov.sfd.committee.core.employee.EmployeeRepository;
+import sa.gov.sfd.committee.core.employee.EmployeeService;
 import sa.gov.sfd.committee.infrastructure.CommitteeRepositoryImpl;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import sa.gov.sfd.committee.infrastructure.EmployeesRepositoryImp;
 
 
 import javax.sql.DataSource;
@@ -48,7 +52,6 @@ public class BeanConfig {
     }
 
 
-
     //---------------REPOSITORIES--------------------
 
     @Bean
@@ -56,11 +59,21 @@ public class BeanConfig {
         return new CommitteeRepositoryImpl(jdbcTemplate());
     }
 
+    @Bean
+    public EmployeeRepository employeeRepository() {
+        return new EmployeesRepositoryImp(jdbcTemplate());
+    }
+
 
     //---------------SERVICES-------------------------
     @Bean
     public CommitteeService committeeService() {
         return new CommitteeService(committeeRepository());
+    }
+
+    @Bean
+    public EmployeeService employeeService() {
+        return new EmployeeService(employeeRepository());
     }
 
 
@@ -105,5 +118,9 @@ public class BeanConfig {
         return new GetAllMemberRoles(committeeService());
     }
 
+    @Bean
+    public GetEmployeesList getEmployeesList() {
+        return new GetEmployeesList(employeeService());
+    }
 
 }

@@ -1,5 +1,7 @@
 package committeeDeliveryMechanism.controller;
 
+import committeeDeliveryMechanism.infrastructure.FormedCommitteeConverter;
+import committeeDeliveryMechanism.infrastructure.MemberRoleConverter;
 import committeeDeliveryMechanism.view.CommitteeDTO;
 import committeeDeliveryMechanism.view.FormedCommitteeDTO;
 import committeeDeliveryMechanism.view.MemberRoleDTO;
@@ -44,33 +46,33 @@ public class CommitteeController {
     @GetMapping("/i/{formedNo}")
     public FormedCommitteeDTO getFormedCommitteeDetailById(@PathVariable Long formedNo) {
 
-        return CommitteeConverter.convertFormedCommittee(this.getFormedCommitteeDetailById.getFormedCommitteeDetailById(new FormedCommitteeNo(formedNo)));
+        return FormedCommitteeConverter.convertFormedCommittee(this.getFormedCommitteeDetailById.getFormedCommitteeDetailById(new FormedCommitteeNo(formedNo)));
     }
 
 
     @GetMapping("/formedCommittees")
     public List<FormedCommitteeDTO> getAllFormedCommittees() {
 
-        return CommitteeConverter.convertFormedCommitteeList(this.getAllFormedCommittees.getAllFormedCommittees());
+        return FormedCommitteeConverter.convertFormedCommitteeList(this.getAllFormedCommittees.getAllFormedCommittees());
     }
 
 
     @GetMapping("/memberRoles")
     public List<MemberRoleDTO> getAllMemberRoles() {
 
-        return CommitteeConverter.convertMemberRolesList(this.getAllMemberRoles.getAllMemberRoles());
+        return MemberRoleConverter.convertMemberRolesList(this.getAllMemberRoles.getAllMemberRoles());
     }
 
 
     @PostMapping("/memberRoles")
     public MemberRole addNewMemberRole(@RequestBody MemberRoleDTO memberRoleDTO) {
-        return this.addNewMemberRole.addMemberRole(CommitteeConverter.convertMemberRoleDTO(memberRoleDTO));
+        return this.addNewMemberRole.addMemberRole(MemberRoleConverter.convertMemberRoleDTO(memberRoleDTO));
     }
 
 
     @PostMapping("/formedCommittees/{committeeID}")
     public FormedCommittee addNewFormedCommittee(@PathVariable int committeeID, @RequestBody FormedCommitteeDTO formedCommitteeDTO) {
-        return this.addNewFormedCommittee.addFormedCommittee(new CommitteeID(committeeID), CommitteeConverter.convertFormedCommitteeDTO(formedCommitteeDTO));
+        return this.addNewFormedCommittee.addFormedCommittee(new CommitteeID(committeeID), FormedCommitteeConverter.convertFormedCommitteeDTO(formedCommitteeDTO));
     }
 
 }
