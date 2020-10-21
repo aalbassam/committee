@@ -48,27 +48,27 @@ public class CommitteeController {
     }
 
 
-    @GetMapping("/fc")
+    @GetMapping("/formedCommittees")
     public List<FormedCommitteeDTO> getAllFormedCommittees() {
 
         return CommitteeConverter.convertFormedCommitteeList(this.getAllFormedCommittees.getAllFormedCommittees());
     }
 
 
-    @GetMapping("/mr")
+    @GetMapping("/memberRoles")
     public List<MemberRoleDTO> getAllMemberRoles() {
 
         return CommitteeConverter.convertMemberRolesList(this.getAllMemberRoles.getAllMemberRoles());
     }
 
 
-    @PostMapping("/")
+    @PostMapping("/memberRoles")
     public MemberRole addNewMemberRole(@RequestBody MemberRoleDTO memberRoleDTO) {
         return this.addNewMemberRole.addMemberRole(CommitteeConverter.convertMemberRoleDTO(memberRoleDTO));
     }
 
 
-    @PostMapping("/fc/{committeeID}")
+    @PostMapping("/formedCommittees/{committeeID}")
     public FormedCommittee addNewFormedCommittee(@PathVariable int committeeID, @RequestBody FormedCommitteeDTO formedCommitteeDTO) {
         return this.addNewFormedCommittee.addFormedCommittee(new CommitteeID(committeeID), CommitteeConverter.convertFormedCommitteeDTO(formedCommitteeDTO));
     }
