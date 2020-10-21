@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>sa.gov.sfd.committee.actions.committee.AddMemberToFormedCommittee</OriginalElement>
+  <nodes>
+    <node x="0.0" y="810.0">sa.gov.sfd.committee.actions.employee.GetEmployeesList</node>
+    <node x="377.0" y="486.0">sa.gov.sfd.committee.actions.committee.GetAllMemberRoles</node>
+    <node x="0.0" y="162.0">sa.gov.sfd.committee.actions.committee.AddMemberToFormedCommittee</node>
+    <node x="0.0" y="0.0">sa.gov.sfd.committee.actions.committee.AddNewFormedCommittee</node>
+    <node x="565.0" y="324.0">sa.gov.sfd.committee.actions.committee.GetAllFormedCommittees</node>
+    <node x="0.0" y="486.0">sa.gov.sfd.committee.actions.committee.AddNewMemberRole</node>
+    <node x="350.0" y="648.0">sa.gov.sfd.committee.actions.committee.GetAllCommittees</node>
+    <node x="0.0" y="648.0">sa.gov.sfd.committee.actions.committee.UpdateCommittee</node>
+    <node x="0.0" y="324.0">sa.gov.sfd.committee.actions.committee.GetFormedCommitteeDetailById</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="0.8046462513199577" x="454.0" y="463.50000000000006" />
+  <SelectedNodes>
+    <node>sa.gov.sfd.committee.actions.committee.AddMemberToFormedCommittee</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
