@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public class FormedCommitteeDTO {
 
     private Long formedCommitteeNo;
+    private int committeeId;
     private boolean reward;
     private String decisionNo;
     private String formedCommitteeDecisionDateAH;
@@ -12,8 +13,9 @@ public class FormedCommitteeDTO {
     private String formedCommitteeEndDateAH;
     private LocalDate formedCommitteeEndDateAD;
 
-    public FormedCommitteeDTO(Long formedCommitteeNo, boolean reward, String decisionNo, String formedCommitteeDecisionDateAH, LocalDate formedCommitteeDecisionDateAD, String formedCommitteeEndDateAH, LocalDate formedCommitteeEndDateAD) {
+    public FormedCommitteeDTO(Long formedCommitteeNo, int committeeId, boolean reward, String decisionNo, String formedCommitteeDecisionDateAH, LocalDate formedCommitteeDecisionDateAD, String formedCommitteeEndDateAH, LocalDate formedCommitteeEndDateAD) {
         this.formedCommitteeNo = formedCommitteeNo;
+        this.committeeId = committeeId;
         this.reward = reward;
         this.decisionNo = decisionNo;
         this.formedCommitteeDecisionDateAH = formedCommitteeDecisionDateAH;
@@ -28,6 +30,14 @@ public class FormedCommitteeDTO {
 
     public void setFormedCommitteeNo(Long formedCommitteeNo) {
         this.formedCommitteeNo = formedCommitteeNo;
+    }
+
+    public int getCommitteeId() {
+        return committeeId;
+    }
+
+    public void setCommitteeId(int committeeId) {
+        this.committeeId = committeeId;
     }
 
     public boolean isReward() {

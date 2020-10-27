@@ -19,6 +19,11 @@ public class EmployeesRepositoryImp implements EmployeeRepository {
 
     @Override
     public List<EmployeeEntity> findAllEmployeeList() {
-        return null;
+
+        return jdbcTemplate.query(
+                "SELECT FULLNAME, EM_NATIONAL_ID, DEPTSEC_NAME \n" +
+                        "from itdev_viewTablePool.EMPLOYEE_RECORD\n" +
+                        "order by FULLNAME", new EmployeeMapper());
     }
 }
+

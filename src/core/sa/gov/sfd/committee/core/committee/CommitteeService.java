@@ -1,4 +1,9 @@
 package sa.gov.sfd.committee.core.committee;
+import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeEntity;
+import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeNo;
+import sa.gov.sfd.committee.core.member.MemberEntity;
+import sa.gov.sfd.committee.core.memberRole.MemberRoleEntity;
+
 import java.util.List;
 
 public class CommitteeService {
@@ -12,42 +17,13 @@ public class CommitteeService {
 
 
     //---- Service Methods ----
-
     public List<CommitteeEntity> getAllCommittees() {
         return committeeRepository.findAllCommittees();
     }
-
-    public Member addMemberToFormedCommittee(Member member, FormedCommitteeNo formedCommitteeNo) {
-        return committeeRepository.addMemberToFormedCommittee(member, formedCommitteeNo);
-    }
-
-    public List<Member> addMemberListToFormedCommittee(List<Member> members) {
-        return committeeRepository.addMemberListToFormedCommittee(members);
-    }
-
-    public List<FormedCommittee> getAllFormedCommittees() {
-        return committeeRepository.findAllFormedCommittees();
-    }
-
-    public MemberRole addNewMemberRole(MemberRole memberRole) {
-        return committeeRepository.addNewMemberRole(memberRole);
-    }
-
-    public FormedCommittee getFormedCommitteeById(FormedCommitteeNo formedCommitteeNo) {
-        return committeeRepository.getFormedCommitteeById(formedCommitteeNo);
-    }
-
-    public FormedCommittee addFormedCommittee(CommitteeID committeeID, FormedCommittee formedCommittee) {
-        return committeeRepository.addFormedCommittee(committeeID, formedCommittee);
-    }
-
 
     public int updateCommittee(CommitteeEntity committeeEntity) {
         return committeeRepository.updateCommittee(committeeEntity);
     }
 
-    public List<MemberRole> getAllMemberRoles() {
-        return committeeRepository.getAllMemberRoles();
-    }
 
 }

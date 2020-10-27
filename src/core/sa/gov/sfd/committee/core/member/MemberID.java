@@ -1,4 +1,4 @@
-package sa.gov.sfd.committee.core.committee;
+package sa.gov.sfd.committee.core.member;
 public class MemberID {
 
     private final int id;

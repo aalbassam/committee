@@ -16,6 +16,7 @@ public class CommitteeMapper implements RowMapper<CommitteeEntity> {
     public CommitteeEntity mapRow(ResultSet resultSet, int i) throws SQLException {
 
         CommitteeEntity committee = new CommitteeEntity();
+
         committee.setCommitteeID(new CommitteeID(resultSet.getInt("CC_SID")));
         committee.setCommitteeName(new CommitteeName(resultSet.getString("CC_AR_NAME"), resultSet.getString("CC_EN_NAME")));
         committee.setCommitteeType(resultSet.getString("CC_TYPE").charAt(0));

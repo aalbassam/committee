@@ -6,17 +6,34 @@ public class CommitteeEntity {
     private CommitteeName committeeName;
     private String tasks;
     private char committeeType;  // P:permanent     or T:temporary
-    private FormedCommittee formedCommittee;
+    private char rowStatus;  // A: Active  D: Deleted
+    //private FormedCommittee formedCommittee;
 
-    public CommitteeEntity(CommitteeID committeeID, CommitteeName committeeName, String tasks, char committeeType, FormedCommittee formedCommittee) {
+
+    public CommitteeEntity(CommitteeID committeeID, CommitteeName committeeName, String tasks, char committeeType, char rowStatus) {
         this.committeeID = committeeID;
         this.committeeName = committeeName;
         this.tasks = tasks;
         this.committeeType = committeeType;
-        this.formedCommittee = formedCommittee;
+        this.rowStatus = rowStatus;
     }
 
     public CommitteeEntity() {
+    }
+
+    public CommitteeEntity(CommitteeID committeeID) {
+        this.committeeID = committeeID;
+    }
+
+    @Override
+    public String toString() {
+        return "CommitteeEntity{" +
+                "committeeID=" + committeeID +
+                ", committeeName=" + committeeName +
+                ", tasks='" + tasks + '\'' +
+                ", committeeType=" + committeeType +
+                ", rowStatus=" + rowStatus +
+                '}';
     }
 
     public CommitteeID getCommitteeID() {
@@ -51,11 +68,11 @@ public class CommitteeEntity {
         this.committeeType = committeeType;
     }
 
-    public FormedCommittee getFormedCommittee() {
-        return formedCommittee;
+    public char getRowStatus() {
+        return rowStatus;
     }
 
-    public void setFormedCommittee(FormedCommittee formedCommittee) {
-        this.formedCommittee = formedCommittee;
+    public void setRowStatus(char rowStatus) {
+        this.rowStatus = rowStatus;
     }
 }

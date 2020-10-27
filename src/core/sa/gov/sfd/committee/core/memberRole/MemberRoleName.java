@@ -1,4 +1,4 @@
-package sa.gov.sfd.committee.core.committee;
+package sa.gov.sfd.committee.core.memberRole;
 public class MemberRoleName {
 
     private final String arName;

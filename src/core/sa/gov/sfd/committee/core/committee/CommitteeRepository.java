@@ -1,25 +1,13 @@
 package sa.gov.sfd.committee.core.committee;
-import java.util.List;
 
+
+import java.util.List;
 public interface CommitteeRepository {
 
     List<CommitteeEntity> findAllCommittees();
 
     int updateCommittee(CommitteeEntity committeeEntity);
 
-    Member addMemberToFormedCommittee(Member member, FormedCommitteeNo formedCommitteeNo);
-
-    List<Member> addMemberListToFormedCommittee(List<Member> members); //---
-
-    List<FormedCommittee> findAllFormedCommittees();
-
-    FormedCommittee getFormedCommitteeById(FormedCommitteeNo formedCommitteeNo);
-
-    FormedCommittee addFormedCommittee(CommitteeID committeeID, FormedCommittee formedCommittee);
-
-    MemberRole addNewMemberRole(MemberRole memberRole);
-
-    List<MemberRole> getAllMemberRoles();
-
+    String findCommitteeName();
 
 }

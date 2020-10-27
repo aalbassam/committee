@@ -1,18 +1,18 @@
 package committeeDeliveryMechanism.infrastructure;
 
 import committeeDeliveryMechanism.view.MemberRoleDTO;
-import sa.gov.sfd.committee.core.committee.MemberRole;
-import sa.gov.sfd.committee.core.committee.MemberRoleID;
-import sa.gov.sfd.committee.core.committee.MemberRoleName;
+import sa.gov.sfd.committee.core.memberRole.MemberRoleEntity;
+import sa.gov.sfd.committee.core.memberRole.MemberRoleID;
+import sa.gov.sfd.committee.core.memberRole.MemberRoleName;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MemberRoleConverter {
 
-    public static List<MemberRoleDTO> convertMemberRolesList(List<MemberRole> memberRoles) {
+    public static List<MemberRoleDTO> convertMemberRolesList(List<MemberRoleEntity> memberRoleEntities) {
 
-        return memberRoles.stream().map(x ->
+        return memberRoleEntities.stream().map(x ->
                 new MemberRoleDTO(
                         x.getMemberRoleID().getId(),
                         x.getMemberRoleName().getArName(),
@@ -20,9 +20,9 @@ public class MemberRoleConverter {
                 )).collect(Collectors.toList());
     }
 
-    public static MemberRole convertMemberRoleDTO(MemberRoleDTO memberRoleDTO) {
+    public static MemberRoleEntity convertMemberRoleDTO(MemberRoleDTO memberRoleDTO) {
 
-        return new MemberRole(
+        return new MemberRoleEntity(
                 new MemberRoleID(memberRoleDTO.getId()),
                 new MemberRoleName(memberRoleDTO.getArName(), memberRoleDTO.getEnName()));
 

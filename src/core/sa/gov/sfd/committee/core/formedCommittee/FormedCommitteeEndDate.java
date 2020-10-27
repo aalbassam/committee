@@ -1,4 +1,4 @@
-package sa.gov.sfd.committee.core.committee;
+package sa.gov.sfd.committee.core.formedCommittee;
 import java.time.LocalDate;
 
 public class FormedCommitteeEndDate {

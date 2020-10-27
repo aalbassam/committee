@@ -3,17 +3,28 @@ package committeeDeliveryMechanism.infrastructure;
 import sa.gov.sfd.committee.actions.committee.*;
 
 import sa.gov.sfd.committee.actions.employee.GetEmployeesList;
+import sa.gov.sfd.committee.actions.formedCommittee.AddNewFormedCommittee;
+import sa.gov.sfd.committee.actions.formedCommittee.GetAllFormedCommittees;
+import sa.gov.sfd.committee.actions.formedCommittee.GetFormedCommitteeDetailByNO;
+import sa.gov.sfd.committee.actions.member.AddMemberToFormedCommittee;
+import sa.gov.sfd.committee.actions.memberRole.AddNewMemberRole;
+import sa.gov.sfd.committee.actions.memberRole.GetAllMemberRoles;
 import sa.gov.sfd.committee.core.committee.CommitteeRepository;
 import sa.gov.sfd.committee.core.committee.CommitteeService;
 
 import sa.gov.sfd.committee.core.employee.EmployeeRepository;
 import sa.gov.sfd.committee.core.employee.EmployeeService;
-import sa.gov.sfd.committee.infrastructure.CommitteeRepositoryImpl;
+import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeRepository;
+import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeService;
+import sa.gov.sfd.committee.core.member.MemberRepository;
+import sa.gov.sfd.committee.core.member.MemberService;
+import sa.gov.sfd.committee.core.memberRole.MemberRoleRepository;
+import sa.gov.sfd.committee.core.memberRole.MemberRoleService;
+import sa.gov.sfd.committee.infrastructure.*;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
-import sa.gov.sfd.committee.infrastructure.EmployeesRepositoryImp;
 
 
 import javax.sql.DataSource;
@@ -56,7 +67,22 @@ public class BeanConfig {
 
     @Bean
     public CommitteeRepository committeeRepository() {
-        return new CommitteeRepositoryImpl(jdbcTemplate());
+        return new CommitteeRepositoryImp(jdbcTemplate());
+    }
+
+    @Bean
+    public FormedCommitteeRepository formedCommitteeRepository() {
+        return new FormedCommitteeRepositoryImp(jdbcTemplate());
+    }
+
+    @Bean
+    public MemberRepository memberRepository() {
+        return new MemberRepositoryImp(jdbcTemplate());
+    }
+
+    @Bean
+    public MemberRoleRepository memberRoleRepository() {
+        return new MemberRoleRepositoryImp(new JdbcTemplate());
     }
 
     @Bean
@@ -72,6 +98,21 @@ public class BeanConfig {
     }
 
     @Bean
+    public FormedCommitteeService formedCommitteeService() {
+        return new FormedCommitteeService(formedCommitteeRepository());
+    }
+
+    @Bean
+    public MemberService memberService() {
+        return new MemberService(memberRepository());
+    }
+
+    @Bean
+    public MemberRoleService memberRoleService() {
+        return new MemberRoleService(memberRoleRepository());
+    }
+
+    @Bean
     public EmployeeService employeeService() {
         return new EmployeeService(employeeRepository());
     }
@@ -80,7 +121,7 @@ public class BeanConfig {
     //---------------ACTIONS---------------------
     @Bean
     public GetAllFormedCommittees getAllFormedCommittees() {
-        return new GetAllFormedCommittees(committeeService());
+        return new GetAllFormedCommittees(formedCommitteeService());
     }
 
     @Bean
@@ -94,28 +135,28 @@ public class BeanConfig {
     }
 
     @Bean
-    public GetFormedCommitteeDetailById getFormedCommitteeDetailById() {
-        return new GetFormedCommitteeDetailById(committeeService());
+    public GetFormedCommitteeDetailByNO getFormedCommitteeDetailByNO() {
+        return new GetFormedCommitteeDetailByNO(formedCommitteeService());
     }
 
     @Bean
     public AddNewMemberRole addNewMemberRole() {
-        return new AddNewMemberRole(committeeService());
+        return new AddNewMemberRole(memberRoleService());
     }
 
     @Bean
     public AddNewFormedCommittee addNewFormedCommittee() {
-        return new AddNewFormedCommittee(committeeService());
+        return new AddNewFormedCommittee(formedCommitteeService());
     }
 
     @Bean
     public AddMemberToFormedCommittee addMemberToFormedCommittee() {
-        return new AddMemberToFormedCommittee(committeeService());
+        return new AddMemberToFormedCommittee(memberService());
     }
 
     @Bean
     public GetAllMemberRoles getAllMemberRoles() {
-        return new GetAllMemberRoles(committeeService());
+        return new GetAllMemberRoles(memberRoleService());
     }
 
     @Bean

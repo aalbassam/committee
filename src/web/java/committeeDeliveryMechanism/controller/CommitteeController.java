@@ -6,10 +6,15 @@ import committeeDeliveryMechanism.view.CommitteeDTO;
 import committeeDeliveryMechanism.view.FormedCommitteeDTO;
 import committeeDeliveryMechanism.view.MemberRoleDTO;
 import sa.gov.sfd.committee.actions.committee.*;
+import sa.gov.sfd.committee.actions.formedCommittee.AddNewFormedCommittee;
+import sa.gov.sfd.committee.actions.formedCommittee.GetAllFormedCommittees;
+import sa.gov.sfd.committee.actions.formedCommittee.GetFormedCommitteeDetailByNO;
+import sa.gov.sfd.committee.actions.memberRole.AddNewMemberRole;
+import sa.gov.sfd.committee.actions.memberRole.GetAllMemberRoles;
 import sa.gov.sfd.committee.core.committee.CommitteeID;
-import sa.gov.sfd.committee.core.committee.FormedCommittee;
-import sa.gov.sfd.committee.core.committee.FormedCommitteeNo;
-import sa.gov.sfd.committee.core.committee.MemberRole;
+import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeEntity;
+import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeNo;
+import sa.gov.sfd.committee.core.memberRole.MemberRoleEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import committeeDeliveryMechanism.infrastructure.CommitteeConverter;
@@ -31,7 +36,7 @@ public class CommitteeController {
     @Autowired
     private GetAllFormedCommittees getAllFormedCommittees; //5
     @Autowired
-    private GetFormedCommitteeDetailById getFormedCommitteeDetailById; //7
+    private GetFormedCommitteeDetailByNO getFormedCommitteeDetailByNO; //7
     @Autowired
     private AddNewFormedCommittee addNewFormedCommittee; //2
 
@@ -46,7 +51,7 @@ public class CommitteeController {
     @GetMapping("/i/{formedNo}")
     public FormedCommitteeDTO getFormedCommitteeDetailById(@PathVariable Long formedNo) {
 
-        return FormedCommitteeConverter.convertFormedCommittee(this.getFormedCommitteeDetailById.getFormedCommitteeDetailById(new FormedCommitteeNo(formedNo)));
+        return FormedCommitteeConverter.convertFormedCommittee(this.getFormedCommitteeDetailByNO.getFormedCommitteeDetailById(new FormedCommitteeNo(formedNo)));
     }
 
 
@@ -65,13 +70,13 @@ public class CommitteeController {
 
 
     @PostMapping("/memberRoles")
-    public MemberRole addNewMemberRole(@RequestBody MemberRoleDTO memberRoleDTO) {
+    public MemberRoleEntity addNewMemberRole(@RequestBody MemberRoleDTO memberRoleDTO) {
         return this.addNewMemberRole.addMemberRole(MemberRoleConverter.convertMemberRoleDTO(memberRoleDTO));
     }
 
 
     @PostMapping("/formedCommittees/{committeeID}")
-    public FormedCommittee addNewFormedCommittee(@PathVariable int committeeID, @RequestBody FormedCommitteeDTO formedCommitteeDTO) {
+    public FormedCommitteeEntity addNewFormedCommittee(@PathVariable int committeeID, @RequestBody FormedCommitteeDTO formedCommitteeDTO) {
         return this.addNewFormedCommittee.addFormedCommittee(new CommitteeID(committeeID), FormedCommitteeConverter.convertFormedCommitteeDTO(formedCommitteeDTO));
     }
 
