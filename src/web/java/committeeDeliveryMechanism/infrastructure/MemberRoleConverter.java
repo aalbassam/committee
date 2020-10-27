@@ -24,7 +24,8 @@ public class MemberRoleConverter {
 
         return new MemberRoleEntity(
                 new MemberRoleID(memberRoleDTO.getId()),
-                new MemberRoleName(memberRoleDTO.getArName(), memberRoleDTO.getEnName()));
+                new MemberRoleName(memberRoleDTO.getArName(), memberRoleDTO.getEnName()),
+                ' ');
 
     }
 }

@@ -49,9 +49,9 @@ public class CommitteeController {
 
 
     @GetMapping("/i/{formedNo}")
-    public FormedCommitteeDTO getFormedCommitteeDetailById(@PathVariable Long formedNo) {
+    public FormedCommitteeDTO getFormedCommitteeDetailByNO(@PathVariable Long formedNo) {
 
-        return FormedCommitteeConverter.convertFormedCommittee(this.getFormedCommitteeDetailByNO.getFormedCommitteeDetailById(new FormedCommitteeNo(formedNo)));
+        return FormedCommitteeConverter.convertFormedCommittee(this.getFormedCommitteeDetailByNO.getFormedCommitteeDetailByNO(new FormedCommitteeNo(formedNo)));
     }
 
 

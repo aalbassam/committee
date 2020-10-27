@@ -15,8 +15,8 @@ public class GetFormedCommitteeDetailByNO {
         this.formedCommitteeService = formedCommitteeService;
     }
 
-    public FormedCommitteeEntity getFormedCommitteeDetailById(FormedCommitteeNo formedCommitteeNo) {
-        return formedCommitteeService.getFormedCommitteeById(formedCommitteeNo);
+    public FormedCommitteeEntity getFormedCommitteeDetailByNO(FormedCommitteeNo formedCommitteeNo) {
+        return formedCommitteeService.getFormedCommitteeByNO(formedCommitteeNo);
     }
 
 }
