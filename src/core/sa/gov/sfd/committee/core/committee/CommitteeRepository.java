@@ -8,6 +8,5 @@ public interface CommitteeRepository {
 
     int updateCommittee(CommitteeEntity committeeEntity);
 
-    String findCommitteeName();
 
 }

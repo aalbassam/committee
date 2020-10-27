@@ -28,11 +28,6 @@ public class CommitteeRepositoryImp implements CommitteeRepository {
         return 0;
     }
 
-    @Override
-    public String findCommitteeName() {
-        return null;
-    }
-
 }
 
 

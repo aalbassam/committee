@@ -12,6 +12,10 @@ public class MemberRoleEntity {
         this.rowStatus = rowStatus;
     }
 
+    public MemberRoleEntity(MemberRoleID memberRoleID) {
+        this.memberRoleID = memberRoleID;
+    }
+
     @Override
     public String toString() {
         return "MemberRoleEntity{" +
