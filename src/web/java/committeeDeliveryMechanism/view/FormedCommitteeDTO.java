@@ -4,32 +4,32 @@ import java.time.LocalDate;
 
 public class FormedCommitteeDTO {
 
-    private Long formedCommitteeNo;
+    private Long formedNo;
     private int committeeId;
     private boolean reward;
     private String decisionNo;
-    private String formedCommitteeDecisionDateAH;
-    private LocalDate formedCommitteeDecisionDateAD;
-    private String formedCommitteeEndDateAH;
-    private LocalDate formedCommitteeEndDateAD;
+    private String decisionDateAH;
+    private LocalDate decisionDateAD;
+    private String endDateAH;
+    private LocalDate endDateAD;
 
-    public FormedCommitteeDTO(Long formedCommitteeNo, int committeeId, boolean reward, String decisionNo, String formedCommitteeDecisionDateAH, LocalDate formedCommitteeDecisionDateAD, String formedCommitteeEndDateAH, LocalDate formedCommitteeEndDateAD) {
-        this.formedCommitteeNo = formedCommitteeNo;
+    public FormedCommitteeDTO(Long formedNo, int committeeId, boolean reward, String decisionNo, String decisionDateAH, LocalDate decisionDateAD, String endDateAH, LocalDate endDateAD) {
+        this.formedNo = formedNo;
         this.committeeId = committeeId;
         this.reward = reward;
         this.decisionNo = decisionNo;
-        this.formedCommitteeDecisionDateAH = formedCommitteeDecisionDateAH;
-        this.formedCommitteeDecisionDateAD = formedCommitteeDecisionDateAD;
-        this.formedCommitteeEndDateAH = formedCommitteeEndDateAH;
-        this.formedCommitteeEndDateAD = formedCommitteeEndDateAD;
+        this.decisionDateAH = decisionDateAH;
+        this.decisionDateAD = decisionDateAD;
+        this.endDateAH = endDateAH;
+        this.endDateAD = endDateAD;
     }
 
-    public Long getFormedCommitteeNo() {
-        return formedCommitteeNo;
+    public Long getFormedNo() {
+        return formedNo;
     }
 
-    public void setFormedCommitteeNo(Long formedCommitteeNo) {
-        this.formedCommitteeNo = formedCommitteeNo;
+    public void setFormedNo(Long formedNo) {
+        this.formedNo = formedNo;
     }
 
     public int getCommitteeId() {
@@ -56,35 +56,35 @@ public class FormedCommitteeDTO {
         this.decisionNo = decisionNo;
     }
 
-    public String getFormedCommitteeDecisionDateAH() {
-        return formedCommitteeDecisionDateAH;
+    public String getDecisionDateAH() {
+        return decisionDateAH;
     }
 
-    public void setFormedCommitteeDecisionDateAH(String formedCommitteeDecisionDateAH) {
-        this.formedCommitteeDecisionDateAH = formedCommitteeDecisionDateAH;
+    public void setDecisionDateAH(String decisionDateAH) {
+        this.decisionDateAH = decisionDateAH;
     }
 
-    public LocalDate getFormedCommitteeDecisionDateAD() {
-        return formedCommitteeDecisionDateAD;
+    public LocalDate getDecisionDateAD() {
+        return decisionDateAD;
     }
 
-    public void setFormedCommitteeDecisionDateAD(LocalDate formedCommitteeDecisionDateAD) {
-        this.formedCommitteeDecisionDateAD = formedCommitteeDecisionDateAD;
+    public void setDecisionDateAD(LocalDate decisionDateAD) {
+        this.decisionDateAD = decisionDateAD;
     }
 
-    public String getFormedCommitteeEndDateAH() {
-        return formedCommitteeEndDateAH;
+    public String getEndDateAH() {
+        return endDateAH;
     }
 
-    public void setFormedCommitteeEndDateAH(String formedCommitteeEndDateAH) {
-        this.formedCommitteeEndDateAH = formedCommitteeEndDateAH;
+    public void setEndDateAH(String endDateAH) {
+        this.endDateAH = endDateAH;
     }
 
-    public LocalDate getFormedCommitteeEndDateAD() {
-        return formedCommitteeEndDateAD;
+    public LocalDate getEndDateAD() {
+        return endDateAD;
     }
 
-    public void setFormedCommitteeEndDateAD(LocalDate formedCommitteeEndDateAD) {
-        this.formedCommitteeEndDateAD = formedCommitteeEndDateAD;
+    public void setEndDateAD(LocalDate endDateAD) {
+        this.endDateAD = endDateAD;
     }
 }

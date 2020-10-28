@@ -25,6 +25,9 @@ public class MemberEntity {
         this.rowStatus = rowStatus;
     }
 
+    public MemberEntity() {
+    }
+
     public MemberID getMemberId() {
         return memberId;
     }

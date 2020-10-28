@@ -14,8 +14,8 @@ public class EmployeeMapper implements RowMapper<EmployeeEntity> {
     public EmployeeEntity mapRow(ResultSet resultSet, int i) throws SQLException {
         return new EmployeeEntity(
                 new EmployeeNID(resultSet.getLong("EM_NATIONAL_ID")),
-                resultSet.getString("FULLNAME"),
-                resultSet.getString("DEPTSEC_NAME")
+                resultSet.getString("EM_FULL_NAME"),
+                resultSet.getString("EM_DEPARTMENT_NAME")
         );
 
     }

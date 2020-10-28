@@ -7,8 +7,10 @@ import sa.gov.sfd.committee.actions.formedCommittee.AddNewFormedCommittee;
 import sa.gov.sfd.committee.actions.formedCommittee.GetAllFormedCommittees;
 import sa.gov.sfd.committee.actions.formedCommittee.GetFormedCommitteeDetailByNO;
 import sa.gov.sfd.committee.actions.member.AddMemberToFormedCommittee;
+import sa.gov.sfd.committee.actions.member.GetAllMembersByFormationNO;
 import sa.gov.sfd.committee.actions.memberRole.AddNewMemberRole;
 import sa.gov.sfd.committee.actions.memberRole.GetAllMemberRoles;
+import sa.gov.sfd.committee.core.committee.CommitteeEntity;
 import sa.gov.sfd.committee.core.committee.CommitteeRepository;
 import sa.gov.sfd.committee.core.committee.CommitteeService;
 
@@ -82,7 +84,7 @@ public class BeanConfig {
 
     @Bean
     public MemberRoleRepository memberRoleRepository() {
-        return new MemberRoleRepositoryImp(new JdbcTemplate());
+        return new MemberRoleRepositoryImp(jdbcTemplate());
     }
 
     @Bean
@@ -163,5 +165,16 @@ public class BeanConfig {
     public GetEmployeesList getEmployeesList() {
         return new GetEmployeesList(employeeService());
     }
+
+    @Bean
+    public AddNewCommittee addNewCommittee() {
+        return new AddNewCommittee(committeeService());
+    }
+
+    @Bean
+    public GetAllMembersByFormationNO getAllMembersByFormationNO() {
+        return new GetAllMembersByFormationNO(memberService());
+    }
+
 
 }

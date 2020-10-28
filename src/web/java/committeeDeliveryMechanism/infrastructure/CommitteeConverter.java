@@ -24,20 +24,16 @@ public class CommitteeConverter {
     }
 
 
+    public static CommitteeEntity convertCommitteeDTO(CommitteeDTO committeeDTO) {
 
-    /*
-    public static CommitteeInfoDTO convertCommitteeDTO(CommitteeEntity committeeEntity){
-        
-        //DTO Object 
-        CommitteeInfoDTO committee = new CommitteeInfoDTO();
-        
-        //get data from entity to DTO
-        committee.setCommitteeId(committeeEntity.getCommitteeId().getId());
-        committee.setCommitteeNameAr(committeeEntity.getCommitteeName().getCommitteeNameAr());
-        committee.setCommitteeNameEn(committeeEntity.getCommitteeName().getCommitteeNameEn());
+        CommitteeEntity committeeEntity = new CommitteeEntity();
 
-        return committee;
+        committeeEntity.setCommitteeName(new CommitteeName(committeeDTO.getArName(), committeeDTO.getEnName()));
+        committeeEntity.setTasks(committeeDTO.getTasks());
+        committeeEntity.setCommitteeType(committeeDTO.getType());
 
-    }*/
+        return committeeEntity;
+
+    }
 
 }

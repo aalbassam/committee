@@ -4,6 +4,7 @@ import sa.gov.sfd.committee.core.committee.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 
 @Repository
@@ -26,6 +27,25 @@ public class CommitteeRepositoryImp implements CommitteeRepository {
     public int updateCommittee(CommitteeEntity committeeEntity) {
 
         return 0;
+    }
+
+    @Override
+    public CommitteeEntity addCommittee(CommitteeEntity committeeEntity) {
+
+        final String InsertQuery = "INSERT INTO BASSAM_COMMITTEES (CC_SID, CC_AR_NAME, CC_EN_NAME, CC_TYPE, CC_TASKS, " +
+                "CC_ROW_STATUS) VALUES (CCM_SID_SEQ.NEXTVAL,?,?,?,?,'A')";
+
+        jdbcTemplate.update(connection -> {
+            PreparedStatement preparedStatement = connection.prepareStatement(InsertQuery);
+            preparedStatement.setString(1, committeeEntity.getCommitteeName().getArName());
+            preparedStatement.setString(2, committeeEntity.getCommitteeName().getEnName());
+            preparedStatement.setString(3, String.valueOf(committeeEntity.getCommitteeType()));
+            preparedStatement.setString(4, committeeEntity.getTasks());
+
+            return preparedStatement;
+        });
+
+        return committeeEntity;
     }
 
 }

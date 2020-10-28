@@ -20,8 +20,8 @@ public class EmployeesRepositoryImp implements EmployeeRepository {
     @Override
     public List<EmployeeEntity> findAllEmployeeList() {
 
-        String q1 = "SELECT FULLNAME, EM_NATIONAL_ID, DEPTSEC_NAME FROM itdev_viewTablePool.EMPLOYEE_RECORD order by FULLNAME";
-        String test = "SELECT EM_NATIONAL_ID, EM_FULL_NAME, EM_DEPARTMENT_NAME FROM BASSAM_EMPLOYEES";
+        final String q1 = "SELECT FULLNAME, EM_NATIONAL_ID, DEPTSEC_NAME FROM itdev_viewTablePool.EMPLOYEE_RECORD order by FULLNAME";
+        final String test = "SELECT EM_NATIONAL_ID, EM_FULL_NAME, EM_DEPARTMENT_NAME FROM BASSAM_EMPLOYEES";
 
         return jdbcTemplate.query(test, new EmployeeMapper());
     }

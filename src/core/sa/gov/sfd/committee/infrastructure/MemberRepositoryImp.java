@@ -7,6 +7,7 @@ import sa.gov.sfd.committee.core.member.*;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -23,7 +24,7 @@ public class MemberRepositoryImp implements MemberRepository {
 
         final String InsertQuery = "INSERT INTO BASSAM_COMMITTEE_MEMBERS (CCM_SID, CCM_MEMBER_NID, CCM_FORMATION_NO, CCM_ROLE_ID, CCM_DECISION_DATE_AH, " +
                 "CCM_DECISION_DATE_AD, CCM_END_JOIN_DATE_AH, CCM_END_JOIN_DATE_AD, " +
-                "CCM_STATUS) VALUES (CCM_SID_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,'A')";
+                "CCM_ROW_STATUS) VALUES (CCM_SID_SEQ.NEXTVAL,?,?,?,?,?,?,?,'A')";
 
         jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(InsertQuery);
@@ -33,11 +34,21 @@ public class MemberRepositoryImp implements MemberRepository {
             preparedStatement.setLong(2, formedCommitteeNo.getNo());
             preparedStatement.setInt(3, memberEntity.getMemberRoleEntity().getMemberRoleID().getId());
 
-            Date dateDecisionAD = Date.valueOf(memberEntity.getMemberDecisionDate().getDecisionDateAD());
+            Date dateDecisionAD;
+            if (memberEntity.getMemberDecisionDate().getDecisionDateAD() == null)
+                dateDecisionAD = null;
+            else
+                dateDecisionAD = Date.valueOf(memberEntity.getMemberDecisionDate().getDecisionDateAD());
+
+
             preparedStatement.setString(4, memberEntity.getMemberDecisionDate().getDecisionDateAH());
             preparedStatement.setDate(5, dateDecisionAD);
 
-            Date dateEndAD = Date.valueOf(memberEntity.getMemberEndJoinDate().getJoinDateAD());
+            Date dateEndAD;
+            if (memberEntity.getMemberEndJoinDate().getJoinDateAD() == null)
+                dateEndAD = null;
+            else
+                dateEndAD = Date.valueOf(memberEntity.getMemberEndJoinDate().getJoinDateAD());
 
             preparedStatement.setString(6, memberEntity.getMemberEndJoinDate().getJoinDateAH());
             preparedStatement.setDate(7, dateEndAD);
@@ -52,5 +63,13 @@ public class MemberRepositoryImp implements MemberRepository {
     @Override
     public List<MemberEntity> addMemberListToFormedCommittee(List<MemberEntity> memberEntities) {
         return null;
+    }
+
+    @Override
+    public List<MemberEntity> findAllMembersByFormationNo(FormedCommitteeNo formedCommitteeNo) {
+
+        final String q = "SELECT  CCM_SID, CCM_MEMBER_NID, CCM_FORMATION_NO, CCM_ROLE_ID, CCM_DECISION_DATE_AH, CCM_DECISION_DATE_AD, CCM_END_JOIN_DATE_AH, CCM_END_JOIN_DATE_AD, CCM_ROW_STATUS FROM BASSAM_COMMITTEE_MEMBERS WHERE CCM_ROW_STATUS != 'D' AND CCM_FORMATION_NO =" + formedCommitteeNo.getNo();
+
+        return this.jdbcTemplate.query(q, new MemberMapper());
     }
 }

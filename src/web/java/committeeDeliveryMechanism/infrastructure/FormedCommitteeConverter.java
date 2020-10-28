@@ -46,12 +46,12 @@ public class FormedCommitteeConverter {
 
         return new FormedCommitteeEntity(
 
-                new FormedCommitteeNo(formedCommitteeDTO.getFormedCommitteeNo()),
+                new FormedCommitteeNo(formedCommitteeDTO.getFormedNo()),
                 new CommitteeEntity(new CommitteeID(formedCommitteeDTO.getCommitteeId())),
                 formedCommitteeDTO.isReward(),
                 formedCommitteeDTO.getDecisionNo(),
-                new FormedCommitteeDecisionDate(formedCommitteeDTO.getFormedCommitteeDecisionDateAH(), formedCommitteeDTO.getFormedCommitteeDecisionDateAD()),
-                new FormedCommitteeEndDate(formedCommitteeDTO.getFormedCommitteeEndDateAH(), formedCommitteeDTO.getFormedCommitteeEndDateAD()),
+                new FormedCommitteeDecisionDate(formedCommitteeDTO.getDecisionDateAH(), formedCommitteeDTO.getDecisionDateAD()),
+                new FormedCommitteeEndDate(formedCommitteeDTO.getEndDateAH(), formedCommitteeDTO.getEndDateAD()),
                 null,
                 ' ');
 

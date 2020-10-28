@@ -14,6 +14,6 @@ public class GetAllMemberRoles {
     }
 
     public List<MemberRoleEntity> getAllMemberRoles() {
-        return memberRoleService.getAllMemberRoles();
+        return this.memberRoleService.getAllMemberRoles();
     }
 }

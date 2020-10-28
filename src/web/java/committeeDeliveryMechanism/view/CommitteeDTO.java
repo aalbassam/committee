@@ -2,58 +2,58 @@ package committeeDeliveryMechanism.view;
 
 public class CommitteeDTO {
 
-    private int committeeId;
-    private String committeeArName;
-    private String committeeEnName;
-    private String committeeTasks;
-    private char committeeType;
+    private int id;
+    private String arName;
+    private String enName;
+    private String tasks;
+    private char type;
 
-    public CommitteeDTO(int committeeId, String committeeArName, String committeeEnName, String committeeTasks, char committeeType) {
-        this.committeeId = committeeId;
-        this.committeeArName = committeeArName;
-        this.committeeEnName = committeeEnName;
-        this.committeeTasks = committeeTasks;
-        this.committeeType = committeeType;
+    public CommitteeDTO(int id, String arName, String enName, String tasks, char type) {
+        this.id = id;
+        this.arName = arName;
+        this.enName = enName;
+        this.tasks = tasks;
+        this.type = type;
     }
 
 
-    public int getCommitteeId() {
-        return committeeId;
+    public int getId() {
+        return id;
     }
 
-    public void setCommitteeId(int committeeId) {
-        this.committeeId = committeeId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getCommitteeArName() {
-        return committeeArName;
+    public String getArName() {
+        return arName;
     }
 
-    public void setCommitteeArName(String committeeArName) {
-        this.committeeArName = committeeArName;
+    public void setArName(String arName) {
+        this.arName = arName;
     }
 
-    public String getCommitteeEnName() {
-        return committeeEnName;
+    public String getEnName() {
+        return enName;
     }
 
-    public void setCommitteeEnName(String committeeEnName) {
-        this.committeeEnName = committeeEnName;
+    public void setEnName(String enName) {
+        this.enName = enName;
     }
 
-    public String getCommitteeTasks() {
-        return committeeTasks;
+    public String getTasks() {
+        return tasks;
     }
 
-    public void setCommitteeTasks(String committeeTasks) {
-        this.committeeTasks = committeeTasks;
+    public void setTasks(String tasks) {
+        this.tasks = tasks;
     }
 
-    public char getCommitteeType() {
-        return committeeType;
+    public char getType() {
+        return type;
     }
 
-    public void setCommitteeType(char committeeType) {
-        this.committeeType = committeeType;
+    public void setType(char type) {
+        this.type = type;
     }
 }

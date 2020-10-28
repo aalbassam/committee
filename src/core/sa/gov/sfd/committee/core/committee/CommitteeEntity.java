@@ -5,7 +5,7 @@ public class CommitteeEntity {
     private CommitteeID committeeID;
     private CommitteeName committeeName;
     private String tasks;
-    private char committeeType;  // P:permanent     or T:temporary
+    private char committeeType;  // P:permanent-دائمة     or T:temporary-مؤقتة
     private char rowStatus;  // A: Active  D: Deleted
     //private FormedCommittee formedCommittee;
 

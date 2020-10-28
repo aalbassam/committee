@@ -12,6 +12,10 @@ public class EmployeeEntity {
         this.deptName = deptName;
     }
 
+    public EmployeeEntity(EmployeeNID employeeNID) {
+        this.employeeNID = employeeNID;
+    }
+
     public EmployeeNID getEmployeeNID() {
         return employeeNID;
     }

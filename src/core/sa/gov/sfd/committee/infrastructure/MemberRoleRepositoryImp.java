@@ -21,15 +21,16 @@ public class MemberRoleRepositoryImp implements MemberRoleRepository {
     @Override
     public List<MemberRoleEntity> getAllMemberRoles() {
 
-        final String q1 = "SELECT CMR_ROLE_ID, CMR_ROLE_AR_NAME, CMR_ROLE_EN_NAME  FROM BASSAM_MEMBER_ROLES WHERE CMR_ROW_STATUS != 'D'";
+        final String q = "SELECT CMR_ROLE_ID, CMR_ROLE_AR_NAME, CMR_ROLE_EN_NAME  FROM BASSAM_MEMBER_ROLES WHERE CMR_ROW_STATUS != 'D'";
 
-        return this.jdbcTemplate.query(q1, new MemberRoleMapper());
+        return this.jdbcTemplate.query(q, new MemberRoleMapper());
     }
 
     @Override
     public MemberRoleEntity addNewMemberRole(MemberRoleEntity memberRoleEntity) {
 
-        final String InsertQuery = "INSERT INTO BASSAM_MEMBER_ROLES (CMR_ROLE_ID,CMR_ROLE_AR_NAME, CMR_ROLE_EN_NAME) VALUES (CMR_ROLE_ID_SEQ.NEXTVAL,?,?,'A')";
+        final String InsertQuery;
+        InsertQuery = "INSERT INTO BASSAM_MEMBER_ROLES (CMR_ROLE_ID,CMR_ROLE_AR_NAME, CMR_ROLE_EN_NAME, CMR_ROW_STATUS) VALUES (CMR_ROLE_ID_SEQ.NEXTVAL,?,?,'A')";
 
         jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(InsertQuery);

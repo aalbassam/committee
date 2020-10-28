@@ -41,7 +41,10 @@ public class FormedCommitteeRepositoryImp implements FormedCommitteeRepository {
     @Override
     public FormedCommitteeEntity addFormedCommittee(CommitteeID committeeID, FormedCommitteeEntity formedCommitteeEntity) {
 
-        final String InsertQuery = "INSERT INTO BASSAM_FORMED_COMMITTEES VALUES (SC_FORMATION_NO_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,'A')";
+        final String InsertQuery = "INSERT INTO BASSAM_FORMED_COMMITTEES(SC_FORMATION_NO,SC_COMMITTEE_ID, SC_REWARD," +
+                " SC_DECISION_NO, SC_DECISION_DATE_AH, SC_DECISION_DATE_AD, SC_FORMATION_END_DATE_AH, " +
+                "SC_FORMATION_END_DATE_AD, SC_CREATED_BY, SC_CREATED_DATE, SC_ROW_STATUS) " +
+                "VALUES (SC_FORMATION_NO_SEQ.NEXTVAL,?,?,?,?,?,?,?,'none','none','A')";
 
         jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(InsertQuery);
@@ -51,13 +54,13 @@ public class FormedCommitteeRepositoryImp implements FormedCommitteeRepository {
             preparedStatement.setString(3, formedCommitteeEntity.getDecisionNo());
             preparedStatement.setString(4, formedCommitteeEntity.getFormedCommitteeDecisionDate().getDecisionDateAH());
 
-            Date dateDecisionAH = Date.valueOf(formedCommitteeEntity.getFormedCommitteeDecisionDate().getDecisionDateAD());
-            preparedStatement.setDate(5, dateDecisionAH);
+            Date dateDecisionAD = Date.valueOf(formedCommitteeEntity.getFormedCommitteeDecisionDate().getDecisionDateAD());
+            preparedStatement.setDate(5, dateDecisionAD);
 
             preparedStatement.setString(6, formedCommitteeEntity.getFormedCommitteeEndDate().getEndDateAH());
 
-            Date dateEndAH = Date.valueOf(formedCommitteeEntity.getFormedCommitteeDecisionDate().getDecisionDateAD());
-            preparedStatement.setDate(7, dateEndAH);
+            Date dateEndAD = Date.valueOf(formedCommitteeEntity.getFormedCommitteeDecisionDate().getDecisionDateAD());
+            preparedStatement.setDate(7, dateEndAD);
 
             return preparedStatement;
         });
