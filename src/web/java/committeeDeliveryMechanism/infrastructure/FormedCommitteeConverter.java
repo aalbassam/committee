@@ -4,9 +4,8 @@ import committeeDeliveryMechanism.view.FormedCommitteeDTO;
 import sa.gov.sfd.committee.core.committee.CommitteeEntity;
 import sa.gov.sfd.committee.core.committee.CommitteeID;
 import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeEntity;
-import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeDecisionDate;
-import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeEndDate;
 import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeNo;
+import sa.gov.sfd.committee.core.shared.BinaryDate;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,28 +16,28 @@ public class FormedCommitteeConverter {
 
         return formedCommitteeEntities.stream().map(x ->
                 new FormedCommitteeDTO(
-                        x.getFormedCommitteeNo().getNo(),
+                        x.getFormationNo().getNo(),
                         x.getCommitteeEntity().getCommitteeID().getId(),
                         x.isReward(),
                         x.getDecisionNo(),
-                        x.getFormedCommitteeDecisionDate().getDecisionDateAH(),
-                        x.getFormedCommitteeDecisionDate().getDecisionDateAD(),
-                        x.getFormedCommitteeEndDate().getEndDateAH(),
-                        x.getFormedCommitteeEndDate().getEndDateAD()
+                        x.getDecisionDate().getHijri(),
+                        x.getDecisionDate().getGregorian(),
+                        x.getEndDate().getHijri(),
+                        x.getEndDate().getGregorian()
                 )).collect(Collectors.toList());
     }
 
     public static FormedCommitteeDTO convertFormedCommittee(FormedCommitteeEntity formedCommitteeEntity) {
 
         return new FormedCommitteeDTO(
-                formedCommitteeEntity.getFormedCommitteeNo().getNo(),
+                formedCommitteeEntity.getFormationNo().getNo(),
                 formedCommitteeEntity.getCommitteeEntity().getCommitteeID().getId(),
                 formedCommitteeEntity.isReward(),
                 formedCommitteeEntity.getDecisionNo(),
-                formedCommitteeEntity.getFormedCommitteeDecisionDate().getDecisionDateAH(),
-                formedCommitteeEntity.getFormedCommitteeDecisionDate().getDecisionDateAD(),
-                formedCommitteeEntity.getFormedCommitteeEndDate().getEndDateAH(),
-                formedCommitteeEntity.getFormedCommitteeEndDate().getEndDateAD()
+                formedCommitteeEntity.getDecisionDate().getHijri(),
+                formedCommitteeEntity.getDecisionDate().getGregorian(),
+                formedCommitteeEntity.getEndDate().getHijri(),
+                formedCommitteeEntity.getEndDate().getGregorian()
         );
     }
 
@@ -50,8 +49,8 @@ public class FormedCommitteeConverter {
                 new CommitteeEntity(new CommitteeID(formedCommitteeDTO.getCommitteeId())),
                 formedCommitteeDTO.isReward(),
                 formedCommitteeDTO.getDecisionNo(),
-                new FormedCommitteeDecisionDate(formedCommitteeDTO.getDecisionDateAH(), formedCommitteeDTO.getDecisionDateAD()),
-                new FormedCommitteeEndDate(formedCommitteeDTO.getEndDateAH(), formedCommitteeDTO.getEndDateAD()),
+                new BinaryDate(formedCommitteeDTO.getDecisionDateAH(), formedCommitteeDTO.getDecisionDateAD()),
+                new BinaryDate(formedCommitteeDTO.getEndDateAH(), formedCommitteeDTO.getEndDateAD()),
                 null,
                 ' ');
 

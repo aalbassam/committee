@@ -1,52 +1,40 @@
 package sa.gov.sfd.committee.core.formedCommittee;
 
 import sa.gov.sfd.committee.core.committee.CommitteeEntity;
-import sa.gov.sfd.committee.core.member.MemberEntity;
+import sa.gov.sfd.committee.core.member.MemberID;
+import sa.gov.sfd.committee.core.shared.BinaryDate;
 
 import java.util.List;
 
 public class FormedCommitteeEntity {
 
-    private FormedCommitteeNo formedCommitteeNo;
+    private FormedCommitteeNo formationNo;
     private CommitteeEntity committeeEntity;
     private boolean reward;
     private String decisionNo;
-    private FormedCommitteeDecisionDate formedCommitteeDecisionDate;
-    private FormedCommitteeEndDate formedCommitteeEndDate;
-    private List<MemberEntity> memberEntityList;
+    private BinaryDate decisionDate;
+    private BinaryDate endDate;
+    private List<MemberID> memberIDList;
     private char rowStatus;  // A: Active  D: Deleted
 
-    public FormedCommitteeEntity(FormedCommitteeNo formedCommitteeNo, CommitteeEntity committeeEntity, boolean reward, String decisionNo, FormedCommitteeDecisionDate formedCommitteeDecisionDate, FormedCommitteeEndDate formedCommitteeEndDate, List<MemberEntity> memberEntityList, char rowStatus) {
-        this.formedCommitteeNo = formedCommitteeNo;
+    public FormedCommitteeEntity(FormedCommitteeNo formationNo, CommitteeEntity committeeEntity, boolean reward, String decisionNo, BinaryDate decisionDate, BinaryDate endDate, List<MemberID> memberIDList, char rowStatus) {
+        this.formationNo = formationNo;
         this.committeeEntity = committeeEntity;
         this.reward = reward;
         this.decisionNo = decisionNo;
-        this.formedCommitteeDecisionDate = formedCommitteeDecisionDate;
-        this.formedCommitteeEndDate = formedCommitteeEndDate;
-        this.memberEntityList = memberEntityList;
+        this.decisionDate = decisionDate;
+        this.endDate = endDate;
+        this.memberIDList = memberIDList;
         this.rowStatus = rowStatus;
     }
 
-    @Override
-    public String toString() {
-        return "FormedCommitteeEntity{" +
-                "formedCommitteeNo=" + formedCommitteeNo +
-                ", committeeEntity=" + committeeEntity +
-                ", reward=" + reward +
-                ", decisionNo='" + decisionNo + '\'' +
-                ", formedCommitteeDecisionDate=" + formedCommitteeDecisionDate +
-                ", formedCommitteeEndDate=" + formedCommitteeEndDate +
-                ", memberEntityList=" + memberEntityList +
-                ", rowStatus=" + rowStatus +
-                '}';
+
+    public FormedCommitteeNo getFormationNo() {
+        return formationNo;
     }
 
-    public FormedCommitteeNo getFormedCommitteeNo() {
-        return formedCommitteeNo;
-    }
-
-    public void setFormedCommitteeNo(FormedCommitteeNo formedCommitteeNo) {
-        this.formedCommitteeNo = formedCommitteeNo;
+    public void setFormationNo(FormedCommitteeNo formationNo) {
+        this.formationNo = formationNo;
     }
 
     public CommitteeEntity getCommitteeEntity() {
@@ -73,28 +61,28 @@ public class FormedCommitteeEntity {
         this.decisionNo = decisionNo;
     }
 
-    public FormedCommitteeDecisionDate getFormedCommitteeDecisionDate() {
-        return formedCommitteeDecisionDate;
+    public BinaryDate getDecisionDate() {
+        return decisionDate;
     }
 
-    public void setFormedCommitteeDecisionDate(FormedCommitteeDecisionDate formedCommitteeDecisionDate) {
-        this.formedCommitteeDecisionDate = formedCommitteeDecisionDate;
+    public void setDecisionDate(BinaryDate decisionDate) {
+        this.decisionDate = decisionDate;
     }
 
-    public FormedCommitteeEndDate getFormedCommitteeEndDate() {
-        return formedCommitteeEndDate;
+    public BinaryDate getEndDate() {
+        return endDate;
     }
 
-    public void setFormedCommitteeEndDate(FormedCommitteeEndDate formedCommitteeEndDate) {
-        this.formedCommitteeEndDate = formedCommitteeEndDate;
+    public void setEndDate(BinaryDate endDate) {
+        this.endDate = endDate;
     }
 
-    public List<MemberEntity> getMemberEntityList() {
-        return memberEntityList;
+    public List<MemberID> getMemberIDList() {
+        return memberIDList;
     }
 
-    public void setMemberEntityList(List<MemberEntity> memberEntityList) {
-        this.memberEntityList = memberEntityList;
+    public void setMemberIDList(List<MemberID> memberIDList) {
+        this.memberIDList = memberIDList;
     }
 
     public char getRowStatus() {

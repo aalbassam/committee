@@ -12,6 +12,9 @@ public class EmployeeEntity {
         this.deptName = deptName;
     }
 
+    public EmployeeEntity() {
+    }
+
     public EmployeeEntity(EmployeeNID employeeNID) {
         this.employeeNID = employeeNID;
     }

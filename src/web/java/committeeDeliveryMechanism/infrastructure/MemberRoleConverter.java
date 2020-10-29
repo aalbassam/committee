@@ -3,7 +3,7 @@ package committeeDeliveryMechanism.infrastructure;
 import committeeDeliveryMechanism.view.MemberRoleDTO;
 import sa.gov.sfd.committee.core.memberRole.MemberRoleEntity;
 import sa.gov.sfd.committee.core.memberRole.MemberRoleID;
-import sa.gov.sfd.committee.core.memberRole.MemberRoleName;
+import sa.gov.sfd.committee.core.shared.BinaryName;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,8 +15,8 @@ public class MemberRoleConverter {
         return memberRoleEntities.stream().map(x ->
                 new MemberRoleDTO(
                         x.getMemberRoleID().getId(),
-                        x.getMemberRoleName().getArName(),
-                        x.getMemberRoleName().getEnName()
+                        x.getMemberRoleName().getArabicName(),
+                        x.getMemberRoleName().getEnglishName()
                 )).collect(Collectors.toList());
     }
 
@@ -24,7 +24,7 @@ public class MemberRoleConverter {
 
         return new MemberRoleEntity(
                 new MemberRoleID(memberRoleDTO.getId()),
-                new MemberRoleName(memberRoleDTO.getArName(), memberRoleDTO.getEnName()),
+                new BinaryName(memberRoleDTO.getArName(), memberRoleDTO.getEnName()),
                 ' ');
 
     }

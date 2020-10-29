@@ -2,14 +2,14 @@ package committeeDeliveryMechanism.view;
 
 public class MemberDTO {
 
-    private int id;
+    private Long id;
     private Long memberNationalID;
     private Long formationNo;
     private int roleId;
     private String joinDate;
     private String endDate;
 
-    public MemberDTO(int id, Long memberNationalID, Long formationNo, int roleId, String joinDate, String endDate) {
+    public MemberDTO(Long id, Long memberNationalID, Long formationNo, int roleId, String joinDate, String endDate) {
         this.id = id;
         this.memberNationalID = memberNationalID;
         this.formationNo = formationNo;
@@ -18,11 +18,11 @@ public class MemberDTO {
         this.endDate = endDate;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

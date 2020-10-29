@@ -1,9 +1,10 @@
-package sa.gov.sfd.committee.core.member;
-public class MemberID {
+package sa.gov.sfd.committee.core.shared;
+
+public class PrimaryId {
 
     private final Long id;
 
-    public MemberID(Long id) {
+    public PrimaryId(Long id) {
         this.id = id;
     }
 

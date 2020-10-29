@@ -52,14 +52,14 @@ public class FormedCommitteeRepositoryImp implements FormedCommitteeRepository {
             preparedStatement.setInt(1, committeeID.getId());
             preparedStatement.setBoolean(2, formedCommitteeEntity.isReward());
             preparedStatement.setString(3, formedCommitteeEntity.getDecisionNo());
-            preparedStatement.setString(4, formedCommitteeEntity.getFormedCommitteeDecisionDate().getDecisionDateAH());
+            preparedStatement.setString(4, formedCommitteeEntity.getDecisionDate().getHijri());
 
-            Date dateDecisionAD = Date.valueOf(formedCommitteeEntity.getFormedCommitteeDecisionDate().getDecisionDateAD());
+            Date dateDecisionAD = Date.valueOf(formedCommitteeEntity.getDecisionDate().getGregorian());
             preparedStatement.setDate(5, dateDecisionAD);
 
-            preparedStatement.setString(6, formedCommitteeEntity.getFormedCommitteeEndDate().getEndDateAH());
+            preparedStatement.setString(6, formedCommitteeEntity.getEndDate().getHijri());
 
-            Date dateEndAD = Date.valueOf(formedCommitteeEntity.getFormedCommitteeDecisionDate().getDecisionDateAD());
+            Date dateEndAD = Date.valueOf(formedCommitteeEntity.getDecisionDate().getGregorian());
             preparedStatement.setDate(7, dateEndAD);
 
             return preparedStatement;

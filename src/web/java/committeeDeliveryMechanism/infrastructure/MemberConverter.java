@@ -1,18 +1,13 @@
 package committeeDeliveryMechanism.infrastructure;
 
-import committeeDeliveryMechanism.view.CommitteeDTO;
 import committeeDeliveryMechanism.view.MemberDTO;
-import sa.gov.sfd.committee.core.committee.CommitteeEntity;
-import sa.gov.sfd.committee.core.committee.CommitteeName;
 import sa.gov.sfd.committee.core.employee.EmployeeEntity;
 import sa.gov.sfd.committee.core.employee.EmployeeNID;
 import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeNo;
-import sa.gov.sfd.committee.core.member.MemberDecisionDate;
-import sa.gov.sfd.committee.core.member.MemberEndJoinDate;
 import sa.gov.sfd.committee.core.member.MemberEntity;
-import sa.gov.sfd.committee.core.member.MemberID;
 import sa.gov.sfd.committee.core.memberRole.MemberRoleEntity;
 import sa.gov.sfd.committee.core.memberRole.MemberRoleID;
+import sa.gov.sfd.committee.core.shared.BinaryDate;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,8 +23,8 @@ public class MemberConverter {
                         x.getEmployeeEntity().getEmployeeNID().getId(),
                         x.getFormedCommitteeNo().getNo(),
                         x.getMemberRoleEntity().getMemberRoleID().getId(),
-                        x.getMemberDecisionDate().getDecisionDateAH(),
-                        x.getMemberEndJoinDate().getJoinDateAH()
+                        x.getMemberDecisionDate().getHijri(),
+                        x.getMemberEndJoinDate().getHijri()
                 )).collect(Collectors.toList());
     }
 
@@ -41,8 +36,8 @@ public class MemberConverter {
         memberEntity.setEmployeeEntity(new EmployeeEntity(new EmployeeNID(memberDTO.getMemberNationalID())));
         memberEntity.setMemberRoleEntity(new MemberRoleEntity(new MemberRoleID(memberDTO.getRoleId())));
 
-        memberEntity.setMemberDecisionDate(new MemberDecisionDate(memberDTO.getJoinDate(), null));
-        memberEntity.setMemberEndJoinDate(new MemberEndJoinDate(memberDTO.getEndDate(), null));
+        memberEntity.setMemberDecisionDate(new BinaryDate(memberDTO.getJoinDate(), null));
+        memberEntity.setMemberEndJoinDate(new BinaryDate(memberDTO.getEndDate(), null));
 
         return memberEntity;
 

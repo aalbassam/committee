@@ -1,16 +1,17 @@
 package sa.gov.sfd.committee.core.committee;
 
+import sa.gov.sfd.committee.core.shared.BinaryName;
+
 public class CommitteeEntity {
 
     private CommitteeID committeeID;
-    private CommitteeName committeeName;
+    private BinaryName committeeName;
     private String tasks;
     private char committeeType;  // P:permanent-دائمة     or T:temporary-مؤقتة
     private char rowStatus;  // A: Active  D: Deleted
-    //private FormedCommittee formedCommittee;
 
 
-    public CommitteeEntity(CommitteeID committeeID, CommitteeName committeeName, String tasks, char committeeType, char rowStatus) {
+    public CommitteeEntity(CommitteeID committeeID, BinaryName committeeName, String tasks, char committeeType, char rowStatus) {
         this.committeeID = committeeID;
         this.committeeName = committeeName;
         this.tasks = tasks;
@@ -44,11 +45,11 @@ public class CommitteeEntity {
         this.committeeID = committeeID;
     }
 
-    public CommitteeName getCommitteeName() {
+    public BinaryName getCommitteeName() {
         return committeeName;
     }
 
-    public void setCommitteeName(CommitteeName committeeName) {
+    public void setCommitteeName(BinaryName committeeName) {
         this.committeeName = committeeName;
     }
 

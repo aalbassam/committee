@@ -34,8 +34,8 @@ public class MemberRoleRepositoryImp implements MemberRoleRepository {
 
         jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(InsertQuery);
-            preparedStatement.setString(1, memberRoleEntity.getMemberRoleName().getArName());
-            preparedStatement.setString(2, memberRoleEntity.getMemberRoleName().getEnName());
+            preparedStatement.setString(1, memberRoleEntity.getMemberRoleName().getArabicName());
+            preparedStatement.setString(2, memberRoleEntity.getMemberRoleName().getEnglishName());
             return preparedStatement;
         });
 

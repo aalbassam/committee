@@ -7,7 +7,6 @@ import sa.gov.sfd.committee.core.member.*;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -35,22 +34,22 @@ public class MemberRepositoryImp implements MemberRepository {
             preparedStatement.setInt(3, memberEntity.getMemberRoleEntity().getMemberRoleID().getId());
 
             Date dateDecisionAD;
-            if (memberEntity.getMemberDecisionDate().getDecisionDateAD() == null)
+            if (memberEntity.getMemberDecisionDate().getGregorian() == null)
                 dateDecisionAD = null;
             else
-                dateDecisionAD = Date.valueOf(memberEntity.getMemberDecisionDate().getDecisionDateAD());
+                dateDecisionAD = Date.valueOf(memberEntity.getMemberDecisionDate().getGregorian());
 
 
-            preparedStatement.setString(4, memberEntity.getMemberDecisionDate().getDecisionDateAH());
+            preparedStatement.setString(4, memberEntity.getMemberDecisionDate().getHijri());
             preparedStatement.setDate(5, dateDecisionAD);
 
             Date dateEndAD;
-            if (memberEntity.getMemberEndJoinDate().getJoinDateAD() == null)
+            if (memberEntity.getMemberEndJoinDate().getGregorian() == null)
                 dateEndAD = null;
             else
-                dateEndAD = Date.valueOf(memberEntity.getMemberEndJoinDate().getJoinDateAD());
+                dateEndAD = Date.valueOf(memberEntity.getMemberEndJoinDate().getGregorian());
 
-            preparedStatement.setString(6, memberEntity.getMemberEndJoinDate().getJoinDateAH());
+            preparedStatement.setString(6, memberEntity.getMemberEndJoinDate().getHijri());
             preparedStatement.setDate(7, dateEndAD);
 
             return preparedStatement;

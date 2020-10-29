@@ -1,8 +1,5 @@
 package sa.gov.sfd.committee.core.committee;
-import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeEntity;
-import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeNo;
-import sa.gov.sfd.committee.core.member.MemberEntity;
-import sa.gov.sfd.committee.core.memberRole.MemberRoleEntity;
+
 
 import java.util.List;
 
@@ -16,7 +13,6 @@ public class CommitteeService {
     }
 
 
-    //---- Service Methods ----
     public List<CommitteeEntity> getAllCommittees() {
         return committeeRepository.findAllCommittees();
     }

@@ -2,7 +2,6 @@ package sa.gov.sfd.committee.core.member;
 
 import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeNo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

@@ -1,9 +1,9 @@
 package sa.gov.sfd.committee.core.member;
 
-
 import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeNo;
 import sa.gov.sfd.committee.core.memberRole.MemberRoleEntity;
 import sa.gov.sfd.committee.core.employee.EmployeeEntity;
+import sa.gov.sfd.committee.core.shared.BinaryDate;
 
 public class MemberEntity {
 
@@ -11,11 +11,11 @@ public class MemberEntity {
     private FormedCommitteeNo formedCommitteeNo;
     private EmployeeEntity employeeEntity;
     private MemberRoleEntity memberRoleEntity;
-    private MemberDecisionDate memberDecisionDate;
-    private MemberEndJoinDate memberEndJoinDate;
+    private BinaryDate memberDecisionDate;
+    private BinaryDate memberEndJoinDate;
     private char rowStatus;  // A: Active  D: Deleted
 
-    public MemberEntity(MemberID memberId, FormedCommitteeNo formedCommitteeNo, EmployeeEntity employeeEntity, MemberRoleEntity memberRoleEntity, MemberDecisionDate memberDecisionDate, MemberEndJoinDate memberEndJoinDate, char rowStatus) {
+    public MemberEntity(MemberID memberId, FormedCommitteeNo formedCommitteeNo, EmployeeEntity employeeEntity, MemberRoleEntity memberRoleEntity, BinaryDate memberDecisionDate, BinaryDate memberEndJoinDate, char rowStatus) {
         this.memberId = memberId;
         this.formedCommitteeNo = formedCommitteeNo;
         this.employeeEntity = employeeEntity;
@@ -60,19 +60,19 @@ public class MemberEntity {
         this.memberRoleEntity = memberRoleEntity;
     }
 
-    public MemberDecisionDate getMemberDecisionDate() {
+    public BinaryDate getMemberDecisionDate() {
         return memberDecisionDate;
     }
 
-    public void setMemberDecisionDate(MemberDecisionDate memberDecisionDate) {
+    public void setMemberDecisionDate(BinaryDate memberDecisionDate) {
         this.memberDecisionDate = memberDecisionDate;
     }
 
-    public MemberEndJoinDate getMemberEndJoinDate() {
+    public BinaryDate getMemberEndJoinDate() {
         return memberEndJoinDate;
     }
 
-    public void setMemberEndJoinDate(MemberEndJoinDate memberEndJoinDate) {
+    public void setMemberEndJoinDate(BinaryDate memberEndJoinDate) {
         this.memberEndJoinDate = memberEndJoinDate;
     }
 

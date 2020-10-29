@@ -37,8 +37,8 @@ public class CommitteeRepositoryImp implements CommitteeRepository {
 
         jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(InsertQuery);
-            preparedStatement.setString(1, committeeEntity.getCommitteeName().getArName());
-            preparedStatement.setString(2, committeeEntity.getCommitteeName().getEnName());
+            preparedStatement.setString(1, committeeEntity.getCommitteeName().getArabicName());
+            preparedStatement.setString(2, committeeEntity.getCommitteeName().getEnglishName());
             preparedStatement.setString(3, String.valueOf(committeeEntity.getCommitteeType()));
             preparedStatement.setString(4, committeeEntity.getTasks());
 
