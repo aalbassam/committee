@@ -5,11 +5,11 @@ public class MemberDTO {
     private Long id;
     private Long memberNationalID;
     private Long formationNo;
-    private int roleId;
+    private Long roleId;
     private String joinDate;
     private String endDate;
 
-    public MemberDTO(Long id, Long memberNationalID, Long formationNo, int roleId, String joinDate, String endDate) {
+    public MemberDTO(Long id, Long memberNationalID, Long formationNo, Long roleId, String joinDate, String endDate) {
         this.id = id;
         this.memberNationalID = memberNationalID;
         this.formationNo = formationNo;
@@ -42,11 +42,11 @@ public class MemberDTO {
         this.formationNo = formationNo;
     }
 
-    public int getRoleId() {
+    public Long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 

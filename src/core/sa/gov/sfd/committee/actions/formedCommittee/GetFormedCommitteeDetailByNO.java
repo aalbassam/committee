@@ -2,8 +2,8 @@ package sa.gov.sfd.committee.actions.formedCommittee;
 
 
 import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeEntity;
-import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeNo;
 import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeService;
+import sa.gov.sfd.committee.core.shared.MasterId;
 
 
 public class GetFormedCommitteeDetailByNO {
@@ -15,7 +15,7 @@ public class GetFormedCommitteeDetailByNO {
         this.formedCommitteeService = formedCommitteeService;
     }
 
-    public FormedCommitteeEntity getFormedCommitteeDetailByNO(FormedCommitteeNo formedCommitteeNo) {
+    public FormedCommitteeEntity getFormedCommitteeDetailByNO(MasterId formedCommitteeNo) {
         return formedCommitteeService.getFormedCommitteeByNO(formedCommitteeNo);
     }
 

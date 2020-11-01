@@ -1,8 +1,8 @@
 package sa.gov.sfd.committee.actions.member;
 
-import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeNo;
 import sa.gov.sfd.committee.core.member.MemberEntity;
 import sa.gov.sfd.committee.core.member.MemberService;
+import sa.gov.sfd.committee.core.shared.MasterId;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class GetAllMembersByFormationNO {
         this.memberService = memberService;
     }
 
-    public List<MemberEntity> getAllMembersByFormationNo(FormedCommitteeNo formedCommitteeNo) {
+    public List<MemberEntity> getAllMembersByFormationNo(MasterId formedCommitteeNo) {
         return this.memberService.getAllMembersByFormationNo(formedCommitteeNo);
     }
 }

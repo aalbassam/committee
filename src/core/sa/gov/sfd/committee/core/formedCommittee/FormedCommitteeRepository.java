@@ -1,16 +1,16 @@
 package sa.gov.sfd.committee.core.formedCommittee;
 
-import sa.gov.sfd.committee.core.committee.CommitteeID;
+import sa.gov.sfd.committee.core.shared.MasterId;
 
 import java.util.List;
 
 
 public interface FormedCommitteeRepository {
 
-    FormedCommitteeEntity getFormedCommitteeByNO(FormedCommitteeNo formedCommitteeNo);
+    FormedCommitteeEntity getFormedCommitteeByNO(MasterId formedCommitteeNo);
 
     List<FormedCommitteeEntity> findAllFormedCommittees();
 
-    FormedCommitteeEntity addFormedCommittee(CommitteeID committeeID, FormedCommitteeEntity formedCommitteeEntity);
+    FormedCommitteeEntity addFormedCommittee(MasterId committeeID, FormedCommitteeEntity formedCommitteeEntity);
 
 }

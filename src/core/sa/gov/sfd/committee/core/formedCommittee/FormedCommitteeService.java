@@ -1,7 +1,7 @@
 package sa.gov.sfd.committee.core.formedCommittee;
 
 
-import sa.gov.sfd.committee.core.committee.CommitteeID;
+import sa.gov.sfd.committee.core.shared.MasterId;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ public class FormedCommitteeService {
     }
 
     //---- Service Methods ----
-    public FormedCommitteeEntity getFormedCommitteeByNO(FormedCommitteeNo formedCommitteeNo) {
+    public FormedCommitteeEntity getFormedCommitteeByNO(MasterId formedCommitteeNo) {
         return formedCommitteeRepository.getFormedCommitteeByNO(formedCommitteeNo);
     }
 
-    public FormedCommitteeEntity addFormedCommittee(CommitteeID committeeID, FormedCommitteeEntity formedCommitteeEntity) {
+    public FormedCommitteeEntity addFormedCommittee(MasterId committeeID, FormedCommitteeEntity formedCommitteeEntity) {
         return formedCommitteeRepository.addFormedCommittee(committeeID, formedCommitteeEntity);
     }
 

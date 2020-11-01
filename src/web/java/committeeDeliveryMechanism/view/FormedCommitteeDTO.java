@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class FormedCommitteeDTO {
 
     private Long formedNo;
-    private int committeeId;
+    private Long committeeId;
     private boolean reward;
     private String decisionNo;
     private String decisionDateAH;
@@ -13,7 +13,7 @@ public class FormedCommitteeDTO {
     private String endDateAH;
     private LocalDate endDateAD;
 
-    public FormedCommitteeDTO(Long formedNo, int committeeId, boolean reward, String decisionNo, String decisionDateAH, LocalDate decisionDateAD, String endDateAH, LocalDate endDateAD) {
+    public FormedCommitteeDTO(Long formedNo, Long committeeId, boolean reward, String decisionNo, String decisionDateAH, LocalDate decisionDateAD, String endDateAH, LocalDate endDateAD) {
         this.formedNo = formedNo;
         this.committeeId = committeeId;
         this.reward = reward;
@@ -32,11 +32,11 @@ public class FormedCommitteeDTO {
         this.formedNo = formedNo;
     }
 
-    public int getCommitteeId() {
+    public Long getCommitteeId() {
         return committeeId;
     }
 
-    public void setCommitteeId(int committeeId) {
+    public void setCommitteeId(Long committeeId) {
         this.committeeId = committeeId;
     }
 

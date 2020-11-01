@@ -2,22 +2,22 @@ package committeeDeliveryMechanism.view;
 
 public class MemberRoleDTO {
 
-    private int id;
+    private Long id;
     private String arName;
     private String enName;
 
 
-    public MemberRoleDTO(int id, String arName, String enName) {
+    public MemberRoleDTO(Long id, String arName, String enName) {
         this.id = id;
         this.arName = arName;
         this.enName = enName;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

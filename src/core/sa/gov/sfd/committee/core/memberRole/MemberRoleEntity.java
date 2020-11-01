@@ -1,20 +1,22 @@
 package sa.gov.sfd.committee.core.memberRole;
 
 import sa.gov.sfd.committee.core.shared.BinaryName;
+import sa.gov.sfd.committee.core.shared.MasterId;
+import sa.gov.sfd.committee.core.shared.RowStatus;
 
 public class MemberRoleEntity {
 
-    private MemberRoleID memberRoleID;
+    private MasterId memberRoleID;
     private BinaryName memberRoleName;
-    private char rowStatus;
+    private RowStatus rowStatus;
 
-    public MemberRoleEntity(MemberRoleID memberRoleID, BinaryName memberRoleName, char rowStatus) {
+    public MemberRoleEntity(MasterId memberRoleID, BinaryName memberRoleName, RowStatus rowStatus) {
         this.memberRoleID = memberRoleID;
         this.memberRoleName = memberRoleName;
         this.rowStatus = rowStatus;
     }
 
-    public MemberRoleEntity(MemberRoleID memberRoleID) {
+    public MemberRoleEntity(MasterId memberRoleID) {
         this.memberRoleID = memberRoleID;
     }
 
@@ -27,11 +29,11 @@ public class MemberRoleEntity {
                 '}';
     }
 
-    public MemberRoleID getMemberRoleID() {
+    public MasterId getMemberRoleID() {
         return memberRoleID;
     }
 
-    public void setMemberRoleID(MemberRoleID memberRoleID) {
+    public void setMemberRoleID(MasterId memberRoleID) {
         this.memberRoleID = memberRoleID;
     }
 
@@ -43,11 +45,11 @@ public class MemberRoleEntity {
         this.memberRoleName = memberRoleName;
     }
 
-    public char getRowStatus() {
+    public RowStatus getRowStatus() {
         return rowStatus;
     }
 
-    public void setRowStatus(char rowStatus) {
+    public void setRowStatus(RowStatus rowStatus) {
         this.rowStatus = rowStatus;
     }
 }

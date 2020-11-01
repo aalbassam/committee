@@ -1,23 +1,24 @@
 package sa.gov.sfd.committee.core.formedCommittee;
 
 import sa.gov.sfd.committee.core.committee.CommitteeEntity;
-import sa.gov.sfd.committee.core.member.MemberID;
 import sa.gov.sfd.committee.core.shared.BinaryDate;
+import sa.gov.sfd.committee.core.shared.MasterId;
+import sa.gov.sfd.committee.core.shared.RowStatus;
 
 import java.util.List;
 
 public class FormedCommitteeEntity {
 
-    private FormedCommitteeNo formationNo;
+    private MasterId formationNo;
     private CommitteeEntity committeeEntity;
     private boolean reward;
     private String decisionNo;
     private BinaryDate decisionDate;
     private BinaryDate endDate;
-    private List<MemberID> memberIDList;
-    private char rowStatus;  // A: Active  D: Deleted
+    private List<MasterId> memberIDList;
+    private RowStatus rowStatus;  // A: Active  D: Deleted
 
-    public FormedCommitteeEntity(FormedCommitteeNo formationNo, CommitteeEntity committeeEntity, boolean reward, String decisionNo, BinaryDate decisionDate, BinaryDate endDate, List<MemberID> memberIDList, char rowStatus) {
+    public FormedCommitteeEntity(MasterId formationNo, CommitteeEntity committeeEntity, boolean reward, String decisionNo, BinaryDate decisionDate, BinaryDate endDate, List<MasterId> memberIDList, RowStatus rowStatus) {
         this.formationNo = formationNo;
         this.committeeEntity = committeeEntity;
         this.reward = reward;
@@ -29,11 +30,11 @@ public class FormedCommitteeEntity {
     }
 
 
-    public FormedCommitteeNo getFormationNo() {
+    public MasterId getFormationNo() {
         return formationNo;
     }
 
-    public void setFormationNo(FormedCommitteeNo formationNo) {
+    public void setFormationNo(MasterId formationNo) {
         this.formationNo = formationNo;
     }
 
@@ -77,19 +78,19 @@ public class FormedCommitteeEntity {
         this.endDate = endDate;
     }
 
-    public List<MemberID> getMemberIDList() {
+    public List<MasterId> getMemberIDList() {
         return memberIDList;
     }
 
-    public void setMemberIDList(List<MemberID> memberIDList) {
+    public void setMemberIDList(List<MasterId> memberIDList) {
         this.memberIDList = memberIDList;
     }
 
-    public char getRowStatus() {
+    public RowStatus getRowStatus() {
         return rowStatus;
     }
 
-    public void setRowStatus(char rowStatus) {
+    public void setRowStatus(RowStatus rowStatus) {
         this.rowStatus = rowStatus;
     }
 }

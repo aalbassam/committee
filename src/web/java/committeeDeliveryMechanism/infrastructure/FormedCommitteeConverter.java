@@ -2,10 +2,10 @@ package committeeDeliveryMechanism.infrastructure;
 
 import committeeDeliveryMechanism.view.FormedCommitteeDTO;
 import sa.gov.sfd.committee.core.committee.CommitteeEntity;
-import sa.gov.sfd.committee.core.committee.CommitteeID;
 import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeEntity;
-import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeNo;
 import sa.gov.sfd.committee.core.shared.BinaryDate;
+import sa.gov.sfd.committee.core.shared.MasterId;
+import sa.gov.sfd.committee.core.shared.RowStatus;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +16,7 @@ public class FormedCommitteeConverter {
 
         return formedCommitteeEntities.stream().map(x ->
                 new FormedCommitteeDTO(
-                        x.getFormationNo().getNo(),
+                        x.getFormationNo().getId(),
                         x.getCommitteeEntity().getCommitteeID().getId(),
                         x.isReward(),
                         x.getDecisionNo(),
@@ -30,7 +30,7 @@ public class FormedCommitteeConverter {
     public static FormedCommitteeDTO convertFormedCommittee(FormedCommitteeEntity formedCommitteeEntity) {
 
         return new FormedCommitteeDTO(
-                formedCommitteeEntity.getFormationNo().getNo(),
+                formedCommitteeEntity.getFormationNo().getId(),
                 formedCommitteeEntity.getCommitteeEntity().getCommitteeID().getId(),
                 formedCommitteeEntity.isReward(),
                 formedCommitteeEntity.getDecisionNo(),
@@ -45,14 +45,14 @@ public class FormedCommitteeConverter {
 
         return new FormedCommitteeEntity(
 
-                new FormedCommitteeNo(formedCommitteeDTO.getFormedNo()),
-                new CommitteeEntity(new CommitteeID(formedCommitteeDTO.getCommitteeId())),
+                new MasterId(formedCommitteeDTO.getFormedNo()),
+                new CommitteeEntity(new MasterId(formedCommitteeDTO.getCommitteeId())),
                 formedCommitteeDTO.isReward(),
                 formedCommitteeDTO.getDecisionNo(),
                 new BinaryDate(formedCommitteeDTO.getDecisionDateAH(), formedCommitteeDTO.getDecisionDateAD()),
                 new BinaryDate(formedCommitteeDTO.getEndDateAH(), formedCommitteeDTO.getEndDateAD()),
                 null,
-                ' ');
+                new RowStatus());
 
     }
 }

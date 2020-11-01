@@ -2,8 +2,9 @@ package committeeDeliveryMechanism.infrastructure;
 
 import committeeDeliveryMechanism.view.MemberRoleDTO;
 import sa.gov.sfd.committee.core.memberRole.MemberRoleEntity;
-import sa.gov.sfd.committee.core.memberRole.MemberRoleID;
 import sa.gov.sfd.committee.core.shared.BinaryName;
+import sa.gov.sfd.committee.core.shared.MasterId;
+import sa.gov.sfd.committee.core.shared.RowStatus;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,9 +24,9 @@ public class MemberRoleConverter {
     public static MemberRoleEntity convertMemberRoleDTO(MemberRoleDTO memberRoleDTO) {
 
         return new MemberRoleEntity(
-                new MemberRoleID(memberRoleDTO.getId()),
+                new MasterId(memberRoleDTO.getId()),
                 new BinaryName(memberRoleDTO.getArName(), memberRoleDTO.getEnName()),
-                ' ');
+                new RowStatus());
 
     }
 }

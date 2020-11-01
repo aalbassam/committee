@@ -1,17 +1,19 @@
 package sa.gov.sfd.committee.core.committee;
 
 import sa.gov.sfd.committee.core.shared.BinaryName;
+import sa.gov.sfd.committee.core.shared.MasterId;
+import sa.gov.sfd.committee.core.shared.RowStatus;
 
 public class CommitteeEntity {
 
-    private CommitteeID committeeID;
+    private MasterId committeeID;
     private BinaryName committeeName;
     private String tasks;
     private char committeeType;  // P:permanent-دائمة     or T:temporary-مؤقتة
-    private char rowStatus;  // A: Active  D: Deleted
+    private RowStatus rowStatus;  // A: Active  D: Deleted
 
 
-    public CommitteeEntity(CommitteeID committeeID, BinaryName committeeName, String tasks, char committeeType, char rowStatus) {
+    public CommitteeEntity(MasterId committeeID, BinaryName committeeName, String tasks, char committeeType, RowStatus rowStatus) {
         this.committeeID = committeeID;
         this.committeeName = committeeName;
         this.tasks = tasks;
@@ -22,7 +24,7 @@ public class CommitteeEntity {
     public CommitteeEntity() {
     }
 
-    public CommitteeEntity(CommitteeID committeeID) {
+    public CommitteeEntity(MasterId committeeID) {
         this.committeeID = committeeID;
     }
 
@@ -37,11 +39,11 @@ public class CommitteeEntity {
                 '}';
     }
 
-    public CommitteeID getCommitteeID() {
+    public MasterId getCommitteeID() {
         return committeeID;
     }
 
-    public void setCommitteeID(CommitteeID committeeID) {
+    public void setCommitteeID(MasterId committeeID) {
         this.committeeID = committeeID;
     }
 
@@ -69,11 +71,11 @@ public class CommitteeEntity {
         this.committeeType = committeeType;
     }
 
-    public char getRowStatus() {
+    public RowStatus getRowStatus() {
         return rowStatus;
     }
 
-    public void setRowStatus(char rowStatus) {
+    public void setRowStatus(RowStatus rowStatus) {
         this.rowStatus = rowStatus;
     }
 }

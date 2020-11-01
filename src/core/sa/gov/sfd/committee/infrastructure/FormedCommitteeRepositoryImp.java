@@ -2,10 +2,9 @@ package sa.gov.sfd.committee.infrastructure;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import sa.gov.sfd.committee.core.committee.CommitteeID;
 import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeEntity;
-import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeNo;
 import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeRepository;
+import sa.gov.sfd.committee.core.shared.MasterId;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -22,10 +21,10 @@ public class FormedCommitteeRepositoryImp implements FormedCommitteeRepository {
 
 
     @Override
-    public FormedCommitteeEntity getFormedCommitteeByNO(FormedCommitteeNo formedCommitteeNo) {
+    public FormedCommitteeEntity getFormedCommitteeByNO(MasterId formedCommitteeNo) {
 
         final String q1 = "SELECT SC_FORMATION_NO, SC_COMMITTEE_ID, SC_REWARD, SC_DECISION_NO, SC_DECISION_DATE_AH, SC_DECISION_DATE_AD," +
-                " SC_FORMATION_END_DATE_AH, SC_FORMATION_END_DATE_AD  FROM BASSAM_FORMED_COMMITTEES WHERE SC_FORMATION_NO=" + formedCommitteeNo.getNo().toString();
+                " SC_FORMATION_END_DATE_AH, SC_FORMATION_END_DATE_AD  FROM BASSAM_FORMED_COMMITTEES WHERE SC_FORMATION_NO=" + formedCommitteeNo.getId().toString();
 
         return jdbcTemplate.queryForObject(q1, new FormedCommitteeMapper());
     }
@@ -39,7 +38,7 @@ public class FormedCommitteeRepositoryImp implements FormedCommitteeRepository {
     }
 
     @Override
-    public FormedCommitteeEntity addFormedCommittee(CommitteeID committeeID, FormedCommitteeEntity formedCommitteeEntity) {
+    public FormedCommitteeEntity addFormedCommittee(MasterId committeeID, FormedCommitteeEntity formedCommitteeEntity) {
 
         final String InsertQuery = "INSERT INTO BASSAM_FORMED_COMMITTEES(SC_FORMATION_NO,SC_COMMITTEE_ID, SC_REWARD," +
                 " SC_DECISION_NO, SC_DECISION_DATE_AH, SC_DECISION_DATE_AD, SC_FORMATION_END_DATE_AH, " +
@@ -49,7 +48,7 @@ public class FormedCommitteeRepositoryImp implements FormedCommitteeRepository {
         jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(InsertQuery);
 
-            preparedStatement.setInt(1, committeeID.getId());
+            preparedStatement.setLong(1, committeeID.getId());
             preparedStatement.setBoolean(2, formedCommitteeEntity.isReward());
             preparedStatement.setString(3, formedCommitteeEntity.getDecisionNo());
             preparedStatement.setString(4, formedCommitteeEntity.getDecisionDate().getHijri());

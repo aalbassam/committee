@@ -1,25 +1,25 @@
 package sa.gov.sfd.committee.core.member;
 
-import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeNo;
-import sa.gov.sfd.committee.core.memberRole.MemberRoleEntity;
 import sa.gov.sfd.committee.core.employee.EmployeeEntity;
 import sa.gov.sfd.committee.core.shared.BinaryDate;
+import sa.gov.sfd.committee.core.shared.MasterId;
+import sa.gov.sfd.committee.core.shared.RowStatus;
 
 public class MemberEntity {
 
-    private MemberID memberId;
-    private FormedCommitteeNo formedCommitteeNo;
+    private MasterId memberId;
+    private MasterId formedCommitteeNo;
     private EmployeeEntity employeeEntity;
-    private MemberRoleEntity memberRoleEntity;
+    private MasterId memberRoleId;
     private BinaryDate memberDecisionDate;
     private BinaryDate memberEndJoinDate;
-    private char rowStatus;  // A: Active  D: Deleted
+    private RowStatus rowStatus;  // A: Active  D: Deleted
 
-    public MemberEntity(MemberID memberId, FormedCommitteeNo formedCommitteeNo, EmployeeEntity employeeEntity, MemberRoleEntity memberRoleEntity, BinaryDate memberDecisionDate, BinaryDate memberEndJoinDate, char rowStatus) {
+    public MemberEntity(MasterId memberId, MasterId formedCommitteeNo, EmployeeEntity employeeEntity, MasterId memberRoleId, BinaryDate memberDecisionDate, BinaryDate memberEndJoinDate, RowStatus rowStatus) {
         this.memberId = memberId;
         this.formedCommitteeNo = formedCommitteeNo;
         this.employeeEntity = employeeEntity;
-        this.memberRoleEntity = memberRoleEntity;
+        this.memberRoleId = memberRoleId;
         this.memberDecisionDate = memberDecisionDate;
         this.memberEndJoinDate = memberEndJoinDate;
         this.rowStatus = rowStatus;
@@ -28,19 +28,19 @@ public class MemberEntity {
     public MemberEntity() {
     }
 
-    public MemberID getMemberId() {
+    public MasterId getMemberId() {
         return memberId;
     }
 
-    public void setMemberId(MemberID memberId) {
+    public void setMemberId(MasterId memberId) {
         this.memberId = memberId;
     }
 
-    public FormedCommitteeNo getFormedCommitteeNo() {
+    public MasterId getFormedCommitteeNo() {
         return formedCommitteeNo;
     }
 
-    public void setFormedCommitteeNo(FormedCommitteeNo formedCommitteeNo) {
+    public void setFormedCommitteeNo(MasterId formedCommitteeNo) {
         this.formedCommitteeNo = formedCommitteeNo;
     }
 
@@ -52,12 +52,12 @@ public class MemberEntity {
         this.employeeEntity = employeeEntity;
     }
 
-    public MemberRoleEntity getMemberRoleEntity() {
-        return memberRoleEntity;
+    public MasterId getMemberRoleId() {
+        return memberRoleId;
     }
 
-    public void setMemberRoleEntity(MemberRoleEntity memberRoleEntity) {
-        this.memberRoleEntity = memberRoleEntity;
+    public void setMemberRoleId(MasterId memberRoleId) {
+        this.memberRoleId = memberRoleId;
     }
 
     public BinaryDate getMemberDecisionDate() {
@@ -76,11 +76,11 @@ public class MemberEntity {
         this.memberEndJoinDate = memberEndJoinDate;
     }
 
-    public char getRowStatus() {
+    public RowStatus getRowStatus() {
         return rowStatus;
     }
 
-    public void setRowStatus(char rowStatus) {
+    public void setRowStatus(RowStatus rowStatus) {
         this.rowStatus = rowStatus;
     }
 }

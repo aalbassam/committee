@@ -2,8 +2,8 @@ package sa.gov.sfd.committee.infrastructure;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeNo;
 import sa.gov.sfd.committee.core.member.*;
+import sa.gov.sfd.committee.core.shared.MasterId;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ public class MemberRepositoryImp implements MemberRepository {
     }
 
     @Override
-    public MemberEntity addMemberToFormedCommittee(MemberEntity memberEntity, FormedCommitteeNo formedCommitteeNo) {
+    public MemberEntity addMemberToFormedCommittee(MemberEntity memberEntity, MasterId formedCommitteeNo) {
 
         final String InsertQuery = "INSERT INTO BASSAM_COMMITTEE_MEMBERS (CCM_SID, CCM_MEMBER_NID, CCM_FORMATION_NO, CCM_ROLE_ID, CCM_DECISION_DATE_AH, " +
                 "CCM_DECISION_DATE_AD, CCM_END_JOIN_DATE_AH, CCM_END_JOIN_DATE_AD, " +
@@ -30,8 +30,8 @@ public class MemberRepositoryImp implements MemberRepository {
 
             preparedStatement.setLong(1, memberEntity.getEmployeeEntity().getEmployeeNID().getId());
 
-            preparedStatement.setLong(2, formedCommitteeNo.getNo());
-            preparedStatement.setInt(3, memberEntity.getMemberRoleEntity().getMemberRoleID().getId());
+            preparedStatement.setLong(2, formedCommitteeNo.getId());
+            preparedStatement.setLong(3, memberEntity.getMemberRoleId().getId());
 
             Date dateDecisionAD;
             if (memberEntity.getMemberDecisionDate().getGregorian() == null)
@@ -65,9 +65,9 @@ public class MemberRepositoryImp implements MemberRepository {
     }
 
     @Override
-    public List<MemberEntity> findAllMembersByFormationNo(FormedCommitteeNo formedCommitteeNo) {
+    public List<MemberEntity> findAllMembersByFormationNo(MasterId formedCommitteeNo) {
 
-        final String q = "SELECT  CCM_SID, CCM_MEMBER_NID, CCM_FORMATION_NO, CCM_ROLE_ID, CCM_DECISION_DATE_AH, CCM_DECISION_DATE_AD, CCM_END_JOIN_DATE_AH, CCM_END_JOIN_DATE_AD, CCM_ROW_STATUS FROM BASSAM_COMMITTEE_MEMBERS WHERE CCM_ROW_STATUS != 'D' AND CCM_FORMATION_NO =" + formedCommitteeNo.getNo();
+        final String q = "SELECT  CCM_SID, CCM_MEMBER_NID, CCM_FORMATION_NO, CCM_ROLE_ID, CCM_DECISION_DATE_AH, CCM_DECISION_DATE_AD, CCM_END_JOIN_DATE_AH, CCM_END_JOIN_DATE_AD, CCM_ROW_STATUS FROM BASSAM_COMMITTEE_MEMBERS WHERE CCM_ROW_STATUS != 'D' AND CCM_FORMATION_NO =" + formedCommitteeNo.getId();
 
         return this.jdbcTemplate.query(q, new MemberMapper());
     }

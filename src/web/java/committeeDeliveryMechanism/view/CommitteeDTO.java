@@ -2,13 +2,13 @@ package committeeDeliveryMechanism.view;
 
 public class CommitteeDTO {
 
-    private int id;
+    private Long id;
     private String arName;
     private String enName;
     private String tasks;
     private char type;
 
-    public CommitteeDTO(int id, String arName, String enName, String tasks, char type) {
+    public CommitteeDTO(Long id, String arName, String enName, String tasks, char type) {
         this.id = id;
         this.arName = arName;
         this.enName = enName;
@@ -17,11 +17,11 @@ public class CommitteeDTO {
     }
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
