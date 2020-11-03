@@ -1,5 +1,7 @@
 package committeeDeliveryMechanism.infrastructure;
 
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import sa.gov.sfd.committee.actions.trackingLog.AddNewTrackingLog;
 import sa.gov.sfd.committee.actions.committee.*;
 
 import sa.gov.sfd.committee.actions.employee.GetEmployeesList;
@@ -10,7 +12,6 @@ import sa.gov.sfd.committee.actions.member.AddMemberToFormedCommittee;
 import sa.gov.sfd.committee.actions.member.GetAllMembersByFormationNO;
 import sa.gov.sfd.committee.actions.memberRole.AddNewMemberRole;
 import sa.gov.sfd.committee.actions.memberRole.GetAllMemberRoles;
-import sa.gov.sfd.committee.core.committee.CommitteeEntity;
 import sa.gov.sfd.committee.core.committee.CommitteeRepository;
 import sa.gov.sfd.committee.core.committee.CommitteeService;
 
@@ -22,11 +23,13 @@ import sa.gov.sfd.committee.core.member.MemberRepository;
 import sa.gov.sfd.committee.core.member.MemberService;
 import sa.gov.sfd.committee.core.memberRole.MemberRoleRepository;
 import sa.gov.sfd.committee.core.memberRole.MemberRoleService;
+import sa.gov.sfd.committee.core.trackingLog.TrackingLogRepository;
+import sa.gov.sfd.committee.core.trackingLog.TrackingLogService;
 import sa.gov.sfd.committee.infrastructure.*;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcTemplate;
+//import org.springframework.jdbc.core.JdbcTemplate;
 
 
 import javax.sql.DataSource;
@@ -38,8 +41,8 @@ public class BeanConfig {
 
     //----------------DB--------------------------
     @Bean
-    JdbcTemplate jdbcTemplate() {
-        return new JdbcTemplate(dataSource());
+    NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
+        return new NamedParameterJdbcTemplate(dataSource());
     }
 
     /*@Bean
@@ -59,8 +62,8 @@ public class BeanConfig {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("oracle.jdbc.OracleDriver");
         dataSourceBuilder.url("jdbc:oracle:thin:@//scantest.sfd.gov.sa:1521/testdb");
-        dataSourceBuilder.username("SFDGRP22");
-        dataSourceBuilder.password("SFDGRP22");
+        dataSourceBuilder.username("ITDEV_HR_COMMITTEES");
+        dataSourceBuilder.password("IThc251");
         return dataSourceBuilder.build();
     }
 
@@ -69,27 +72,32 @@ public class BeanConfig {
 
     @Bean
     public CommitteeRepository committeeRepository() {
-        return new CommitteeRepositoryImp(jdbcTemplate());
+        return new CommitteeRepositoryImp(namedParameterJdbcTemplate());
     }
 
     @Bean
     public FormedCommitteeRepository formedCommitteeRepository() {
-        return new FormedCommitteeRepositoryImp(jdbcTemplate());
+        return new FormedCommitteeRepositoryImp(namedParameterJdbcTemplate());
     }
 
     @Bean
     public MemberRepository memberRepository() {
-        return new MemberRepositoryImp(jdbcTemplate());
+        return new MemberRepositoryImp(namedParameterJdbcTemplate());
     }
 
     @Bean
     public MemberRoleRepository memberRoleRepository() {
-        return new MemberRoleRepositoryImp(jdbcTemplate());
+        return new MemberRoleRepositoryImp(namedParameterJdbcTemplate());
     }
 
     @Bean
     public EmployeeRepository employeeRepository() {
-        return new EmployeesRepositoryImp(jdbcTemplate());
+        return new EmployeesRepositoryImp(namedParameterJdbcTemplate());
+    }
+
+    @Bean
+    public TrackingLogRepository trackingLogRepository() {
+        return new TrackingLogRepositoryImp(namedParameterJdbcTemplate());
     }
 
 
@@ -117,6 +125,11 @@ public class BeanConfig {
     @Bean
     public EmployeeService employeeService() {
         return new EmployeeService(employeeRepository());
+    }
+
+    @Bean
+    public TrackingLogService trackingLogService() {
+        return new TrackingLogService(trackingLogRepository());
     }
 
 
@@ -174,6 +187,11 @@ public class BeanConfig {
     @Bean
     public GetAllMembersByFormationNO getAllMembersByFormationNO() {
         return new GetAllMembersByFormationNO(memberService());
+    }
+
+    @Bean
+    public AddNewTrackingLog addNewTrackingLog() {
+        return new AddNewTrackingLog(trackingLogService());
     }
 
 

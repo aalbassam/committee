@@ -21,7 +21,7 @@ public class CommitteeService {
         return committeeRepository.updateCommittee(committeeEntity);
     }
 
-    public CommitteeEntity addCommittee(CommitteeEntity committeeEntity) {
+    public Long addCommittee(CommitteeEntity committeeEntity) {
         return committeeRepository.addCommittee(committeeEntity);
     }
 

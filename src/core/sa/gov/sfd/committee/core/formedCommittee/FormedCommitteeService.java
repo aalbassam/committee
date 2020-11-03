@@ -19,7 +19,7 @@ public class FormedCommitteeService {
         return formedCommitteeRepository.getFormedCommitteeByNO(formedCommitteeNo);
     }
 
-    public FormedCommitteeEntity addFormedCommittee(MasterId committeeID, FormedCommitteeEntity formedCommitteeEntity) {
+    public Long addFormedCommittee(MasterId committeeID, FormedCommitteeEntity formedCommitteeEntity) {
         return formedCommitteeRepository.addFormedCommittee(committeeID, formedCommitteeEntity);
     }
 

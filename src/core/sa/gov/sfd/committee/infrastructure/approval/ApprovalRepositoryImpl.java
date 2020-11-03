@@ -20,7 +20,7 @@ public class ApprovalRepositoryImpl implements ApprovalRepository {
 
     @Override
     public ApprovalTransactionEntity applyNewApproval(ApprovalTransactionEntity approvalTransactionEntity) {
-        final String INSERT_APPROVAL_TRANSACTION_SQL = "insert into L_APPROVAL_TRANSACTION(ID, WORKFLOW_NUMBER, STEP, USER_NID, REQUEST_ID, " +
+        final String INSERT_APPROVAL_TRANSACTION_SQL = "insert into C_APPROVAL_TRANSACTION(ID, WORKFLOW_NUMBER, STEP, USER_NID, REQUEST_ID, " +
                 "NOTE, REQUEST_TITLE, REQUEST_TYPE, TYPE)\n" + "\n" +
                 "VALUES (L_APPROVAL_TRANSACTION_SEQ.nextval,?,?,?,?,?,?,?,'Loan')";
         jdbcTemplate.update(connection -> {
@@ -45,11 +45,11 @@ public class ApprovalRepositoryImpl implements ApprovalRepository {
                         "select L_APPROVAL_TRANSACTION.id, L_APPROVAL_TRANSACTION.workflow_number, L_APPROVAL_TRANSACTION.step, L_APPROVAL_TRANSACTION.user_nid,\n" +
                         "       L_APPROVAL_TRANSACTION.request_id, L_APPROVAL_TRANSACTION.action, L_APPROVAL_TRANSACTION.note, L_APPROVAL_TRANSACTION.request_title,\n" +
                         "       L_APPROVAL_TRANSACTION.request_type, L_APPROVAL_TRANSACTION.type\n" +
-                        "from L_APPROVAL_TRANSACTION\n" +
+                        "from C_APPROVAL_TRANSACTION\n" +
                         "where L_APPROVAL_TRANSACTION.ACTION IS NULL\n" +
                         "AND EXISTS(\n" +
                         "SELECT  L_WORKFLOW.ID , L_WORKFLOW.WORKFLOW_NUMBER , L_WORKFLOW.STEP , L_WORKFLOW.TYPE ,L_WORKFLOW.TEAM_ID ,L_WORKFLOW.ACTION\n" +
-                        "FROM L_WORKFLOW\n" +
+                        "FROM C_WORKFLOW\n" +
                         "WHERE L_WORKFLOW.STEP = L_APPROVAL_TRANSACTION.STEP\n" +
                         "AND L_WORKFLOW.WORKFLOW_NUMBER = L_APPROVAL_TRANSACTION.WORKFLOW_NUMBER\n" +
                         "AND L_WORKFLOW.TEAM_ID IN (SELECT DISTINCT L_EMP_TEAM.TEAM_ID FROM L_EMP_TEAM WHERE L_EMP_TEAM.EMPLOYEE_NID = ?))",
@@ -63,7 +63,7 @@ public class ApprovalRepositoryImpl implements ApprovalRepository {
 
         return jdbcTemplate.query(
                 String.format("SELECT WORKFLOW_NUMBER \n" +
-                        "FROM L_APPROVAL_PATH  \n" +
+                        "FROM C_APPROVAL_PATH  \n" +
                         "WHERE EMPLOYEE_NID IN (%s) \n" +
                         "GROUP BY WORKFLOW_NUMBER", inSql),
                 EmployeesNID.toArray(), new ApprovalPathMapper());
@@ -76,7 +76,7 @@ public class ApprovalRepositoryImpl implements ApprovalRepository {
         return jdbcTemplate.queryForObject("" +
                         "SELECT  L_APPROVER_TEAM.APPROVAL_TEAM_ID , L_APPROVER_TEAM.TEAM_ID, L_APPROVER_TEAM.TEAM_NAME , L_APPROVER_TEAM.APPROVAL_ROLE ,\n" +
                         "       L_APPROVER_TEAM.DECLINED_ROLE , L_APPROVER_TEAM.VIEW_ROLE ,  L_APPROVER_TEAM.CONFIRMED_ROLE ,L_APPROVER_TEAM.ISSUED_NEW_CONFORMATION ,L_EMP_TEAM.EMPLOYEE_NID\n" +
-                        "FROM L_APPROVER_TEAM , L_EMP_TEAM , L_WORKFLOW\n" +
+                        "FROM C_APPROVER_TEAM , C_EMP_TEAM , C_WORKFLOW\n" +
                         "WHERE EMPLOYEE_NID = ?\n" +
                         "AND L_WORKFLOW.WORKFLOW_NUMBER =?\n" +
                         "AND L_WORKFLOW.STEP = ?\n" +
@@ -90,7 +90,7 @@ public class ApprovalRepositoryImpl implements ApprovalRepository {
     // Tested
     public int declineRequest(ApprovalTransactionEntity approvalTransactionEntity) {
         final String UPDATE_APPROVAL_TRANSACTION_SQL = "" +
-                "UPDATE L_APPROVAL_TRANSACTION " +
+                "UPDATE C_APPROVAL_TRANSACTION " +
                 "SET ACTION = 'Declined', USER_NID = ?, NOTE= ?\n" +
                 "WHERE WORKFLOW_NUMBER =? " +
                 "AND STEP = ? " +
@@ -114,8 +114,8 @@ public class ApprovalRepositoryImpl implements ApprovalRepository {
     @Override
     // Tested
     public int approveRequest(ApprovalTransactionEntity approvalTransactionEntity) {
-        final String UPDATE_APPROVAL_TRANSACTION_SQL = "UPDATE l_APPROVAL_TRANSACTION SET L_APPROVAL_TRANSACTION.ACTION = (SELECT L_WORKFLOW.ACTION \n" +
-                "FROM l_WORKFLOW \n" +
+        final String UPDATE_APPROVAL_TRANSACTION_SQL = "UPDATE C_APPROVAL_TRANSACTION SET L_APPROVAL_TRANSACTION.ACTION = (SELECT L_WORKFLOW.ACTION \n" +
+                "FROM C_WORKFLOW \n" +
                 "WHERE l_WORKFLOW.WORKFLOW_NUMBER = ? \n" +
                 "AND l_WORKFLOW.STEP = ? AND l_WORKFLOW.TYPE =?), L_APPROVAL_TRANSACTION.NOTE=? \n" +
                 "WHERE L_APPROVAL_TRANSACTION.WORKFLOW_NUMBER = ? \n" +
@@ -154,7 +154,7 @@ public class ApprovalRepositoryImpl implements ApprovalRepository {
                         "             L_APPROVAL_TRANSACTION.request_title,\n" +
                         "             L_APPROVAL_TRANSACTION.request_type,\n" +
                         "             L_APPROVAL_TRANSACTION.type\n" +
-                        "      from L_APPROVAL_TRANSACTION\n" +
+                        "      from C_APPROVAL_TRANSACTION\n" +
                         "      where L_APPROVAL_TRANSACTION.ACTION IS not NULL\n" +
                         "        AND EXISTS(\n" +
                         "              SELECT L_WORKFLOW.ID,\n" +
@@ -163,11 +163,11 @@ public class ApprovalRepositoryImpl implements ApprovalRepository {
                         "                     L_WORKFLOW.TYPE,\n" +
                         "                     L_WORKFLOW.TEAM_ID,\n" +
                         "                     L_WORKFLOW.ACTION\n" +
-                        "              FROM L_WORKFLOW\n" +
+                        "              FROM C_WORKFLOW\n" +
                         "              WHERE L_WORKFLOW.STEP = L_APPROVAL_TRANSACTION.STEP\n" +
                         "                AND L_WORKFLOW.WORKFLOW_NUMBER = L_APPROVAL_TRANSACTION.WORKFLOW_NUMBER\n" +
                         "                AND L_WORKFLOW.TEAM_ID IN\n" +
-                        "                    (SELECT DISTINCT L_EMP_TEAM.TEAM_ID FROM L_EMP_TEAM WHERE L_EMP_TEAM.EMPLOYEE_NID = ?))\n" +
+                        "                    (SELECT DISTINCT L_EMP_TEAM.TEAM_ID FROM C_EMP_TEAM WHERE L_EMP_TEAM.EMPLOYEE_NID = ?))\n" +
                         "          order by L_APPROVAL_TRANSACTION.ID desc\n" +
                         ")\n" +
                         "where ROWNUM = 1",

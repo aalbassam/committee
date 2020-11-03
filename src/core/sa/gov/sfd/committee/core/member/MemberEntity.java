@@ -7,17 +7,17 @@ import sa.gov.sfd.committee.core.shared.RowStatus;
 
 public class MemberEntity {
 
-    private MasterId memberId;
-    private MasterId formedCommitteeNo;
+    private MasterId memberID;
+    private MasterId formedCommitteeId;
     private EmployeeEntity employeeEntity;
     private MasterId memberRoleId;
     private BinaryDate memberDecisionDate;
     private BinaryDate memberEndJoinDate;
     private RowStatus rowStatus;  // A: Active  D: Deleted
 
-    public MemberEntity(MasterId memberId, MasterId formedCommitteeNo, EmployeeEntity employeeEntity, MasterId memberRoleId, BinaryDate memberDecisionDate, BinaryDate memberEndJoinDate, RowStatus rowStatus) {
-        this.memberId = memberId;
-        this.formedCommitteeNo = formedCommitteeNo;
+    public MemberEntity(MasterId memberID, MasterId formedCommitteeId, EmployeeEntity employeeEntity, MasterId memberRoleId, BinaryDate memberDecisionDate, BinaryDate memberEndJoinDate, RowStatus rowStatus) {
+        this.memberID = memberID;
+        this.formedCommitteeId = formedCommitteeId;
         this.employeeEntity = employeeEntity;
         this.memberRoleId = memberRoleId;
         this.memberDecisionDate = memberDecisionDate;
@@ -28,20 +28,20 @@ public class MemberEntity {
     public MemberEntity() {
     }
 
-    public MasterId getMemberId() {
-        return memberId;
+    public MasterId getMemberID() {
+        return memberID;
     }
 
-    public void setMemberId(MasterId memberId) {
-        this.memberId = memberId;
+    public void setMemberID(MasterId memberID) {
+        this.memberID = memberID;
     }
 
-    public MasterId getFormedCommitteeNo() {
-        return formedCommitteeNo;
+    public MasterId getFormedCommitteeId() {
+        return formedCommitteeId;
     }
 
-    public void setFormedCommitteeNo(MasterId formedCommitteeNo) {
-        this.formedCommitteeNo = formedCommitteeNo;
+    public void setFormedCommitteeId(MasterId formedCommitteeId) {
+        this.formedCommitteeId = formedCommitteeId;
     }
 
     public EmployeeEntity getEmployeeEntity() {

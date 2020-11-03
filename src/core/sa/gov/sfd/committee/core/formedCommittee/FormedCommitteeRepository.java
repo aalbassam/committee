@@ -11,6 +11,6 @@ public interface FormedCommitteeRepository {
 
     List<FormedCommitteeEntity> findAllFormedCommittees();
 
-    FormedCommitteeEntity addFormedCommittee(MasterId committeeID, FormedCommitteeEntity formedCommitteeEntity);
+    Long addFormedCommittee(MasterId committeeID, FormedCommitteeEntity formedCommitteeEntity);
 
 }

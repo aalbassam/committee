@@ -16,7 +16,7 @@ public class FormedCommitteeConverter {
 
         return formedCommitteeEntities.stream().map(x ->
                 new FormedCommitteeDTO(
-                        x.getFormationNo().getId(),
+                        x.getFormationID().getId(),
                         x.getCommitteeEntity().getCommitteeID().getId(),
                         x.isReward(),
                         x.getDecisionNo(),
@@ -30,7 +30,7 @@ public class FormedCommitteeConverter {
     public static FormedCommitteeDTO convertFormedCommittee(FormedCommitteeEntity formedCommitteeEntity) {
 
         return new FormedCommitteeDTO(
-                formedCommitteeEntity.getFormationNo().getId(),
+                formedCommitteeEntity.getFormationID().getId(),
                 formedCommitteeEntity.getCommitteeEntity().getCommitteeID().getId(),
                 formedCommitteeEntity.isReward(),
                 formedCommitteeEntity.getDecisionNo(),

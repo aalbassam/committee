@@ -4,6 +4,7 @@ import sa.gov.sfd.committee.core.shared.BinaryName;
 import sa.gov.sfd.committee.core.shared.MasterId;
 import sa.gov.sfd.committee.core.shared.RowStatus;
 
+
 public class CommitteeEntity {
 
     private MasterId committeeID;
@@ -38,6 +39,7 @@ public class CommitteeEntity {
                 ", rowStatus=" + rowStatus +
                 '}';
     }
+
 
     public MasterId getCommitteeID() {
         return committeeID;

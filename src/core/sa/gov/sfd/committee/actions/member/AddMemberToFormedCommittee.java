@@ -13,7 +13,7 @@ public class AddMemberToFormedCommittee {
         this.memberService = memberService;
     }
 
-    public MemberEntity addMemberToFormedCommittee(MemberEntity memberEntity, MasterId formedCommitteeNo) {
+    public Long addMemberToFormedCommittee(MemberEntity memberEntity, MasterId formedCommitteeNo) {
         return this.memberService.addMemberToFormedCommittee(memberEntity, formedCommitteeNo);
     }
 }

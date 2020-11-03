@@ -1,22 +1,23 @@
 package sa.gov.sfd.committee.infrastructure;
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeEntity;
 import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeRepository;
 import sa.gov.sfd.committee.core.shared.MasterId;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.util.List;
 
 @Repository
 public class FormedCommitteeRepositoryImp implements FormedCommitteeRepository {
 
-    private final JdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public FormedCommitteeRepositoryImp(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public FormedCommitteeRepositoryImp(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
 
@@ -24,47 +25,49 @@ public class FormedCommitteeRepositoryImp implements FormedCommitteeRepository {
     public FormedCommitteeEntity getFormedCommitteeByNO(MasterId formedCommitteeNo) {
 
         final String q1 = "SELECT SC_FORMATION_NO, SC_COMMITTEE_ID, SC_REWARD, SC_DECISION_NO, SC_DECISION_DATE_AH, SC_DECISION_DATE_AD," +
-                " SC_FORMATION_END_DATE_AH, SC_FORMATION_END_DATE_AD  FROM BASSAM_FORMED_COMMITTEES WHERE SC_FORMATION_NO=" + formedCommitteeNo.getId().toString();
+                " SC_FORMATION_END_DATE_AH, SC_FORMATION_END_DATE_AD  FROM FORMED_COMMITTEES WHERE SC_FORMATION_NO= :1";
 
-        return jdbcTemplate.queryForObject(q1, new FormedCommitteeMapper());
+        return this.namedParameterJdbcTemplate.queryForObject(q1, new MapSqlParameterSource(
+                "1", formedCommitteeNo.getId().toString()), new FormedCommitteeMapper());
     }
 
     @Override
     public List<FormedCommitteeEntity> findAllFormedCommittees() {
 
         final String q1 = "SELECT SC_FORMATION_NO,SC_COMMITTEE_ID, SC_REWARD, SC_DECISION_NO, SC_DECISION_DATE_AH, SC_DECISION_DATE_AD," +
-                " SC_FORMATION_END_DATE_AH, SC_FORMATION_END_DATE_AD  FROM BASSAM_FORMED_COMMITTEES WHERE SC_ROW_STATUS != 'D'";
-        return this.jdbcTemplate.query(q1, new FormedCommitteeMapper());
+                " SC_FORMATION_END_DATE_AH, SC_FORMATION_END_DATE_AD  FROM FORMED_COMMITTEES WHERE SC_ROW_STATUS != 'D'";
+        return this.namedParameterJdbcTemplate.query(q1, new FormedCommitteeMapper());
     }
 
     @Override
-    public FormedCommitteeEntity addFormedCommittee(MasterId committeeID, FormedCommitteeEntity formedCommitteeEntity) {
+    public Long addFormedCommittee(MasterId committeeID, FormedCommitteeEntity formedCommitteeEntity) {
 
-        final String InsertQuery = "INSERT INTO BASSAM_FORMED_COMMITTEES(SC_FORMATION_NO,SC_COMMITTEE_ID, SC_REWARD," +
+        final String InsertQuery = "INSERT INTO FORMED_COMMITTEES(SC_FORMATION_NO,SC_COMMITTEE_ID, SC_REWARD," +
                 " SC_DECISION_NO, SC_DECISION_DATE_AH, SC_DECISION_DATE_AD, SC_FORMATION_END_DATE_AH, " +
-                "SC_FORMATION_END_DATE_AD, SC_CREATED_BY, SC_CREATED_DATE, SC_ROW_STATUS) " +
-                "VALUES (SC_FORMATION_NO_SEQ.NEXTVAL,?,?,?,?,?,?,?,'none','none','A')";
+                "SC_FORMATION_END_DATE_AD,SC_APPROVER_ID, SC_ROW_STATUS) " +
+                "VALUES (SC_FORMATION_NO_SEQ.NEXTVAL,:1,:2,:3,:4,:5,:6,:7,:8,'A')";
 
-        jdbcTemplate.update(connection -> {
-            PreparedStatement preparedStatement = connection.prepareStatement(InsertQuery);
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        MapSqlParameterSource namedParams = new MapSqlParameterSource();
 
-            preparedStatement.setLong(1, committeeID.getId());
-            preparedStatement.setBoolean(2, formedCommitteeEntity.isReward());
-            preparedStatement.setString(3, formedCommitteeEntity.getDecisionNo());
-            preparedStatement.setString(4, formedCommitteeEntity.getDecisionDate().getHijri());
+        namedParams.addValue("1", committeeID.getId());
+        namedParams.addValue("2", formedCommitteeEntity.isReward());
+        namedParams.addValue("3", formedCommitteeEntity.getDecisionNo());
+        namedParams.addValue("4", formedCommitteeEntity.getDecisionDate().getHijri());
 
-            Date dateDecisionAD = Date.valueOf(formedCommitteeEntity.getDecisionDate().getGregorian());
+        namedParams.addValue("5", formedCommitteeEntity.getDecisionDate().getGregorian());
+        namedParams.addValue("6", formedCommitteeEntity.getEndDate().getHijri());
+        namedParams.addValue("7", formedCommitteeEntity.getDecisionNo());
+        namedParams.addValue("8", formedCommitteeEntity.getDecisionDate().getGregorian());
+
+        this.namedParameterJdbcTemplate.update(InsertQuery, namedParams, keyHolder, new String[]{"SC_FORMATION_NO"});
+
+        return keyHolder.getKey().longValue();
+
+            /*Date dateDecisionAD = Date.valueOf(formedCommitteeEntity.getDecisionDate().getGregorian());
             preparedStatement.setDate(5, dateDecisionAD);
-
-            preparedStatement.setString(6, formedCommitteeEntity.getEndDate().getHijri());
-
             Date dateEndAD = Date.valueOf(formedCommitteeEntity.getDecisionDate().getGregorian());
-            preparedStatement.setDate(7, dateEndAD);
-
-            return preparedStatement;
-        });
-
-        return formedCommitteeEntity;
+            preparedStatement.setDate(7, dateEndAD);*/
     }
 
 

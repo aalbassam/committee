@@ -12,6 +12,7 @@ public class BinaryDate {
     private final LocalDate gregorian;
 
     public BinaryDate(String hijri, LocalDate gregorian) {
+
         this.hijri = hijri;
         this.gregorian = gregorian;
     }

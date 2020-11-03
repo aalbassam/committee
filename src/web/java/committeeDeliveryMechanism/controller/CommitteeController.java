@@ -11,13 +11,10 @@ import sa.gov.sfd.committee.actions.member.AddMemberToFormedCommittee;
 import sa.gov.sfd.committee.actions.member.GetAllMembersByFormationNO;
 import sa.gov.sfd.committee.actions.memberRole.AddNewMemberRole;
 import sa.gov.sfd.committee.actions.memberRole.GetAllMemberRoles;
-import sa.gov.sfd.committee.core.committee.CommitteeEntity;
-import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeEntity;
-import sa.gov.sfd.committee.core.member.MemberEntity;
-import sa.gov.sfd.committee.core.memberRole.MemberRoleEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sa.gov.sfd.committee.core.shared.MasterId;
+
 
 import java.util.List;
 
@@ -58,7 +55,7 @@ public class CommitteeController {
     }
 
     @PostMapping("/addCommittee") //tested
-    public CommitteeEntity addNewCommittee(@RequestBody CommitteeDTO committeeDTO) {
+    public Long addNewCommittee(@RequestBody CommitteeDTO committeeDTO) {
         return this.addNewCommittee.addNewCommittee(CommitteeConverter.convertCommitteeDTO(committeeDTO));
     }
 
@@ -78,7 +75,7 @@ public class CommitteeController {
     }
 
     @PostMapping("/formedCommittees/{committeeID}") //tested
-    public FormedCommitteeEntity addNewFormedCommittee(@PathVariable Long committeeID, @RequestBody FormedCommitteeDTO formedCommitteeDTO) {
+    public Long addNewFormedCommittee(@PathVariable Long committeeID, @RequestBody FormedCommitteeDTO formedCommitteeDTO) {
         return this.addNewFormedCommittee.addFormedCommittee(new MasterId(committeeID), FormedCommitteeConverter.convertFormedCommitteeDTO(formedCommitteeDTO));
     }
 
@@ -92,7 +89,7 @@ public class CommitteeController {
     }
 
     @PostMapping("/memberRoles") //tested
-    public MemberRoleEntity addNewMemberRole(@RequestBody MemberRoleDTO memberRoleDTO) {
+    public Long addNewMemberRole(@RequestBody MemberRoleDTO memberRoleDTO) {
         return this.addNewMemberRole.addMemberRole(MemberRoleConverter.convertMemberRoleDTO(memberRoleDTO));
     }
 
@@ -105,7 +102,7 @@ public class CommitteeController {
     }
 
     @PostMapping("/addMember/{formedNo}") //tested
-    public MemberEntity addMemberToFormedCommittee(@PathVariable Long formedNo, @RequestBody MemberDTO memberDTO) {
+    public Long addMemberToFormedCommittee(@PathVariable Long formedNo, @RequestBody MemberDTO memberDTO) {
         return this.addMemberToFormedCommittee.addMemberToFormedCommittee(MemberConverter.convertMemberDTO(memberDTO), new MasterId(formedNo));
     }
 

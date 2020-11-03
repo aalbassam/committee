@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface MemberRepository {
 
-    MemberEntity addMemberToFormedCommittee(MemberEntity memberEntity, MasterId formedCommitteeNo);
+    Long addMemberToFormedCommittee(MemberEntity memberEntity, MasterId formedCommitteeNo);
 
     List<MemberEntity> addMemberListToFormedCommittee(List<MemberEntity> memberEntities);
 

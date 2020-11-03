@@ -8,6 +8,6 @@ public interface CommitteeRepository {
 
     int updateCommittee(CommitteeEntity committeeEntity);
 
-    CommitteeEntity addCommittee(CommitteeEntity committeeEntity);
+    Long addCommittee(CommitteeEntity committeeEntity);
 
 }

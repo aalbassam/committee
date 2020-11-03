@@ -15,7 +15,7 @@ public class MemberRoleService {
         return memberRoleRepository.getAllMemberRoles();
     }
 
-    public MemberRoleEntity addNewMemberRole(MemberRoleEntity memberRoleEntity) {
+    public Long addNewMemberRole(MemberRoleEntity memberRoleEntity) {
         return memberRoleRepository.addNewMemberRole(memberRoleEntity);
     }
 }

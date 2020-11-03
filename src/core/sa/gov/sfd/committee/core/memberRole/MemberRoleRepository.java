@@ -7,5 +7,5 @@ public interface MemberRoleRepository {
 
     List<MemberRoleEntity> getAllMemberRoles();
 
-    MemberRoleEntity addNewMemberRole(MemberRoleEntity memberRoleEntity);
+    Long addNewMemberRole(MemberRoleEntity memberRoleEntity);
 }

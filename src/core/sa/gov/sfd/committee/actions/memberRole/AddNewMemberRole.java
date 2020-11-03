@@ -12,7 +12,7 @@ public class AddNewMemberRole {
         this.memberRoleService = memberRoleService;
     }
 
-    public MemberRoleEntity addMemberRole(MemberRoleEntity memberRoleEntity) {
+    public Long addMemberRole(MemberRoleEntity memberRoleEntity) {
         return this.memberRoleService.addNewMemberRole(memberRoleEntity);
     }
 }

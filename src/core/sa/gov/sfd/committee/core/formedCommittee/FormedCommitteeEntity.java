@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FormedCommitteeEntity {
 
-    private MasterId formationNo;
+    private MasterId formationID;
     private CommitteeEntity committeeEntity;
     private boolean reward;
     private String decisionNo;
@@ -18,8 +18,8 @@ public class FormedCommitteeEntity {
     private List<MasterId> memberIDList;
     private RowStatus rowStatus;  // A: Active  D: Deleted
 
-    public FormedCommitteeEntity(MasterId formationNo, CommitteeEntity committeeEntity, boolean reward, String decisionNo, BinaryDate decisionDate, BinaryDate endDate, List<MasterId> memberIDList, RowStatus rowStatus) {
-        this.formationNo = formationNo;
+    public FormedCommitteeEntity(MasterId formationID, CommitteeEntity committeeEntity, boolean reward, String decisionNo, BinaryDate decisionDate, BinaryDate endDate, List<MasterId> memberIDList, RowStatus rowStatus) {
+        this.formationID = formationID;
         this.committeeEntity = committeeEntity;
         this.reward = reward;
         this.decisionNo = decisionNo;
@@ -30,12 +30,12 @@ public class FormedCommitteeEntity {
     }
 
 
-    public MasterId getFormationNo() {
-        return formationNo;
+    public MasterId getFormationID() {
+        return formationID;
     }
 
-    public void setFormationNo(MasterId formationNo) {
-        this.formationNo = formationNo;
+    public void setFormationID(MasterId formationID) {
+        this.formationID = formationID;
     }
 
     public CommitteeEntity getCommitteeEntity() {

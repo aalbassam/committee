@@ -17,9 +17,9 @@ public class MemberConverter {
 
         return memberEntities.stream().map(x ->
                 new MemberDTO(
-                        x.getMemberId().getId(),
+                        x.getMemberID().getId(),
                         x.getEmployeeEntity().getEmployeeNID().getId(),
-                        x.getFormedCommitteeNo().getId(),
+                        x.getFormedCommitteeId().getId(),
                         x.getMemberRoleId().getId(),
                         x.getMemberDecisionDate().getHijri(),
                         x.getMemberEndJoinDate().getHijri()
@@ -30,7 +30,7 @@ public class MemberConverter {
 
         MemberEntity memberEntity = new MemberEntity();
 
-        memberEntity.setFormedCommitteeNo(new MasterId(memberDTO.getFormationNo()));
+        memberEntity.setFormedCommitteeId(new MasterId(memberDTO.getFormationNo()));
         memberEntity.setEmployeeEntity(new EmployeeEntity(new EmployeeNID(memberDTO.getMemberNationalID())));
         memberEntity.setMemberRoleId(new MasterId(memberDTO.getRoleId()));
 

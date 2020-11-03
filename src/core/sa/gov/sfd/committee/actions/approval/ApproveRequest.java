@@ -25,13 +25,3 @@ public class ApproveRequest {
 }
 
 
-// update (action)
-// insert new Transaction (step +1)
-// approver (hr) update stute = redy
-
-
-//        ApprovalTransactionEntity approvalTransactionEntity2 = approvalTransactionEntity;//
-//        approvalTransactionEntity2.setStep(approvalTransactionEntity.getStep()+1);
-//        this.approvalServices.applyNewApproval(approvalTransactionEntity2);
-
-

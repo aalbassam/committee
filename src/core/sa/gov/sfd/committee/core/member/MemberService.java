@@ -13,7 +13,7 @@ public class MemberService {
     }
 
     //---- Service Methods ----
-    public MemberEntity addMemberToFormedCommittee(MemberEntity memberEntity, MasterId formedCommitteeNo) {
+    public Long addMemberToFormedCommittee(MemberEntity memberEntity, MasterId formedCommitteeNo) {
         return memberRepository.addMemberToFormedCommittee(memberEntity, formedCommitteeNo);
     }
 
