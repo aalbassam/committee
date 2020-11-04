@@ -3,6 +3,7 @@ package committeeDeliveryMechanism.infrastructure;
 import committeeDeliveryMechanism.view.CommitteeDTO;
 import sa.gov.sfd.committee.core.committee.*;
 import sa.gov.sfd.committee.core.shared.BinaryName;
+import sa.gov.sfd.committee.core.shared.MasterId;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,6 +30,7 @@ public class CommitteeConverter {
 
         CommitteeEntity committeeEntity = new CommitteeEntity();
 
+        committeeEntity.setCommitteeID(new MasterId(committeeDTO.getId()));
         committeeEntity.setCommitteeName(new BinaryName(committeeDTO.getArName(), committeeDTO.getEnName()));
         committeeEntity.setTasks(committeeDTO.getTasks());
         committeeEntity.setCommitteeType(committeeDTO.getType());

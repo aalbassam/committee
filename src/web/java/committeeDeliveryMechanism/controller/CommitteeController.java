@@ -44,6 +44,8 @@ public class CommitteeController {
     private AddMemberToFormedCommittee addMemberToFormedCommittee;
     @Autowired
     private GetEmployeesList getEmployeesList;
+    @Autowired
+    private UpdateCommittee updateCommittee;
 
     //---------------------------Committees-----------------------------------------------------------------------------
 
@@ -57,6 +59,11 @@ public class CommitteeController {
     @PostMapping("/addCommittee") //tested
     public Long addNewCommittee(@RequestBody CommitteeDTO committeeDTO) {
         return this.addNewCommittee.addNewCommittee(CommitteeConverter.convertCommitteeDTO(committeeDTO));
+    }
+
+    @PostMapping("/updateCommittee")
+    public int updateCommittee(@RequestBody CommitteeDTO committeeDTO) {
+        return this.updateCommittee.updateCommittee(CommitteeConverter.convertCommitteeDTO(committeeDTO));
     }
 
 

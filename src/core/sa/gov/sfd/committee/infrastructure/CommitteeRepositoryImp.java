@@ -27,7 +27,15 @@ public class CommitteeRepositoryImp implements CommitteeRepository {
 
     @Override
     public int updateCommittee(CommitteeEntity committeeEntity) {
-        return 0;
+        final String updateQuery = "UPDATE COMMITTEES SET CC_AR_NAME =:1, CC_EN_NAME =:2, CC_TASKS=:3  WHERE CC_ROW_STATUS != 'D' AND CC_SID =:4";
+
+        MapSqlParameterSource namedParams = new MapSqlParameterSource();
+        namedParams.addValue("1", committeeEntity.getCommitteeName().getArabicName());
+        namedParams.addValue("2", committeeEntity.getCommitteeName().getEnglishName());
+        namedParams.addValue("3", committeeEntity.getTasks());
+        namedParams.addValue("4", committeeEntity.getCommitteeID().getId());
+
+        return this.namedParameterJdbcTemplate.update(updateQuery, namedParams);
     }
 
     @Override
