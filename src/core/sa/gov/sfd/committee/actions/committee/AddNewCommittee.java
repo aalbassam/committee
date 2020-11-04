@@ -24,8 +24,8 @@ public class AddNewCommittee {
 
         Long newKey = this.committeeService.addCommittee(committeeEntity);
 
-        if (newKey != 0 || newKey.equals(null)) {
-            TrackingLogEntity newLog = new TrackingLogEntity("COMMITTEES", new MasterId(newKey), "addCommittee", "INSERT", "com");
+        if (newKey != 0) {
+            TrackingLogEntity newLog = new TrackingLogEntity("COMMITTEES", new MasterId(newKey), "addNewCommittee", "INSERT", "com");
             this.trackingLoService.addTrackingLog(newLog);
         }
 
