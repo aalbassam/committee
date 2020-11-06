@@ -1,48 +1,47 @@
-package sa.gov.sfd.committee.core.approval;
-
+package sa.gov.sfd.committeeApproval.core;
 
 import sa.gov.sfd.committee.core.employee.EmployeeNID;
 
 public class ApproverTeamEntity {
 
-    private ApproverTeamId approverTeamId;
-    private TeamId teamId;
-    private TeamName teamName;
+    private ApproverTeamID approverTeamID;
+    private TeamID teamId;
+    private String teamName;
     private EmployeeNID employeeNID;
     private ApproverRoles approverRoles;
 
     public ApproverTeamEntity() {
     }
 
-    public ApproverTeamEntity(ApproverTeamId approverTeamId, TeamId teamId, TeamName teamName, EmployeeNID employeeNID, ApproverRoles approverRoles) {
-        this.approverTeamId = approverTeamId;
+    public ApproverTeamEntity(ApproverTeamID approverTeamID, TeamID teamId, String teamName, EmployeeNID employeeNID, ApproverRoles approverRoles) {
+        this.approverTeamID = approverTeamID;
         this.teamId = teamId;
         this.teamName = teamName;
         this.employeeNID = employeeNID;
         this.approverRoles = approverRoles;
     }
 
-    public ApproverTeamId getApproverTeamId() {
-        return approverTeamId;
+    public ApproverTeamID getApproverTeamID() {
+        return approverTeamID;
     }
 
-    public void setApproverTeamId(ApproverTeamId approverTeamId) {
-        this.approverTeamId = approverTeamId;
+    public void setApproverTeamID(ApproverTeamID approverTeamID) {
+        this.approverTeamID = approverTeamID;
     }
 
-    public TeamId getTeamId() {
+    public TeamID getTeamId() {
         return teamId;
     }
 
-    public void setTeamId(TeamId teamId) {
+    public void setTeamId(TeamID teamId) {
         this.teamId = teamId;
     }
 
-    public TeamName getTeamName() {
+    public String getTeamName() {
         return teamName;
     }
 
-    public void setTeamName(TeamName teamName) {
+    public void setTeamName(String teamName) {
         this.teamName = teamName;
     }
 

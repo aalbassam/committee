@@ -1,9 +1,10 @@
-package sa.gov.sfd.committee.core.approval;
+package sa.gov.sfd.committeeApproval.core;
 
-public class TeamId {
+public class TeamID {
+
     private final int id;
 
-    public TeamId(int id) {
+    public TeamID(int id) {
         this.id = id;
     }
 

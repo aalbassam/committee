@@ -1,6 +1,7 @@
 package sa.gov.sfd.committee.core.formedCommittee;
 
 import sa.gov.sfd.committee.core.committee.CommitteeEntity;
+import sa.gov.sfd.committee.core.employee.EmployeeNID;
 import sa.gov.sfd.committee.core.shared.BinaryDate;
 import sa.gov.sfd.committee.core.shared.MasterId;
 import sa.gov.sfd.committee.core.shared.RowStatus;
@@ -16,9 +17,11 @@ public class FormedCommitteeEntity {
     private BinaryDate decisionDate;
     private BinaryDate endDate;
     private List<MasterId> memberIDList;
+    private FormationStatus formationStatus;
+    private EmployeeNID approverId;
     private RowStatus rowStatus;  // A: Active  D: Deleted
 
-    public FormedCommitteeEntity(MasterId formationID, CommitteeEntity committeeEntity, boolean reward, String decisionNo, BinaryDate decisionDate, BinaryDate endDate, List<MasterId> memberIDList, RowStatus rowStatus) {
+    public FormedCommitteeEntity(MasterId formationID, CommitteeEntity committeeEntity, boolean reward, String decisionNo, BinaryDate decisionDate, BinaryDate endDate, List<MasterId> memberIDList, FormationStatus formationStatus, EmployeeNID approverId, RowStatus rowStatus) {
         this.formationID = formationID;
         this.committeeEntity = committeeEntity;
         this.reward = reward;
@@ -26,9 +29,26 @@ public class FormedCommitteeEntity {
         this.decisionDate = decisionDate;
         this.endDate = endDate;
         this.memberIDList = memberIDList;
+        this.formationStatus = formationStatus;
+        this.approverId = approverId;
         this.rowStatus = rowStatus;
     }
 
+    @Override
+    public String toString() {
+        return "FormedCommitteeEntity{" +
+                "formationID=" + formationID +
+                ", committeeEntity=" + committeeEntity +
+                ", reward=" + reward +
+                ", decisionNo='" + decisionNo + '\'' +
+                ", decisionDate=" + decisionDate +
+                ", endDate=" + endDate +
+                ", memberIDList=" + memberIDList +
+                ", formationStatus=" + formationStatus +
+                ", approverId=" + approverId +
+                ", rowStatus=" + rowStatus +
+                '}';
+    }
 
     public MasterId getFormationID() {
         return formationID;
@@ -84,6 +104,22 @@ public class FormedCommitteeEntity {
 
     public void setMemberIDList(List<MasterId> memberIDList) {
         this.memberIDList = memberIDList;
+    }
+
+    public FormationStatus getFormationStatus() {
+        return formationStatus;
+    }
+
+    public void setFormationStatus(FormationStatus formationStatus) {
+        this.formationStatus = formationStatus;
+    }
+
+    public EmployeeNID getApproverId() {
+        return approverId;
+    }
+
+    public void setApproverId(EmployeeNID approverId) {
+        this.approverId = approverId;
     }
 
     public RowStatus getRowStatus() {

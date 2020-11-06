@@ -13,4 +13,6 @@ public interface FormedCommitteeRepository {
 
     Long addFormedCommittee(MasterId committeeID, FormedCommitteeEntity formedCommitteeEntity);
 
+    int updateFormedCommitteeStatusByFormationID(MasterId formationId, FormationStatus formationStatus);
+
 }

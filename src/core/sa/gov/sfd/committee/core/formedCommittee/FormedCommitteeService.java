@@ -16,14 +16,18 @@ public class FormedCommitteeService {
 
     //---- Service Methods ----
     public FormedCommitteeEntity getFormedCommitteeByNO(MasterId formedCommitteeNo) {
-        return formedCommitteeRepository.getFormedCommitteeByNO(formedCommitteeNo);
+        return this.formedCommitteeRepository.getFormedCommitteeByNO(formedCommitteeNo);
     }
 
     public Long addFormedCommittee(MasterId committeeID, FormedCommitteeEntity formedCommitteeEntity) {
-        return formedCommitteeRepository.addFormedCommittee(committeeID, formedCommitteeEntity);
+        return this.formedCommitteeRepository.addFormedCommittee(committeeID, formedCommitteeEntity);
     }
 
     public List<FormedCommitteeEntity> getAllFormedCommittees() {
-        return formedCommitteeRepository.findAllFormedCommittees();
+        return this.formedCommitteeRepository.findAllFormedCommittees();
+    }
+
+    public int updateFormedCommitteeStatusByFormationID(MasterId formationId, FormationStatus formationStatus) {
+        return this.formedCommitteeRepository.updateFormedCommitteeStatusByFormationID(formationId, formationStatus);
     }
 }

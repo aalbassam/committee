@@ -8,12 +8,10 @@ import { CommitteeService } from '../committee.service';
   styleUrls: ['./committee-list.component.scss']
 })
 
-
 export class CommitteeListComponent implements OnInit {
 
   constructor(private committeeService: CommitteeService, private _router: Router) {}
 
-  // modules;
   committees;
 
   ngOnInit(): void {

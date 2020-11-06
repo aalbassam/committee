@@ -1,9 +1,9 @@
-package sa.gov.sfd.committee.infrastructure.approval;
+package sa.gov.sfd.committeeApproval.infrastructure;
 
 import org.springframework.jdbc.core.RowMapper;
-import sa.gov.sfd.committee.core.approval.TeamId;
-import sa.gov.sfd.committee.core.approval.Workflow;
-import sa.gov.sfd.committee.core.approval.WorkflowNumber;
+import sa.gov.sfd.committeeApproval.core.TeamID;
+import sa.gov.sfd.committeeApproval.core.Workflow;
+import sa.gov.sfd.committeeApproval.core.WorkflowNumber;
 
 
 import java.sql.ResultSet;
@@ -17,7 +17,7 @@ public class WorkflowMapper implements RowMapper<Workflow> {
         return new Workflow(
                 new WorkflowNumber(resultSet.getInt("WORKFLOW_NUMBER")),
                 resultSet.getInt("STEP"),
-                new TeamId(resultSet.getInt("TEAM_ID")),
+                new TeamID(resultSet.getInt("TEAM_ID")),
                 resultSet.getString("ACTION")
         );
     }

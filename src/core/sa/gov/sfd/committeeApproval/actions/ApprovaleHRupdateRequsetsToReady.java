@@ -1,8 +1,5 @@
-package sa.gov.sfd.committee.actions.approval;
+package sa.gov.sfd.committeeApproval.actions;
 
-
-import sa.gov.sfd.committee.core.approval.ApprovalServices;
-import sa.gov.sfd.committee.core.approval.ApprovalTransactionEntity;
 
 public class ApprovaleHRupdateRequsetsToReady {/*
 

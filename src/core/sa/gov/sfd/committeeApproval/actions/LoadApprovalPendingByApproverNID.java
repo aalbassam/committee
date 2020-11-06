@@ -1,8 +1,8 @@
-package sa.gov.sfd.committee.actions.approval;
+package sa.gov.sfd.committeeApproval.actions;
 
 
-import sa.gov.sfd.committee.core.approval.ApprovalServices;
-import sa.gov.sfd.committee.core.approval.ApprovalTransactionEntity;
+import sa.gov.sfd.committeeApproval.core.ApprovalServices;
+import sa.gov.sfd.committeeApproval.core.ApprovalTransactionEntity;
 import sa.gov.sfd.committee.core.employee.EmployeeNID;
 
 import java.util.List;

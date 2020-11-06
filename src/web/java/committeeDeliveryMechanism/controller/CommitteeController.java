@@ -7,12 +7,14 @@ import sa.gov.sfd.committee.actions.employee.GetEmployeesList;
 import sa.gov.sfd.committee.actions.formedCommittee.AddNewFormedCommittee;
 import sa.gov.sfd.committee.actions.formedCommittee.GetAllFormedCommittees;
 import sa.gov.sfd.committee.actions.formedCommittee.GetFormedCommitteeDetailByNO;
+import sa.gov.sfd.committee.actions.formedCommittee.SubmitFormedCommitteeToApproval;
 import sa.gov.sfd.committee.actions.member.AddMemberToFormedCommittee;
 import sa.gov.sfd.committee.actions.member.GetAllMembersByFormationNO;
 import sa.gov.sfd.committee.actions.memberRole.AddNewMemberRole;
 import sa.gov.sfd.committee.actions.memberRole.GetAllMemberRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sa.gov.sfd.committee.core.employee.EmployeeNID;
 import sa.gov.sfd.committee.core.shared.MasterId;
 
 
@@ -46,6 +48,8 @@ public class CommitteeController {
     private GetEmployeesList getEmployeesList;
     @Autowired
     private UpdateCommittee updateCommittee;
+    @Autowired
+    private SubmitFormedCommitteeToApproval submitFormedCommitteeToApproval;
 
     //---------------------------Committees-----------------------------------------------------------------------------
 
@@ -84,6 +88,12 @@ public class CommitteeController {
     @PostMapping("/formedCommittees/{committeeID}") //tested
     public Long addNewFormedCommittee(@PathVariable Long committeeID, @RequestBody FormedCommitteeDTO formedCommitteeDTO) {
         return this.addNewFormedCommittee.addFormedCommittee(new MasterId(committeeID), FormedCommitteeConverter.convertFormedCommitteeDTO(formedCommitteeDTO));
+    }
+
+    @PostMapping("/submitFormedCommittee/{formationId}")
+    public int submitFormedCommitteeToApproval(@PathVariable Long formationId) {
+        Long userId = Long.valueOf(1031499898);
+        return this.submitFormedCommitteeToApproval.submitFormedCommitteeToApproval(new MasterId(formationId), new EmployeeNID(userId));
     }
 
 

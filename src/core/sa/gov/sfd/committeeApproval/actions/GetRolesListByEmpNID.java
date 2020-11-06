@@ -1,9 +1,9 @@
-package sa.gov.sfd.committee.actions.approval;
+package sa.gov.sfd.committeeApproval.actions;
 
 
-import sa.gov.sfd.committee.core.approval.ApprovalServices;
-import sa.gov.sfd.committee.core.approval.ApproverTeamEntity;
-import sa.gov.sfd.committee.core.approval.WorkflowNumber;
+import sa.gov.sfd.committeeApproval.core.ApprovalServices;
+import sa.gov.sfd.committeeApproval.core.ApproverTeamEntity;
+import sa.gov.sfd.committeeApproval.core.WorkflowNumber;
 import sa.gov.sfd.committee.core.employee.EmployeeNID;
 
 public class GetRolesListByEmpNID {

@@ -1,4 +1,4 @@
-package sa.gov.sfd.committee.core.approval;
+package sa.gov.sfd.committeeApproval.core;
 
 
 import sa.gov.sfd.committee.core.employee.EmployeeNID;
@@ -13,13 +13,16 @@ public class ApprovalServices {
     }
 
 
-    public ApprovalTransactionEntity applyNewApproval(ApprovalTransactionEntity approvalTransactionEntity) {
-        return this.approvalRepository.applyNewApproval(approvalTransactionEntity);
+    public Long applyNewApproval(ApprovalTransactionEntity approvalTransactionEntity) {
+        return this.approvalRepository.applyNewApproval(approvalTransactionEntity); //used
     }
-
 
     public List<ApprovalPath> approvalPathForEmployee(List<Long> EmployeesNID) {
         return this.approvalRepository.approvalPathForEmployee(EmployeesNID);
+    }
+
+    public int approvalPathForEmployee(EmployeeNID employeesNID) {
+        return this.approvalRepository.approvalPathForEmployee(employeesNID);  //used
     }
 
     public List<ApprovalTransactionEntity> loadApprovalPendingByApproverNID(EmployeeNID employeeNID) {

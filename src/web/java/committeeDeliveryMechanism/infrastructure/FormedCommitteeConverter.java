@@ -2,6 +2,8 @@ package committeeDeliveryMechanism.infrastructure;
 
 import committeeDeliveryMechanism.view.FormedCommitteeDTO;
 import sa.gov.sfd.committee.core.committee.CommitteeEntity;
+import sa.gov.sfd.committee.core.employee.EmployeeNID;
+import sa.gov.sfd.committee.core.formedCommittee.FormationStatus;
 import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeEntity;
 import sa.gov.sfd.committee.core.shared.BinaryDate;
 import sa.gov.sfd.committee.core.shared.MasterId;
@@ -52,6 +54,8 @@ public class FormedCommitteeConverter {
                 new BinaryDate(formedCommitteeDTO.getDecisionDateAH(), formedCommitteeDTO.getDecisionDateAD()),
                 new BinaryDate(formedCommitteeDTO.getEndDateAH(), formedCommitteeDTO.getEndDateAD()),
                 null,
+                new FormationStatus(""),
+                new EmployeeNID(),
                 new RowStatus());
 
     }

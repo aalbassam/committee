@@ -1,9 +1,4 @@
-package sa.gov.sfd.committee.actions.approval;
-
-import sa.gov.sfd.committee.core.approval.ApprovalServices;
-import sa.gov.sfd.committee.core.approval.ApprovalTransactionEntity;
-
-import java.util.List;
+package sa.gov.sfd.committeeApproval.actions;
 
 public class DeclineRequest {
     /*

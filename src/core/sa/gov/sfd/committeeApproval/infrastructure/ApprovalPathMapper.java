@@ -1,8 +1,8 @@
-package sa.gov.sfd.committee.infrastructure.approval;
+package sa.gov.sfd.committeeApproval.infrastructure;
 
 
 import org.springframework.jdbc.core.RowMapper;
-import sa.gov.sfd.committee.core.approval.ApprovalPath;
+import sa.gov.sfd.committeeApproval.core.ApprovalPath;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

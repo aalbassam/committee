@@ -1,44 +1,39 @@
-package sa.gov.sfd.committee.core.approval;
-
+package sa.gov.sfd.committeeApproval.core;
 
 import sa.gov.sfd.committee.core.employee.EmployeeNID;
 
 public class ApprovalTransactionEntity {
 
-    private int id;
+    private ApprovalTransactionID id;
     private int step;
     private Workflow workflow;
-    private EmployeeNID employeeNID;
+    private EmployeeNID userNID;
     private String requestID;
     private String requestTitle;
-    private String requestType;
     private String action;
     private String type;
     private String note;
 
-
     public ApprovalTransactionEntity() {
     }
 
-    public ApprovalTransactionEntity(int id, int step, Workflow workflow, EmployeeNID employeeNID, String requestID, String requestTitle, String requestType, String action, String type, String note) {
+    public ApprovalTransactionEntity(ApprovalTransactionID id, int step, Workflow workflow, EmployeeNID userNID, String requestID, String requestTitle, String action, String type, String note) {
         this.id = id;
         this.step = step;
         this.workflow = workflow;
-        this.employeeNID = employeeNID;
+        this.userNID = userNID;
         this.requestID = requestID;
         this.requestTitle = requestTitle;
-        this.requestType = requestType;
         this.action = action;
         this.type = type;
         this.note = note;
     }
 
-
-    public int getId() {
+    public ApprovalTransactionID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(ApprovalTransactionID id) {
         this.id = id;
     }
 
@@ -58,12 +53,12 @@ public class ApprovalTransactionEntity {
         this.workflow = workflow;
     }
 
-    public EmployeeNID getEmployeeNID() {
-        return employeeNID;
+    public EmployeeNID getUserNID() {
+        return userNID;
     }
 
-    public void setEmployeeNID(EmployeeNID employeeNID) {
-        this.employeeNID = employeeNID;
+    public void setUserNID(EmployeeNID userNID) {
+        this.userNID = userNID;
     }
 
     public String getRequestID() {
@@ -80,14 +75,6 @@ public class ApprovalTransactionEntity {
 
     public void setRequestTitle(String requestTitle) {
         this.requestTitle = requestTitle;
-    }
-
-    public String getRequestType() {
-        return requestType;
-    }
-
-    public void setRequestType(String requestType) {
-        this.requestType = requestType;
     }
 
     public String getAction() {

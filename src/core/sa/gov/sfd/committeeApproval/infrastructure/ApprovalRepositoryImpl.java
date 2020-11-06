@@ -1,9 +1,16 @@
-package sa.gov.sfd.committee.infrastructure.approval;
-
+package sa.gov.sfd.committeeApproval.infrastructure;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import sa.gov.sfd.committee.core.approval.*;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import sa.gov.sfd.committeeApproval.core.ApprovalPath;
+import sa.gov.sfd.committeeApproval.core.ApprovalRepository;
+import sa.gov.sfd.committeeApproval.core.ApproverTeamEntity;
+import sa.gov.sfd.committeeApproval.core.ApprovalTransactionEntity;
 import sa.gov.sfd.committee.core.employee.EmployeeNID;
+import sa.gov.sfd.committeeApproval.core.WorkflowNumber;
 
 
 import java.sql.PreparedStatement;
@@ -11,31 +18,38 @@ import java.util.Collections;
 import java.util.List;
 
 public class ApprovalRepositoryImpl implements ApprovalRepository {
-    private final JdbcTemplate jdbcTemplate;
 
-    public ApprovalRepositoryImpl(JdbcTemplate jdbcTemplate) {
+    private final JdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+
+    public ApprovalRepositoryImpl(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
-
     @Override
-    public ApprovalTransactionEntity applyNewApproval(ApprovalTransactionEntity approvalTransactionEntity) {
-        final String INSERT_APPROVAL_TRANSACTION_SQL = "insert into C_APPROVAL_TRANSACTION(ID, WORKFLOW_NUMBER, STEP, USER_NID, REQUEST_ID, " +
-                "NOTE, REQUEST_TITLE, REQUEST_TYPE, TYPE)\n" + "\n" +
-                "VALUES (L_APPROVAL_TRANSACTION_SEQ.nextval,?,?,?,?,?,?,?,'Loan')";
-        jdbcTemplate.update(connection -> {
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_APPROVAL_TRANSACTION_SQL);
-            preparedStatement.setInt(1, approvalTransactionEntity.getWorkflow().getWorkflowNumber().getId());
-            preparedStatement.setInt(2, approvalTransactionEntity.getStep());
-            preparedStatement.setLong(3, approvalTransactionEntity.getEmployeeNID().getId());
-            preparedStatement.setString(4, approvalTransactionEntity.getRequestID());
-            preparedStatement.setString(5, approvalTransactionEntity.getNote());
-            preparedStatement.setString(6, approvalTransactionEntity.getRequestTitle());
-            preparedStatement.setString(7, approvalTransactionEntity.getRequestType());
-            return preparedStatement;
-        });
+    public Long applyNewApproval(ApprovalTransactionEntity approvalTransactionEntity) {
 
-        return approvalTransactionEntity;
+        final String insertQuery = "INSERT INTO C_APPROVAL_TRANSACTION(ID, WORKFLOW_NUMBER, STEP, USER_NID, REQUEST_ID, NOTE, REQUEST_TITLE, TYPE)" +
+                " VALUES (L_APPROVAL_TRANSACTION_SEQ.NEXTVAL,:1,:2,:3,:4,:5,:6,:7)";
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        MapSqlParameterSource namedParams = new MapSqlParameterSource();
+
+        namedParams.addValue("1", approvalTransactionEntity.getWorkflow().getWorkflowNumber().getId());
+        namedParams.addValue("2", approvalTransactionEntity.getStep());
+        namedParams.addValue("3", approvalTransactionEntity.getUserNID().getId());
+        namedParams.addValue("4", approvalTransactionEntity.getRequestID());
+        namedParams.addValue("5", approvalTransactionEntity.getNote());
+        namedParams.addValue("6", approvalTransactionEntity.getRequestTitle());
+        namedParams.addValue("7", approvalTransactionEntity.getType());
+
+        this.namedParameterJdbcTemplate.update(insertQuery, namedParams, keyHolder, new String[]{"ID"});
+
+        return keyHolder.getKey().longValue();
+
     }
 
 
@@ -69,6 +83,14 @@ public class ApprovalRepositoryImpl implements ApprovalRepository {
                 EmployeesNID.toArray(), new ApprovalPathMapper());
     }
 
+    @Override
+    public int approvalPathForEmployee(EmployeeNID EmployeesNID) {
+
+        String selectQuery = "SELECT WORKFLOW_NUMBER FROM C_APPROVAL_PATH WHERE EMPLOYEE_NID = ?";
+
+        return jdbcTemplate.queryForObject(selectQuery, new Object[]{EmployeesNID.getId()}, Integer.class);
+    }
+
 
     @Override
     // Tested
@@ -98,7 +120,7 @@ public class ApprovalRepositoryImpl implements ApprovalRepository {
                 "and REQUEST_ID = ?";
         return jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_APPROVAL_TRANSACTION_SQL);
-            preparedStatement.setLong(1, approvalTransactionEntity.getEmployeeNID().getId());
+            preparedStatement.setLong(1, approvalTransactionEntity.getUserNID().getId());
             preparedStatement.setString(2, approvalTransactionEntity.getNote());
             preparedStatement.setInt(3, approvalTransactionEntity.getWorkflow().getWorkflowNumber().getId());
             preparedStatement.setInt(4, approvalTransactionEntity.getStep());

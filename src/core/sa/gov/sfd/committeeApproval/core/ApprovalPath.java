@@ -1,4 +1,4 @@
-package sa.gov.sfd.committee.core.approval;
+package sa.gov.sfd.committeeApproval.core;
 
 
 import sa.gov.sfd.committee.core.employee.EmployeeNID;
@@ -6,6 +6,7 @@ import sa.gov.sfd.committee.core.employee.EmployeeNID;
 public class ApprovalPath {
     private final EmployeeNID employeeNID;
     private final int workFlowNumber;
+
 
     public ApprovalPath(EmployeeNID employeeNID, int workFlowNumber) {
         this.employeeNID = employeeNID;

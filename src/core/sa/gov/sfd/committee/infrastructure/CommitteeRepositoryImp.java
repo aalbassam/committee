@@ -67,9 +67,6 @@ public class CommitteeRepositoryImp implements CommitteeRepository {
 
         Long newId = keyHolder.getKey().longValue();
 
-
         return newId;
     }
 }
-
-

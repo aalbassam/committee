@@ -12,6 +12,10 @@ public class EmployeeNID {
         this.id = employeeNID;
     }
 
+    public EmployeeNID() {
+        this.id = Long.valueOf(0);
+    }
+
     public Long getId() {
         return id;
     }

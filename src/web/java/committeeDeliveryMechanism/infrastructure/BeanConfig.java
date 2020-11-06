@@ -1,6 +1,8 @@
 package committeeDeliveryMechanism.infrastructure;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import sa.gov.sfd.committee.actions.formedCommittee.SubmitFormedCommitteeToApproval;
 import sa.gov.sfd.committee.actions.trackingLog.AddNewTrackingLog;
 import sa.gov.sfd.committee.actions.committee.*;
 
@@ -29,6 +31,9 @@ import sa.gov.sfd.committee.infrastructure.*;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import sa.gov.sfd.committeeApproval.core.ApprovalRepository;
+import sa.gov.sfd.committeeApproval.core.ApprovalServices;
+import sa.gov.sfd.committeeApproval.infrastructure.ApprovalRepositoryImpl;
 //import org.springframework.jdbc.core.JdbcTemplate;
 
 
@@ -43,6 +48,11 @@ public class BeanConfig {
     @Bean
     NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
         return new NamedParameterJdbcTemplate(dataSource());
+    }
+
+    @Bean
+    JdbcTemplate jdbcTemplate() {
+        return new JdbcTemplate(dataSource());
     }
 
     /*@Bean
@@ -100,6 +110,11 @@ public class BeanConfig {
         return new TrackingLogRepositoryImp(namedParameterJdbcTemplate());
     }
 
+    @Bean
+    public ApprovalRepository approvalRepository() {
+        return new ApprovalRepositoryImpl(jdbcTemplate(), namedParameterJdbcTemplate());
+    }
+
 
     //---------------SERVICES-------------------------
     @Bean
@@ -132,6 +147,10 @@ public class BeanConfig {
         return new TrackingLogService(trackingLogRepository());
     }
 
+    @Bean
+    public ApprovalServices approvalServices() {
+        return new ApprovalServices(approvalRepository());
+    }
 
     //---------------ACTIONS---------------------
     @Bean
@@ -192,6 +211,11 @@ public class BeanConfig {
     @Bean
     public AddNewTrackingLog addNewTrackingLog() {
         return new AddNewTrackingLog(trackingLogService());
+    }
+
+    @Bean
+    public SubmitFormedCommitteeToApproval submitFormedCommitteeToApproval() {
+        return new SubmitFormedCommitteeToApproval(formedCommitteeService(), approvalServices());
     }
 
 
