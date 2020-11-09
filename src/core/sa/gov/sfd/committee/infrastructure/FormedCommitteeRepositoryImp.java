@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import sa.gov.sfd.committee.core.employee.EmployeeNID;
 import sa.gov.sfd.committee.core.formedCommittee.FormationStatus;
 import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeEntity;
 import sa.gov.sfd.committee.core.formedCommittee.FormedCommitteeRepository;
@@ -86,6 +87,23 @@ public class FormedCommitteeRepositoryImp implements FormedCommitteeRepository {
         namedParams.addValue("1", formationStatus.getValue());
         namedParams.addValue("2", formationId.getId());
 
+
+        return this.namedParameterJdbcTemplate.update(updateQuery, namedParams);
+    }
+
+    @Override
+    public int approvalFormedCommittee() {
+        return 0;
+    }
+
+    @Override
+    public int updateFormedCommitteeStatusAndApproverByFormationID(MasterId formationId, FormationStatus formationStatus, EmployeeNID approverId) {
+        final String updateQuery = "UPDATE FORMED_COMMITTEES SET SC_FORMATION_STATUS =:1, SC_APPROVER_ID=:2  WHERE SC_FORMATION_NO =:3";
+
+        MapSqlParameterSource namedParams = new MapSqlParameterSource();
+        namedParams.addValue("1", formationStatus.getValue());
+        namedParams.addValue("2", approverId.getId());
+        namedParams.addValue("3", formationId.getId());
 
         return this.namedParameterJdbcTemplate.update(updateQuery, namedParams);
     }

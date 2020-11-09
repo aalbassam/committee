@@ -4,8 +4,11 @@
 
 export const environment = {
   production: false,
-  apiURL : '/api'
+  apiURL: 'http://localhost:8081/api',
+  redirectUrl: 'http://localhost:4200'
+  // authServerUrl : 'http://172.16.101.40:9191'
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

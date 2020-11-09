@@ -55,19 +55,18 @@ public class ApprovalRepositoryImpl implements ApprovalRepository {
 
     @Override
     public List<ApprovalTransactionEntity> loadApprovalPendingByApproverNID(EmployeeNID employeeNID) {
-        return jdbcTemplate.query("" +
-                        "select L_APPROVAL_TRANSACTION.id, L_APPROVAL_TRANSACTION.workflow_number, L_APPROVAL_TRANSACTION.step, L_APPROVAL_TRANSACTION.user_nid,\n" +
-                        "       L_APPROVAL_TRANSACTION.request_id, L_APPROVAL_TRANSACTION.action, L_APPROVAL_TRANSACTION.note, L_APPROVAL_TRANSACTION.request_title,\n" +
-                        "       L_APPROVAL_TRANSACTION.request_type, L_APPROVAL_TRANSACTION.type\n" +
-                        "from C_APPROVAL_TRANSACTION\n" +
-                        "where L_APPROVAL_TRANSACTION.ACTION IS NULL\n" +
-                        "AND EXISTS(\n" +
-                        "SELECT  L_WORKFLOW.ID , L_WORKFLOW.WORKFLOW_NUMBER , L_WORKFLOW.STEP , L_WORKFLOW.TYPE ,L_WORKFLOW.TEAM_ID ,L_WORKFLOW.ACTION\n" +
-                        "FROM C_WORKFLOW\n" +
-                        "WHERE L_WORKFLOW.STEP = L_APPROVAL_TRANSACTION.STEP\n" +
-                        "AND L_WORKFLOW.WORKFLOW_NUMBER = L_APPROVAL_TRANSACTION.WORKFLOW_NUMBER\n" +
-                        "AND L_WORKFLOW.TEAM_ID IN (SELECT DISTINCT L_EMP_TEAM.TEAM_ID FROM L_EMP_TEAM WHERE L_EMP_TEAM.EMPLOYEE_NID = ?))",
-                new Object[]{employeeNID.getId()}, new ApprovalTransactionMapper());
+
+        final String selectQuery = "SELECT id, workflow_number, step, user_nid, request_id, action, note, request_title, type\n" +
+                "FROM C_APPROVAL_TRANSACTION\n" +
+                "WHERE action IS NULL\n" +
+                "AND EXISTS(\n" +
+                "  SELECT  ID , WORKFLOW_NUMBER , STEP , TYPE ,TEAM_ID , ACTION\n" +
+                "  FROM C_WORKFLOW\n" +
+                "  WHERE C_WORKFLOW.STEP = C_APPROVAL_TRANSACTION.STEP\n" +
+                "  AND C_WORKFLOW.WORKFLOW_NUMBER = C_APPROVAL_TRANSACTION.WORKFLOW_NUMBER\n" +
+                "  AND C_WORKFLOW.TEAM_ID IN (SELECT DISTINCT C_EMP_TEAM.TEAM_ID FROM C_EMP_TEAM WHERE C_EMP_TEAM.EMPLOYEE_NID = ?))";
+
+        return jdbcTemplate.query(selectQuery, new Object[]{employeeNID.getId()}, new ApprovalTransactionMapper());
     }
 
 
@@ -86,25 +85,26 @@ public class ApprovalRepositoryImpl implements ApprovalRepository {
     @Override
     public int approvalPathForEmployee(EmployeeNID EmployeesNID) {
 
-        String selectQuery = "SELECT WORKFLOW_NUMBER FROM C_APPROVAL_PATH WHERE EMPLOYEE_NID = ?";
+        final String selectQuery = "SELECT WORKFLOW_NUMBER FROM C_APPROVAL_PATH WHERE EMPLOYEE_NID = ?";
 
         return jdbcTemplate.queryForObject(selectQuery, new Object[]{EmployeesNID.getId()}, Integer.class);
     }
 
 
     @Override
-    // Tested
     public ApproverTeamEntity getRolesListByEmpNID(EmployeeNID employeeNID, WorkflowNumber workflowNumber, int step, String workflowType) {
-        return jdbcTemplate.queryForObject("" +
-                        "SELECT  L_APPROVER_TEAM.APPROVAL_TEAM_ID , L_APPROVER_TEAM.TEAM_ID, L_APPROVER_TEAM.TEAM_NAME , L_APPROVER_TEAM.APPROVAL_ROLE ,\n" +
-                        "       L_APPROVER_TEAM.DECLINED_ROLE , L_APPROVER_TEAM.VIEW_ROLE ,  L_APPROVER_TEAM.CONFIRMED_ROLE ,L_APPROVER_TEAM.ISSUED_NEW_CONFORMATION ,L_EMP_TEAM.EMPLOYEE_NID\n" +
-                        "FROM C_APPROVER_TEAM , C_EMP_TEAM , C_WORKFLOW\n" +
-                        "WHERE EMPLOYEE_NID = ?\n" +
-                        "AND L_WORKFLOW.WORKFLOW_NUMBER =?\n" +
-                        "AND L_WORKFLOW.STEP = ?\n" +
-                        "AND L_WORKFLOW.TYPE = ?\n" +
-                        "AND L_APPROVER_TEAM.TEAM_ID = L_WORKFLOW.TEAM_ID",
-                new Object[]{employeeNID.getId(), workflowNumber.getId(), step, workflowType}, new ApproverTeamMapper());
+
+        final String selectQuery = "SELECT  C_APPROVER_TEAM.APPROVAL_TEAM_ID , C_APPROVER_TEAM.TEAM_ID, C_APPROVER_TEAM.TEAM_NAME , C_APPROVER_TEAM.APPROVAL_ROLE,\n" +
+                "C_APPROVER_TEAM.DECLINED_ROLE , C_APPROVER_TEAM.VIEW_ROLE ,  C_APPROVER_TEAM.CONFIRMED_ROLE, C_EMP_TEAM.EMPLOYEE_NID\n" +
+                "FROM C_APPROVER_TEAM , C_EMP_TEAM , C_WORKFLOW\n" +
+                "                        WHERE EMPLOYEE_NID = ?\n" +
+                "                        AND C_WORKFLOW.WORKFLOW_NUMBER =?\n" +
+                "                        AND C_WORKFLOW.STEP = ?\n" +
+                "                        AND C_WORKFLOW.TYPE = ?\n" +
+                "                        AND C_APPROVER_TEAM.TEAM_ID = C_WORKFLOW.TEAM_ID";
+
+
+        return jdbcTemplate.queryForObject(selectQuery, new Object[]{employeeNID.getId(), workflowNumber.getId(), step, workflowType}, new ApproverTeamMapper());
     }
 
 
@@ -134,16 +134,15 @@ public class ApprovalRepositoryImpl implements ApprovalRepository {
 
 
     @Override
-    // Tested
     public int approveRequest(ApprovalTransactionEntity approvalTransactionEntity) {
-        final String UPDATE_APPROVAL_TRANSACTION_SQL = "UPDATE C_APPROVAL_TRANSACTION SET L_APPROVAL_TRANSACTION.ACTION = (SELECT L_WORKFLOW.ACTION \n" +
+        final String UPDATE_APPROVAL_TRANSACTION_SQL = "UPDATE C_APPROVAL_TRANSACTION SET C_APPROVAL_TRANSACTION.ACTION = (SELECT C_WORKFLOW.ACTION \n" +
                 "FROM C_WORKFLOW \n" +
-                "WHERE l_WORKFLOW.WORKFLOW_NUMBER = ? \n" +
-                "AND l_WORKFLOW.STEP = ? AND l_WORKFLOW.TYPE =?), L_APPROVAL_TRANSACTION.NOTE=? \n" +
-                "WHERE L_APPROVAL_TRANSACTION.WORKFLOW_NUMBER = ? \n" +
-                "AND L_APPROVAL_TRANSACTION.STEP = ? \n" +
-                "AND L_APPROVAL_TRANSACTION.TYPE = ? \n" +
-                "AND L_APPROVAL_TRANSACTION.REQUEST_ID = ?";
+                "WHERE C_WORKFLOW.WORKFLOW_NUMBER = ? \n" +
+                "AND C_WORKFLOW.STEP = ? AND C_WORKFLOW.TYPE =?), C_APPROVAL_TRANSACTION.NOTE=? \n" +
+                "WHERE C_APPROVAL_TRANSACTION.WORKFLOW_NUMBER = ? \n" +
+                "AND C_APPROVAL_TRANSACTION.STEP = ? \n" +
+                "AND C_APPROVAL_TRANSACTION.TYPE = ? \n" +
+                "AND C_APPROVAL_TRANSACTION.REQUEST_ID = ?";
 
         return jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_APPROVAL_TRANSACTION_SQL);

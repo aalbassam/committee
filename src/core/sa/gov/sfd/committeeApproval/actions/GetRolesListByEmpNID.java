@@ -6,7 +6,7 @@ import sa.gov.sfd.committeeApproval.core.ApproverTeamEntity;
 import sa.gov.sfd.committeeApproval.core.WorkflowNumber;
 import sa.gov.sfd.committee.core.employee.EmployeeNID;
 
-public class GetRolesListByEmpNID {
+public class GetRolesListByEmpNID { //used
     private final ApprovalServices approvalServices;
 
     public GetRolesListByEmpNID(ApprovalServices approvalServices) {

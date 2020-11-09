@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sa.gov.sfd.committee.core.employee.EmployeeNID;
 import sa.gov.sfd.committee.core.shared.MasterId;
+import sa.gov.sfd.committeeApproval.actions.LoadApprovalPendingByApproverNID;
+import sa.gov.sfd.committeeApproval.core.ApprovalTransactionEntity;
 
 
 import java.util.List;
@@ -50,6 +52,8 @@ public class CommitteeController {
     private UpdateCommittee updateCommittee;
     @Autowired
     private SubmitFormedCommitteeToApproval submitFormedCommitteeToApproval;
+    @Autowired
+    private LoadApprovalPendingByApproverNID loadApprovalPendingByApproverNID;
 
     //---------------------------Committees-----------------------------------------------------------------------------
 
@@ -130,4 +134,11 @@ public class CommitteeController {
 
         return EmployeeConverter.convertEmployeeList(this.getEmployeesList.getAllEmployeeList());
     }
+
+    //--------------------------------Approval--------------------------------------------------------------------------
+    @GetMapping("/loadApprovalPending/{employeeNID}")
+    public List<ApprovalTransactionDTO> loadApprovalPendingByApproverNID(@PathVariable Long employeeNID) {
+        return ApprovalTransactionConverter.convertApprovalTransactionList(this.loadApprovalPendingByApproverNID.loadApprovalPendingByApproverNID(new EmployeeNID(employeeNID)));
+    }
+
 }

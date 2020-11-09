@@ -1,7 +1,7 @@
 package sa.gov.sfd.committeeApproval.actions;
 
-public class DeclineRequest {
-    /*
+public class DeclineRequest {/*
+
     private final ApprovalServices approvalServices;
     private final RequestServices requestServices;
     private final ConfirmationServices confirmationServices;

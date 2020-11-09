@@ -7,7 +7,7 @@ import sa.gov.sfd.committee.core.employee.EmployeeNID;
 
 import java.util.List;
 
-public class LoadApprovalPendingByApproverNID {
+public class LoadApprovalPendingByApproverNID { //used
 
     private final ApprovalServices approvalServices;
 

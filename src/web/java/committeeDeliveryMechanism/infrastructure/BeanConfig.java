@@ -31,6 +31,7 @@ import sa.gov.sfd.committee.infrastructure.*;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import sa.gov.sfd.committeeApproval.actions.LoadApprovalPendingByApproverNID;
 import sa.gov.sfd.committeeApproval.core.ApprovalRepository;
 import sa.gov.sfd.committeeApproval.core.ApprovalServices;
 import sa.gov.sfd.committeeApproval.infrastructure.ApprovalRepositoryImpl;
@@ -216,6 +217,11 @@ public class BeanConfig {
     @Bean
     public SubmitFormedCommitteeToApproval submitFormedCommitteeToApproval() {
         return new SubmitFormedCommitteeToApproval(formedCommitteeService(), approvalServices());
+    }
+
+    @Bean
+    public LoadApprovalPendingByApproverNID loadApprovalPendingByApproverNID() {
+        return new LoadApprovalPendingByApproverNID(approvalServices());
     }
 
 

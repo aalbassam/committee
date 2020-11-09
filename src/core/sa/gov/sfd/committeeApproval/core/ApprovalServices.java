@@ -26,7 +26,7 @@ public class ApprovalServices {
     }
 
     public List<ApprovalTransactionEntity> loadApprovalPendingByApproverNID(EmployeeNID employeeNID) {
-        return this.approvalRepository.loadApprovalPendingByApproverNID(employeeNID);
+        return this.approvalRepository.loadApprovalPendingByApproverNID(employeeNID); //used
     }
 
     public ApproverTeamEntity getRolesListByEmpNID(EmployeeNID employeeNID, WorkflowNumber workflowNumber, int step, String workflowType) {
@@ -34,11 +34,11 @@ public class ApprovalServices {
     }
 
     public int declineRequest(ApprovalTransactionEntity approvalTransactionEntity) {
-        return this.approvalRepository.declineRequest(approvalTransactionEntity);
+        return this.approvalRepository.declineRequest(approvalTransactionEntity); //used
     }
 
     public int approveRequest(ApprovalTransactionEntity approvalTransactionEntity) {
-        return this.approvalRepository.approveRequest(approvalTransactionEntity);
+        return this.approvalRepository.approveRequest(approvalTransactionEntity); //used
     }
 
     public ApprovalTransactionEntity getLastRecordInTransaction(EmployeeNID employeeNID) {
